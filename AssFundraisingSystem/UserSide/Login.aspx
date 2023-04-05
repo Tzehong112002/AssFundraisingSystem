@@ -23,15 +23,16 @@
 </div>
 <div class="col-lg-5 px-lg-4">
 <h1 class="text-base text-primary text-uppercase mb-4">Login Here</h1>
-<h2 class="mb-4">Welcome Back!</h2>
+<h2 class="mb-4">Welcome Back!<asp:Label ID="lblMessage" runat="server" ForeColor="Red" Text="Label" Visible="False"></asp:Label>
+    </h2>
 
 <div class ="form-group mb-4">
-<asp:TextBox required= "true" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Email" runat="server" ></asp:TextBox>
+<asp:TextBox required= "true" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Email" runat="server" ID="txtUsername" ></asp:TextBox>
 
 </div>
 
 <div class ="form-group mb-4">
-<asp:TextBox required= "true" TextMode="Password" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Password" runat="server" ></asp:TextBox>
+<asp:TextBox required= "true" TextMode="Password" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Password" runat="server" ID="txtPassword" ></asp:TextBox>
 
 </div>
 <div class="form-group mb-4">

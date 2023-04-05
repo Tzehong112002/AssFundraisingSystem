@@ -25,32 +25,30 @@
 <h2 class="mb-4">Welcome Back!</h2>
 
 <div class ="form-group mb-4">
-<asp:TextBox required= "true" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="First Name" runat="server" ></asp:TextBox>
+<asp:TextBox required= "true" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Name" runat="server" ID="txtName" ></asp:TextBox>
+
+</div>
+
+<div class ="form-group mb-4">
+<asp:TextBox required= "true" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="User Name" runat="server" ID="txtusername" ></asp:TextBox>
 
 </div>
 <div class ="form-group mb-4">
-<asp:TextBox required= "true" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Last Name" runat="server" ></asp:TextBox>
+<asp:TextBox required= "true" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Email" runat="server" ID="txtEmail" ></asp:TextBox>
 
 </div>
 <div class ="form-group mb-4">
-<asp:TextBox required= "true" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="User Name" runat="server" ></asp:TextBox>
+<asp:TextBox required= "true" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Password" runat="server" ID="txtPassword" ></asp:TextBox>
 
 </div>
 <div class ="form-group mb-4">
-<asp:TextBox required= "true" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Email" runat="server" ></asp:TextBox>
+<asp:TextBox required= "true" TextMode="Password" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Confirm Password" runat="server" ID="txtConfirmnPassword" ></asp:TextBox>
 
 </div>
-<div class ="form-group mb-4">
-<asp:TextBox required= "true" TextMode="Password" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Password" runat="server" ></asp:TextBox>
-
-</div>
-<div class ="form-group mb-4">
-<asp:TextBox required= "true" TextMode="Password" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Confirm Password" runat="server" ></asp:TextBox>
-
-</div>
-
 
 <asp:Button Text="Sign up" CssClass="btn btn-primary" Height="50px" Width="400px" runat="server" OnClick="Unnamed7_Click" />
+
+                    
 
     <div id="hyperlinkPage">
 
