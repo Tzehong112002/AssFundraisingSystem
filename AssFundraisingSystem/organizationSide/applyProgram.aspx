@@ -16,7 +16,7 @@
              <asp:DropDownList ID="DropDownList1" runat="server" Width="100%" CssClass="dropdownlist">
                  <asp:ListItem>Animal</asp:ListItem>
                  <asp:ListItem>Human</asp:ListItem>
-                 <asp:ListItem>flood</asp:ListItem>
+                 <asp:ListItem>floo</asp:ListItem>
                  <asp:ListItem></asp:ListItem>
                 </asp:DropDownList>
 
