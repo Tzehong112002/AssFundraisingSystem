@@ -1,0 +1,36 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="AssFundraisingSystem.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Master page</title>
+    <link href="css/navigationFooter.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+<form id="headerfooter" runat="server">
+
+        <div id="header">
+
+          <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" SiteMapProvider="oldProvider"/>             
+            <asp:Menu ID="Menu" runat="server" DataSourceID="SiteMapDataSource1" ForeColor="#284E98" Orientation="Horizontal" StaticDisplayLevels="2" BackColor="White" Font-Size="Large" Font-Strikeout="False" EnableTheming="True" StaticMenuItemStyle-BackColor="White" ViewStateMode="Inherit" DynamicMenuStyle-VerticalPadding="50px" StaticMenuItemStyle-HorizontalPadding="20px" StaticMenuItemStyle-VerticalPadding="20px" Font-Names="Garamond" Font-Bold="True" DynamicHoverStyle-ForeColor="Red" StaticHoverStyle-ForeColor="Red"></asp:Menu>
+
+           
+
+
+        </div>
+
+
+
+            <asp:ContentPlaceHolder ID="main" runat="server">
+            </asp:ContentPlaceHolder>
+
+
+
+        
+    
+</form>
+</body>
+</html>

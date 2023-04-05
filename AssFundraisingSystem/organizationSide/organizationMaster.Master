@@ -1,0 +1,28 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="organizationMaster.master.cs" Inherits="AssFundraisingSystem.organizationSide.css.organizationMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <link href="css/navOrganization.css" rel="stylesheet" />
+
+
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="sidenav">        
+            <br />
+            <asp:SiteMapDataSource ID="SiteMapDataSource2" runat="server"  SiteMapProvider="organizationProvider"/>
+            <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource2" StaticDisplayLevels="3" BorderStyle="None" CssClass="adminnav" Height="100%" ForeColor="Black" DynamicHoverStyle-ForeColor="White" StaticHoverStyle-ForeColor="White" StaticMenuItemStyle-Height="100%" Font-Size="12pt" ItemWrap="True" RenderingMode="Default" StaticHoverStyle-BackColor="Black" Font-Bold="True" Font-Names="Lucida Console" DynamicSelectedStyle-BackColor="Black" DynamicSelectedStyle-ForeColor="White" StaticSelectedStyle-BackColor="Black" StaticSelectedStyle-ForeColor="White" StaticMenuItemStyle-HorizontalPadding="5px" StaticMenuItemStyle-VerticalPadding="5px" ClientIDMode="Inherit" StaticSubMenuIndent=""></asp:Menu>
+  
+        </div>
+
+        <div id="content">
+         <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+            </asp:ContentPlaceHolder>
+         </div>
+
+    </form>
+</body>
+</html>

@@ -1,0 +1,51 @@
+﻿body {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+
+    position: relative;
+    font-size: 14px;
+    line-height: 24px;
+    color: #6f6f6f;
+    background-color: white;
+    overflow-x: hidden;
+    text-align: justify;
+}
+
+div#header {
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+    background-color: white;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid gray;
+}
+
+#head {
+    color: #284E98
+}
+
+
+
+#Menu1 {
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

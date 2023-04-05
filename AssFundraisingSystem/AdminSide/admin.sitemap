@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  
+  <siteMapNode title="Admin Control Panel &#x2692;" description="">
+    
+    <siteMapNode url="AdminSide/dashboard.aspx" title="Dashboard"  description=""/>
+    <siteMapNode url="AdminSide/ProgramList.aspx" title="Event" description="" />
+    <siteMapNode url="AdminSide/approveOrganization.aspx" title="Approve Organization" description=""/>
+    <siteMapNode url="AdminSide/approveEvent.aspx" title="Approve Event" description=""/>
+    <siteMapNode url="AdminSide/adminAccount.aspx" title="Admin Account" description=""/>
+    <siteMapNode url="AdminSide/Categories.aspx" title="Categories " description=""/>
+    <siteMapNode url="AdminSide/#.aspx" title="Participants Account" description=""/>
+
+    <siteMapNode url="UserSide/Login.aspx" title="Log Out" description=""/>
+  </siteMapNode>
+</siteMap>

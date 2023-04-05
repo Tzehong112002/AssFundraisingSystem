@@ -1,0 +1,102 @@
+﻿
+
+#editProfileTable {
+    width: 60%;
+    margin: 10px auto;
+    border-collapse: collapse;
+    background-color: whitesmoke;
+    padding-bottom: 30px;
+}
+
+    #editProfileTable tr, #editProfileTable tr td {
+        border: 1px solid black;
+        padding: 5px 10px;
+    }
+
+.editComfirmBtn, .editBackBtn {
+    text-align: center;
+    height: 40px;
+    width: 20%;
+    display: block;
+    margin: 5px auto;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+}
+
+
+
+
+
+    .editComfirmBtn:hover, .editBackBtn:hover {
+        cursor: pointer;
+    }
+
+.editComfirmBtn:hover {
+    background-color: #5CED73;
+}
+
+.editBackBtn:hover {
+    background-color: #F94449;
+}
+
+.h1 {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.input {
+    width: 40%;
+    display: inline-block;
+    border: 2px solid #A0E9E6;
+    padding: 8px;
+    padding-left: 30px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.editProfileLbl, #gender {
+    font-weight: bold;
+    color: whitesmoke;
+    background-color: #1F2833;
+}
+
+.button {
+    width: 100%;
+    padding: 1rem 2rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #ffffff;
+    border: none;
+    border-radius: var(--border-radius);
+    outline: none;
+    cursor: pointer;
+    background: var(--color-primary);
+    margin-top: 20px;
+}
+
+    .button:hover {
+        background: var(--color-primary-dark);
+    }
+
+    .button:active {
+        transform: scale(0.98);
+    }
+
+.flex-parent {
+    display: flex;
+}
+
+.jc-center {
+    justify-content: center;
+}
+
+button.margin-right {
+    margin-right: 20px;
+}
+
+
+

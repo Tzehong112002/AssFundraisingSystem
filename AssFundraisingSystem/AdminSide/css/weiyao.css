@@ -1,0 +1,75 @@
+﻿body , .cCate, .refresh{
+    font-family: monospace;
+    color: darkred;
+    align-content:unset;
+    font-weight: bold;
+}
+
+.box {
+    margin-left: 1%;
+    margin-right: 1%;
+    box-shadow: 5px 10px;
+    padding: 10px;
+    border: 2px solid black;
+}
+
+.fence tr, .fence td, .fence th{
+    border: 2px solid black;
+    padding: 8px;
+}
+
+.fence th {
+    font-size: 20px;
+}
+
+.fence tr, .fence td{
+    font-size: 18px;
+}
+
+.fence {
+    margin-left: 1%;
+    margin-right: auto;
+}
+
+.view a:active, .edit a:active, .delete a:link {
+    color: white;
+}
+
+.view a:active, .edit a:active, .delete a:active {
+    color: blue;
+}
+
+.cCate {
+    background-color: indianred;
+    text-align: center;
+    font-size: 18px;
+    color: aliceblue;
+    margin-left: 39%;
+    margin-top: 1%;
+    border-radius: 15%;
+    padding: 8px 24px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.refresh {
+    background-color: chartreuse;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 15%;
+    padding: 8px 24px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.cCate:hover{
+    background-color:maroon;
+}
+
+.refresh:hover {
+    background-color:cadetblue;
+}
+
+h1{
+    margin-left: 38%;
+}
