@@ -1,6 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminSide/adminMaster.Master" AutoEventWireup="true" CodeBehind="ParticipantRecord.aspx.cs" Inherits="AssFundraisingSystem.AdminSide.ParticipantRecord" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<<<<<<< Updated upstream
     <link href="css/Participant.css" rel="stylesheet" />
+=======
+    <link href="css/Participants.css" rel="stylesheet" />
+>>>>>>> Stashed changes
      <div class="title"><h1>Participants List</h1> </div>
     <div class="box">
         <table class="fence">
