@@ -24,33 +24,46 @@
       </tr>
     </thead>
     <tbody>
-        <tr>
-            <td data-label="Image"><img class="lazyload" loading="lazy" alt="picture" title="event" src="img/event.jpg"></td>
-            <td data-label="Model"><strong>Help me improve my quality of life through a hip replacement</strong></td>
-            <td data-label="Model">RM1000</td>
-            <td>
-                <div class="container" >               
-                    <div class="progress progress-striped">
-                      <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                        <span>40% Complete </span>
-                    </div>
-                </div>
-                </div>
-            </td>
-            <td data-label="Price" data-align="center">
-                
-                <strong>
+        <asp:Repeater ID="RepeaterEvent" runat="server" >
+            
 
-                    <asp:Button ID="btnEdit" runat="server" Text="Edit Event" CssClass="button " BackColor="Green" OnClick="btnEdit_Click"  />
-                    <asp:Button ID="Button2" runat="server" CssClass="buttonDelete " Text="Delete Event" BackColor="Red" OnClick="Button2_Click"/>
-                    <br />
-                    <br />
-                    <asp:Button ID="Button1" runat="server" Text="Comment" CssClass="buttonAdd " BackColor="Green" OnClick="Button1_Click"  />
-                    <asp:Button ID="Button3" runat="server" Text="View Donor" CssClass="buttonDonor "  BackColor="Red" OnClick="Button3_Click"/>
-                </strong>
-            </td>
+            <ItemTemplate>
+                    <tr>
+                        <td data-label="Image"><img class="lazyload" loading="lazy" alt="picture" title="event" src="<%#Eval("EventIMG") %>"></td>
+                        <td data-label="Model"><strong><%#Eval("EventName") %></strong></td>
+                        <td data-label="Model">RM<%#Eval("EventTarget") %></td>
+                        <td>
+                            <div class="container" >               
+                                <div class="progress progress-striped">
+                                  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                    <span>40% Complete </span>
+                                </div>
+                            </div>
+                            </div>
+                        </td>
+ 
+                        <td data-label="Price" data-align="center">
 
-        </tr>
+                           <strong>
+                                <asp:HyperLink ID="btnEdit" CssClass="button "  runat="server" NavigateUrl='<%# Eval("EventID","editProgram.aspx?EventID={0}") %>'>Edit Event</asp:HyperLink>
+
+
+                               <asp:LinkButton ID="lnkDelete"  CssClass="buttonDelete "  Text="Delete Event" runat="server" CommandArgument='<%#Eval("EventID") %>' OnClientClick="return confirm('Do you want to delete this Customer?');"
+                    OnClick="DeleteCustomer" />
+                                    
+                                <br />
+                                <br />
+                                <asp:HyperLink ID="Button1"  CssClass="buttonAdd "  runat="server">Coment</asp:HyperLink>
+                                <asp:HyperLink ID="Button3"  CssClass="buttonDonor "  runat="server">View Donor</asp:HyperLink>
+
+   
+                            </strong>
+                        </td>
+
+                    </tr>
+                </ItemTemplate>
+
+        </asp:Repeater>
         
   </tbody>
 
