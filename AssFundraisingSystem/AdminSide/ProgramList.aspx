@@ -46,9 +46,9 @@
 
                            <strong>
                                 <asp:HyperLink ID="btnEdit" CssClass="button "  runat="server" NavigateUrl='<%# Eval("EventID","editProgram.aspx?EventID={0}") %>'>Edit Event</asp:HyperLink>
-                                <asp:HyperLink ID="Button2" CssClass="buttonDelete " runat="server">Delete Event</asp:HyperLink>
 
-                               <asp:LinkButton ID="lnkDelete" Text="Delete" runat="server" CommandArgument='<%#Eval("EventID") %>' OnClientClick="return confirm('Do you want to delete this Customer?');"
+
+                               <asp:LinkButton ID="lnkDelete"  CssClass="buttonDelete "  Text="Delete Event" runat="server" CommandArgument='<%#Eval("EventID") %>' OnClientClick="return confirm('Do you want to delete this Customer?');"
                     OnClick="DeleteCustomer" />
                                     
                                 <br />

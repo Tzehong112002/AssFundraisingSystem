@@ -24,13 +24,13 @@ namespace AssFundraisingSystem.AdminSide
         protected global::System.Web.UI.WebControls.Label Label4;
 
         /// <summary>
-        /// TextBox1 control.
+        /// txtName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtName;
 
         /// <summary>
         /// Label1 control.
@@ -42,13 +42,13 @@ namespace AssFundraisingSystem.AdminSide
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// DropDownList1 control.
+        /// txtCategories control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList txtCategories;
 
         /// <summary>
         /// Label2 control.
@@ -60,13 +60,13 @@ namespace AssFundraisingSystem.AdminSide
         protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// Calendar1 control.
+        /// cStartDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Calendar1;
+        protected global::System.Web.UI.WebControls.Calendar cStartDate;
 
         /// <summary>
         /// Label3 control.
@@ -78,13 +78,13 @@ namespace AssFundraisingSystem.AdminSide
         protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
-        /// Calendar2 control.
+        /// cEndDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Calendar2;
+        protected global::System.Web.UI.WebControls.Calendar cEndDate;
 
         /// <summary>
         /// Label5 control.
@@ -96,13 +96,13 @@ namespace AssFundraisingSystem.AdminSide
         protected global::System.Web.UI.WebControls.Label Label5;
 
         /// <summary>
-        /// TextBox2 control.
+        /// txtTarget control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox txtTarget;
 
         /// <summary>
         /// Label6 control.
@@ -114,13 +114,22 @@ namespace AssFundraisingSystem.AdminSide
         protected global::System.Web.UI.WebControls.Label Label6;
 
         /// <summary>
-        /// TextBox3 control.
+        /// txtDesc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        protected global::System.Web.UI.WebControls.TextBox txtDesc;
+
+        /// <summary>
+        /// ImgUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload ImgUpload;
 
         /// <summary>
         /// btnUpdate control.
