@@ -59,9 +59,9 @@ namespace AssFundraisingSystem.AdminSide
 
             using (SqlConnection con = new SqlConnection(cs))
             {
-                using (SqlCommand cmd = new SqlCommand("DELETE FROM Event WHERE EventID = @CustomerId", con))
+                using (SqlCommand cmd = new SqlCommand("DELETE FROM Event WHERE EventID = @EventID", con))
                 {
-                    cmd.Parameters.AddWithValue("@CustomerId", eventID);
+                    cmd.Parameters.AddWithValue("@EventID", eventID);
                     con.Open();
                     cmd.ExecuteNonQuery();
                     con.Close();
