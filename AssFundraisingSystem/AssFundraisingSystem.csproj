@@ -113,8 +113,10 @@
     <Content Include="UserSide\css\changePassword.css" />
     <Content Include="UserSide\css\editProfileStyle.css" />
     <Content Include="UserSide\css\ExtraLoginRegisterStyle.css" />
+    <Content Include="UserSide\css\ExtraPayment.css" />
     <Content Include="UserSide\css\LoginStyle.css" />
     <Content Include="UserSide\css\organizationLoginStyle.css" />
+    <Content Include="UserSide\css\Payment.css" />
     <Content Include="UserSide\css\ProfieStyle.css" />
     <Content Include="UserSide\css\programStyle.css" />
     <Content Include="UserSide\css\test.css" />
@@ -122,11 +124,13 @@
     <Content Include="UserSide\EventPage.aspx" />
     <Content Include="UserSide\forgotPassword.aspx" />
     <Content Include="UserSide\Img\background6.jpg" />
+    <Content Include="UserSide\Img\download.png" />
     <Content Include="UserSide\Img\event.jpg" />
     <Content Include="UserSide\Img\IconLogin.jpg" />
     <Content Include="UserSide\Img\profile.png" />
     <Content Include="UserSide\Login.aspx" />
     <Content Include="UserSide\OrganizationLogin.aspx" />
+    <Content Include="UserSide\Payment.aspx" />
     <Content Include="UserSide\Profile.aspx" />
     <Content Include="UserSide\program.aspx" />
     <Content Include="UserSide\Register.aspx" />
@@ -326,6 +330,13 @@
     </Compile>
     <Compile Include="UserSide\OrganizationLogin.aspx.designer.cs">
       <DependentUpon>OrganizationLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserSide\Payment.aspx.cs">
+      <DependentUpon>Payment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSide\Payment.aspx.designer.cs">
+      <DependentUpon>Payment.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserSide\Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>

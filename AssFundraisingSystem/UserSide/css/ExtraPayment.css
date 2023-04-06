@@ -1,0 +1,23 @@
+﻿body {
+    background-color: lightgrey;
+}
+
+
+
+#HyperlinkSU, HyperlinkLogin {
+    float: left;
+}
+
+#HyperlinkFP {
+    float: right;
+}
+
+#hyperlinkPage a {
+    font-style: italic;
+    text-decoration: underline;
+    color: black;
+}
+
+#hyperlinkPage {
+    margin: 20px;
+}
