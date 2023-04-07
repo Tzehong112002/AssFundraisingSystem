@@ -16,10 +16,11 @@
                     </div>
                 <div id="info" class="inline">
                     <table>
+
                         <tr>
                             <td>ID:</td>
-                            <td>
-                                <asp:Label ID="lblUser" runat="server">TZEHONG112002</asp:Label></td>
+                            <td id="lblUsername">
+                                <asp:Label ID="lblUsername" runat="server">TZEHONG112002</asp:Label></td>
                         </tr>
                         <tr>
                             <td>Name:</td>
@@ -27,20 +28,20 @@
                                 <asp:Label ID="lblName" runat="server">TAN TZE HONG</asp:Label></td>
                         </tr>
                         <tr>
-                            <td>Email</td>
+                            <td>Email:</td>
                             <td>
-                                <asp:Label ID="lblLocation" runat="server">tzehong112002@gmail.com</asp:Label></td>
+                                <asp:Label ID="lblEmail" runat="server">tzehong112002@gmail.com</asp:Label></td>
                         </tr>
                         <tr>
                            <td>Contact:</td>
-                            <td>
+                            <td id="lblContact">
                                 <asp:Label ID="lblContact" runat="server">0167822171</asp:Label></td>
                        
                         </tr>
                         <tr>
-                           <td>Birth:</td>
+                           <td>Roles:</td>
                             <td>
-                                <asp:Label ID="Label1" runat="server">11/01/2002</asp:Label></td>
+                                <asp:Label ID="lblRoles" runat="server">11/01/2002</asp:Label></td>
                        
                         </tr>
                         

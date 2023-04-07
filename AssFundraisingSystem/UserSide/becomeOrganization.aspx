@@ -12,13 +12,13 @@
             </div>    
 
             <div class="input">
-                <span id="lblPicture">IC Picture (Front)</span>
+                <span id="lblFrontPicture">IC Picture (Front)</span>
                 <asp:FileUpload ID="UploadFrontIC" runat="server" />
 &nbsp;<div class="inputerrormessage"></div>
             </div>
 
             <div class="input">
-                <span id="lblPicture">IC Picture (Back)</span>
+                <span id="lblBackPicture">IC Picture (Back)</span>
                 <asp:FileUpload ID="UploadBackIC" runat="server" />
 &nbsp;<div class="inputerrormessage"></div>
             </div>

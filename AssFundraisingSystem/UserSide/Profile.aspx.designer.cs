@@ -24,13 +24,13 @@ namespace AssFundraisingSystem.UserSide
         protected global::System.Web.UI.WebControls.Image imgOrganization;
 
         /// <summary>
-        /// lblUser control.
+        /// lblUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUser;
+        protected global::System.Web.UI.WebControls.Label lblUsername;
 
         /// <summary>
         /// lblName control.
@@ -42,13 +42,13 @@ namespace AssFundraisingSystem.UserSide
         protected global::System.Web.UI.WebControls.Label lblName;
 
         /// <summary>
-        /// lblLocation control.
+        /// lblEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLocation;
+        protected global::System.Web.UI.WebControls.Label lblEmail;
 
         /// <summary>
         /// lblContact control.
@@ -60,13 +60,13 @@ namespace AssFundraisingSystem.UserSide
         protected global::System.Web.UI.WebControls.Label lblContact;
 
         /// <summary>
-        /// Label1 control.
+        /// lblRoles control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lblRoles;
 
         /// <summary>
         /// btnChangePass control.
