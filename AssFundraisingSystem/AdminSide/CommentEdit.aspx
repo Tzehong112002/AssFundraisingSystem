@@ -8,7 +8,7 @@
             <div class="message messageerror"></div>
             <div class="input">
                <asp:Label ID="Label1" runat="server" Text="User :"></asp:Label>
-                <asp:TextBox ID="TextBox1" class="txtinput" placeholder="User" runat="server" >Alex</asp:TextBox>
+                <asp:TextBox ID="txtName" class="txtinput" placeholder="User" runat="server" ></asp:TextBox>
                 <div class="inputerrormessage"></div>
             </div>
          <div class="input">
@@ -18,7 +18,7 @@
 
             <div class="input">
                 <asp:Label ID="Label3" runat="server" Text="Comment Content :"></asp:Label>
-                <asp:TextBox ID="TextBox3" class="txtinput" placeholder="Enter  comment content" runat="server" Height="250px" TextMode="MultiLine" >This event will help a lot of people, keep it up!</asp:TextBox>
+                <asp:TextBox ID="txtComment" class="txtinput" placeholder="Enter  comment content" runat="server" Height="250px" TextMode="MultiLine" ></asp:TextBox>
             </div>
 
              <asp:Button ID="btnUpdate"  runat="server" Text="Update" class="button" BackColor="Green" OnClick="btnUpdate_Click" />

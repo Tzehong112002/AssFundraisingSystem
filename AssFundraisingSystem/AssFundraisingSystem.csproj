@@ -77,11 +77,8 @@
     <Content Include="AdminSide\css\editAdminStyle.css" />
     <Content Include="AdminSide\css\editProgramStyle.css" />
     <Content Include="AdminSide\css\EventLListStyle.css" />
-<<<<<<< Updated upstream
     <Content Include="AdminSide\css\Participant.css" />
-=======
     <Content Include="AdminSide\css\Participants.css" />
->>>>>>> Stashed changes
     <Content Include="AdminSide\css\weiyao.css" />
     <Content Include="AdminSide\dashboard.aspx" />
     <Content Include="AdminSide\DonationList.aspx" />

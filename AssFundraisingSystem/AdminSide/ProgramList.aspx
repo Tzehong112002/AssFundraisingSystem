@@ -53,7 +53,7 @@
                                     
                                 <br />
                                 <br />
-                                <asp:HyperLink ID="Button1"  CssClass="buttonAdd "  runat="server">Coment</asp:HyperLink>
+                                <asp:HyperLink ID="Button1"  CssClass="buttonAdd "  runat="server" NavigateUrl='<%# Eval("EventID","CommentManage.aspx?EventID={0}") %>'>Comment</asp:HyperLink>
                                 <asp:HyperLink ID="Button3"  CssClass="buttonDonor "  runat="server">View Donor</asp:HyperLink>
 
    
