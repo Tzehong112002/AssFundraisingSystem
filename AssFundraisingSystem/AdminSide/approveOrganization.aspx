@@ -14,33 +14,43 @@
       <thead>
       <tr>
         <th scope="col">Name</th>
-        <th scope="col">Comany Name</th>
+        <th scope="col">Email</th>
         <th scope="col">IC Image [Front]</th>
         <th scope="col">IC Image [Back ]</th>
-        <th scope="col">Contact Number</th>
+        <th scope="col">Company Name</th>
         <th scope="col">Button</th>
 
 
       </tr>
     </thead>
     <tbody>
+        <asp:Repeater ID="RepeaterProgramApply" runat="server" >
+            
+
+            <ItemTemplate>
         <tr>
-           <td data-label="Model"><strong>Tan Tze Hong</strong></td>
-           <td data-label="Model">TZEHONG COMPANY SDN</td>
-            <td data-label="Image"><img class="lazyload" loading="lazy" alt="picture" title="event" src="img/event.jpg"></td>
+           <td data-label="Model"><strong><%#Eval("Name") %></strong></td>
+           <td data-label="Model"><%#Eval("Email") %></td>
+            <td data-label="Image"><img class="lazyload" loading="lazy" alt="picture" title="event" src="<%#Eval("submitICFront") %>"></td>
 
 
-            <td data-label="Image"><img class="lazyload" loading="lazy" alt="picture" title="event" src="img/event.jpg"></td>
-            <td data-label="Model">016-7822171</td>
+            <td data-label="Image"><img class="lazyload" loading="lazy" alt="picture" title="event" src="<%#Eval("submitICBack") %>"></td>
+            <td data-label="Model"><%#Eval("submitCompanyName") %></td>
             <td data-label="Price" data-align="center">                
                 <strong>
 
-                    <asp:Button ID="btnAppove" runat="server" Text="Appove" CssClass="buttonAdd " BackColor="Green"  />
-                    <asp:Button ID="btnDecline" runat="server" Text="Decline" CssClass="buttonDelete "  BackColor="Red"/>
+                     <asp:LinkButton ID="btnAppove"  CssClass="buttonAdd "  Text="Approve" runat="server" CommandArgument='<%#Eval("UserID") %>' OnClientClick="return confirm('Do you want to Approve this Account ?');" OnClick="UpdateRequest" />
+                     <asp:LinkButton ID="btnDecline"  CssClass="buttonDelete "  Text="Decline" runat="server" CommandArgument='<%#Eval("UserID") %>' OnClientClick="return confirm('Do you want to Decline this Account  ?');" OnClick="DeleleRequest" />
+
                 </strong>
             </td>
 
         </tr>
+            </ItemTemplate>
+        </asp:Repeater >
+            
+
+            
         
   </tbody>
 
