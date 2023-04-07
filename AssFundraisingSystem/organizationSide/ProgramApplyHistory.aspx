@@ -22,17 +22,27 @@
 
       </tr>
     </thead>
+
     <tbody>
+        <asp:Repeater ID="RepeaterHistory" runat="server" >
+            
+
+            <ItemTemplate>
         <tr>
-           <td data-label="Model"><strong>Resue Animal</strong></td>
-           <td data-label="Model">Animal</td>
-           <td data-label="Model">3/4/2023</td>
-           <td data-label="Model">4/4/2023</td>
-            <td data-label="Model">016-7822171</td>
-            <td data-label="Model">Approve</td>
+           <td data-label="Model"><strong><%#Eval("Name") %></strong></td>
+           <td data-label="Model"><%#Eval("Categories") %></td>
+           <td data-label="Model"><%#Eval("EventStartDate") %></td>
+           <td data-label="Model"><%#Eval("EventEndDate") %></td>
+            <td data-label="Model"><%#Eval("EventTarget") %></td>
+            <td data-label="Model"><%#Eval("EventStatus") %></td>
 
 
         </tr>
+        
+            
+
+            </ItemTemplate>
+        </asp:Repeater >
         
   </tbody>
 

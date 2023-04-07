@@ -15,12 +15,12 @@ namespace AssFundraisingSystem.AdminSide
     {
 
         /// <summary>
-        /// btnApprove control.
+        /// RepeaterProgramApply control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnApprove;
+        protected global::System.Web.UI.WebControls.Repeater RepeaterProgramApply;
     }
 }

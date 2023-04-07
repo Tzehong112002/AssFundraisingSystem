@@ -42,11 +42,12 @@ namespace AssFundraisingSystem.UserSide
                 {
                     string UsernameDBA = dt.Rows[i]["Username"].ToString();
                     string PasswordDBA = dt.Rows[i]["Password"].ToString();
+                    String Userid = dt.Rows[i]["UserID"].ToString();
 
                     if (UsernameDBA == username && PasswordDBA == password)
                     {
                         con.Close();
-                        Session["Username"] = username;
+                        Session["UserID"] = Userid;
                         Response.Redirect("program.aspx");
                     }
                     else

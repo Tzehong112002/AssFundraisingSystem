@@ -43,10 +43,13 @@ namespace AssFundraisingSystem.UserSide
                     string Username = dt.Rows[i]["Username"].ToString();
                     string Password = dt.Rows[i]["Password"].ToString();
                     string Roles = dt.Rows[i]["Roles"].ToString();
+                    String Userid = dt.Rows[i]["UserID"].ToString();
 
 
                     if (Username == username && Password == password && Roles == organizationRoles)
                     {
+                        Session["UserID"] = Userid;
+
                         con.Close();
 
                         Response.Redirect("../organizationSide/applyProgram.aspx");
@@ -55,6 +58,7 @@ namespace AssFundraisingSystem.UserSide
                     }
                     else if (Username == username && Password == password && Roles == adminRoles)
                     {
+                        Session["Username"] = username;
                         con.Close();
 
                         Response.Redirect("../AdminSide/dashboard.aspx");
