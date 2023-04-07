@@ -72,15 +72,24 @@
     <Content Include="AdminSide\css\apporveOrganizationStyle.css" />
     <Content Include="AdminSide\css\dashboardStyle.css" />
     <Content Include="AdminSide\css\addProgramStyle.css" />
+    <Content Include="AdminSide\css\dataTable1.css" />
+    <Content Include="AdminSide\css\dataTable2.css" />
     <Content Include="AdminSide\css\editAdminStyle.css" />
     <Content Include="AdminSide\css\editProgramStyle.css" />
     <Content Include="AdminSide\css\EventLListStyle.css" />
+<<<<<<< Updated upstream
+    <Content Include="AdminSide\css\Participant.css" />
+=======
+    <Content Include="AdminSide\css\Participants.css" />
+>>>>>>> Stashed changes
     <Content Include="AdminSide\css\weiyao.css" />
     <Content Include="AdminSide\dashboard.aspx" />
+    <Content Include="AdminSide\DonationList.aspx" />
     <Content Include="AdminSide\EditAdmin.aspx" />
     <Content Include="AdminSide\editProgram.aspx" />
     <Content Include="AdminSide\ParticipantEdit.aspx" />
     <Content Include="AdminSide\ParticipantManage.aspx" />
+    <Content Include="AdminSide\ParticipantRecord.aspx" />
     <Content Include="AdminSide\ProgramList.aspx" />
     <Content Include="AdminSide\Categories.aspx" />
     <Content Include="App_Data\SystemDBA.mdf" />
@@ -205,6 +214,13 @@
     <Compile Include="AdminSide\dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminSide\DonationList.aspx.cs">
+      <DependentUpon>DonationList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSide\DonationList.aspx.designer.cs">
+      <DependentUpon>DonationList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminSide\EditAdmin.aspx.cs">
       <DependentUpon>EditAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -232,6 +248,13 @@
     </Compile>
     <Compile Include="AdminSide\ParticipantManage.aspx.designer.cs">
       <DependentUpon>ParticipantManage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminSide\ParticipantRecord.aspx.cs">
+      <DependentUpon>ParticipantRecord.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSide\ParticipantRecord.aspx.designer.cs">
+      <DependentUpon>ParticipantRecord.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminSide\ProgramList.aspx.cs">
       <DependentUpon>ProgramList.aspx</DependentUpon>
