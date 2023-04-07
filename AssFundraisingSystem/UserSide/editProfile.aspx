@@ -52,15 +52,14 @@
                 <td>
                     <asp:TextBox ID="txtContactNumber" runat="server" CssClass="input"  placeholder="Phone No"></asp:TextBox>
                     <br />
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtContactNumber" Display="Dynamic" ErrorMessage="Please enter your [Contact Number]" ForeColor="Red"></asp:RequiredFieldValidator>
-                &nbsp;<asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="txtContactNumber" Display="Dynamic" ErrorMessage="Invalid phone format. E.g. 0123456789" ForeColor="Red" ValidationExpression="((01)([0-9]{1})(\d{7,8}))"></asp:RegularExpressionValidator>
+
                 </td>
             </tr>
             
             <tr>
                 <td class="editProfileLbl" style="padding-left: 50px;">Date of birth</td>
                 <td>
-                    <asp:Calendar ID="calendar" runat="server" SelectMonthText="&amp;gt;"></asp:Calendar>
+                    <asp:Calendar ID="calendarBirth" runat="server" SelectMonthText="&amp;gt;"></asp:Calendar>
                 </td>
             </tr>
             
@@ -68,7 +67,7 @@
                 <td></td>
                 <td>
                     <div class="flex-parent jc-center">
-                        <asp:Button ID="btnDelete" runat="server" Text="Update"  CssClass="button " BackColor="Green" OnClick="btnDelete_Click" />
+                        <asp:Button ID="btnUpdate" runat="server" Text="Update"  CssClass="button " BackColor="Green" OnClick="btnUpdate_Click" />
                             <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="button " BackColor="Red" OnClick="btnCancel_Click" />
                     
                     </div>

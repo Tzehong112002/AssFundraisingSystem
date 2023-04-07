@@ -16,29 +16,46 @@
         <th scope="col">Photo</th>
         <th scope="col">Name</th>
         <th scope="col">Username</th>
-        <th scope="col">date</th>
         <th scope="col">Contact</th>
-        <th scope="col">BUtton</th>
+        <th scope="col">Button</th>
 
 
 
       </tr>
     </thead>
     <tbody>
+
+        <asp:Repeater ID="RepeaterAdmin" runat="server" >
+            
+
+            <ItemTemplate>
         <tr>
-          <td data-label="Image"><img class="lazyload" loading="lazy" alt="picture" title="event" src="img/event.jpg"></td>
-           <td data-label="Model"><strong>Tan Tze Hong</strong></td>
-           <td data-label="Model">Tzehong112002</td>
-            <td data-label="Model">3/4/2023</td>
-            <td data-label="Model">0167822171</td>
+          <td data-label="Image"><img class="lazyload" loading="lazy" alt="picture" title="event" src="<%#Eval("ProfilePic") %>"></td>
+           <td data-label="Model"><strong><%#Eval("Name") %></strong></td>
+           <td data-label="Model"><%#Eval("Username") %></td>
+            <td data-label="Model"><%#Eval("PhoneNo") %></td>
             <td data-label="Price" data-align="center">                
                 <strong>
 
-                    <asp:Button ID="btnDecline" runat="server" Text="Remove" CssClass="buttonDelete "  BackColor="Red"/>
+                    <asp:LinkButton ID="btnDecline"  CssClass="buttonDelete "  Text="Remove" runat="server" CommandArgument='<%#Eval("UserID") %>' OnClientClick="return confirm('Do you want to delete this Admin?');"
+                    OnClick="DeleteUser" />
+
+                    <asp:Button ID="btnEditProfile" runat="server" Text="Edit Information" CssClass="buttonAdd "  BackColor="Red"/>
+                    <br />
+                    <br />
+                    
+                    <asp:Button ID="btnEditPassword" runat="server" Text="Edit Password" CssClass="buttonAdd "  BackColor="Red"/>
                 </strong>
             </td>
 
         </tr>
+
+        </ItemTemplate>
+
+        </asp:Repeater>
+            
+
+            
         
   </tbody>
 

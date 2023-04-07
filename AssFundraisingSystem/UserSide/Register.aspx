@@ -38,11 +38,11 @@
 
 </div>
 <div class ="form-group mb-4">
-<asp:TextBox required= "true" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Password" runat="server" ID="txtPassword" ></asp:TextBox>
+<asp:TextBox required= "true" TextMode="Password" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Password" runat="server" ID="txtPassword" ></asp:TextBox>
 
 </div>
 <div class ="form-group mb-4">
-<asp:TextBox required= "true" TextMode="Password" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Confirm Password" runat="server" ID="txtConfirmnPassword" ></asp:TextBox>
+<asp:TextBox required= "true" TextMode="Password" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Confirm Password" runat="server" ID="txtConfirmPassword" ></asp:TextBox>
 
 </div>
 

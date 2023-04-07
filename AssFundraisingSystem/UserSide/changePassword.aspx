@@ -12,13 +12,14 @@
                 <div class="inputerrormessage"></div>
             </div>
             <div class="input">
-                <asp:TextBox ID="TextBox2" class="txtinput" placeholder="Enter your new password" runat="server" TextMode="Password"></asp:TextBox>
-                <div class="inputerrormessage"></div>
-            </div>
-            <div class="input">
                 <asp:TextBox ID="TextBox3" class="txtinput" placeholder="Repeat your new password" runat="server" TextMode="Password" ></asp:TextBox>
                 <div class="inputerrormessage"></div>
             </div>
+            <div class="input">
+                <asp:TextBox ID="TextBox2" class="txtinput" placeholder="Enter your new password" runat="server" TextMode="Password"></asp:TextBox>
+                <div class="inputerrormessage"></div>
+            </div>
+            
            
 
              <asp:Button ID="btnUpdate"  runat="server" Text="Update Password" class="button" BackColor="Green" OnClick="btnUpdate_Click" />

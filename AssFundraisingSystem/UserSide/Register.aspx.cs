@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using BCrypt.Net;
 
 namespace AssFundraisingSystem.UserSide
 {
@@ -22,42 +22,46 @@ namespace AssFundraisingSystem.UserSide
         {
             if (Page.IsValid)
             {
-                if (checkExist() == true) {
+                if (checkExist() == true)
+                {
                     string name = txtName.Text;
                     string username = txtusername.Text.Trim();
                     string email = txtEmail.Text;
                     string password = txtPassword.Text.Trim();
-                    string roles = "User";
-                    string image = "Img/profile.png";
+                    string confirmPassword = txtConfirmPassword.Text.Trim();
 
+                    if (password == confirmPassword)
+                    {
+                        string roles = "User";
+                        string image = "Img/profile.png";
 
-                    string sql = "INSERT INTO Account(Name, Email, Password, Roles, ProfilePic ,Username) VALUES (@Name, @Email, @Password, @Roles, @ProfilePic ,@Username)";
-                    SqlConnection con = new SqlConnection(cs);
-                    SqlCommand cmd = new SqlCommand(sql, con);
+                        string salt = BCrypt.Net.BCrypt.GenerateSalt();
+                        string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password, salt);
 
+                        string sql = "INSERT INTO Account(Name, Email, Password, Roles, ProfilePic ,Username) VALUES (@Name, @Email, @Password, @Roles, @ProfilePic ,@Username)";
+                        SqlConnection con = new SqlConnection(cs);
+                        SqlCommand cmd = new SqlCommand(sql, con);
 
-                    cmd.Parameters.AddWithValue("@Name", name);
-                    cmd.Parameters.AddWithValue("@Email", email);
-                    cmd.Parameters.AddWithValue("@Password", password);
-                    cmd.Parameters.AddWithValue("@Roles", roles);
-                    cmd.Parameters.AddWithValue("@ProfilePic", image);
-                    cmd.Parameters.AddWithValue("@Username", username);
+                        cmd.Parameters.AddWithValue("@Name", name);
+                        cmd.Parameters.AddWithValue("@Email", email);
+                        cmd.Parameters.AddWithValue("@Password", hashedPassword);
+                        cmd.Parameters.AddWithValue("@Roles", roles);
+                        cmd.Parameters.AddWithValue("@ProfilePic", image);
+                        cmd.Parameters.AddWithValue("@Username", username);
 
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                    con.Close();
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        con.Close();
 
-                    Response.Write("<script>alert('Thanks for your registration, our admin will approve your account as soon as possible :)')</script>");
-                    Server.Transfer("Login.aspx");
+                        Response.Write("<script>alert('Thanks for your registration, our admin will approve your account as soon as possible :)')</script>");
+                        Server.Transfer("Login.aspx");
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('The password and confirm password must match. Please try again.')</script>");
+                    }
 
                 }
-                
-
-
-            }
-            else
-            {
-                
             }
         }
 
@@ -74,18 +78,13 @@ namespace AssFundraisingSystem.UserSide
             {
                 if (dr[0].ToString() == txtusername.Text)
                 {
+                    con.Close();
+                    Response.Write("<script>alert('This username is already taken. Please choose another one.')</script>");
                     return false;
                 }
-
-
             }
             con.Close();
             return true;
-
-
-
         }
     }
-
-
 }

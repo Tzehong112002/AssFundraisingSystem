@@ -7,20 +7,20 @@
             <div class="message messageerror"></div>
             <div class="input">
                <asp:Label ID="Label4" runat="server" Text="Company Name :"></asp:Label>
-                <asp:TextBox ID="TextBox1" class="txtinput" placeholder="Enter company name" runat="server" ></asp:TextBox>
+                <asp:TextBox ID="txtCompanyName" class="txtinput" placeholder="Enter company name" runat="server" ></asp:TextBox>
                 <div class="inputerrormessage"></div>
             </div>    
 
             <div class="input">
-                <span id="lblPicture">IC Picture (Front)</span>
-               <input type="file" name="uplPicture" id="uplPicture" />
-                <div class="inputerrormessage"></div>
+                <span id="lblFrontPicture">IC Picture (Front)</span>
+                <asp:FileUpload ID="UploadFrontIC" runat="server" />
+&nbsp;<div class="inputerrormessage"></div>
             </div>
 
             <div class="input">
-                <span id="lblPicture">IC Picture (Back)</span>
-               <input type="file" name="uplPicture" id="uplPicture" />
-                <div class="inputerrormessage"></div>
+                <span id="lblBackPicture">IC Picture (Back)</span>
+                <asp:FileUpload ID="UploadBackIC" runat="server" />
+&nbsp;<div class="inputerrormessage"></div>
             </div>
           
 
