@@ -8,8 +8,8 @@
 
          <div class="input">
                 <span id="lblPicture">Profile Picture:</span>
-               <input type="file" name="uplPicture" id="uplPicture" />
-                <div class="inputerrormessage"></div>
+                <asp:FileUpload ID="FileUpload1" runat="server" />
+&nbsp;<div class="inputerrormessage"></div>
             </div>
 
             <div class="input">
@@ -27,6 +27,16 @@
          <div class="input">
                <asp:Label ID="Label1" runat="server" Text="Contact Number :"></asp:Label>
                 <asp:TextBox ID="TextBox5" class="txtinput" placeholder="Enter Contact Number" runat="server" ></asp:TextBox>
+                <div class="inputerrormessage"></div>
+            </div>
+         <div class="input">
+               <asp:Label ID="Label2" runat="server" Text="Password :"></asp:Label>
+                <asp:TextBox ID="TextBox2" class="txtinput" placeholder="Enter Password" runat="server" TextMode="Password" ></asp:TextBox>
+                <div class="inputerrormessage"></div>
+            </div>
+         <div class="input">
+               <asp:Label ID="Label3" runat="server" Text="Enter again the Password"></asp:Label>
+                <asp:TextBox ID="TextBox3" class="txtinput" placeholder="Enter again the Password" runat="server" TextMode="Password" ></asp:TextBox>
                 <div class="inputerrormessage"></div>
             </div>
 
