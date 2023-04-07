@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminSide\AddAdmin.aspx" />
+    <Content Include="AdminSide\adminChangePassword.aspx" />
     <Content Include="AdminSide\CommentEdit.aspx" />
     <Content Include="AdminSide\CommentManage.aspx" />
     <Content Include="AdminSide\css\AddAdminStyle.css" />
@@ -188,6 +189,13 @@
     </Compile>
     <Compile Include="AdminSide\adminAccount.aspx.designer.cs">
       <DependentUpon>adminAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminSide\adminChangePassword.aspx.cs">
+      <DependentUpon>adminChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSide\adminChangePassword.aspx.designer.cs">
+      <DependentUpon>adminChangePassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminSide\adminMaster.Master.cs">
       <DependentUpon>adminMaster.Master</DependentUpon>

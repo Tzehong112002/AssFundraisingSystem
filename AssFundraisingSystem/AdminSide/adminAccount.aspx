@@ -37,14 +37,15 @@
             <td data-label="Price" data-align="center">                
                 <strong>
 
-                    <asp:LinkButton ID="btnDecline"  CssClass="buttonDelete "  Text="Remove" runat="server" CommandArgument='<%#Eval("UserID") %>' OnClientClick="return confirm('Do you want to delete this Admin?');"
-                    OnClick="DeleteUser" />
+                    <asp:LinkButton ID="btnDecline"  CssClass="buttonDelete "  Text="Remove" runat="server" CommandArgument='<%#Eval("UserID") %>' OnClientClick="return confirm('Do you want to delete this Admin?');" OnClick="DeleteUser" />
 
-                    <asp:Button ID="btnEditProfile" runat="server" Text="Edit Information" CssClass="buttonAdd "  BackColor="Red"/>
+                    <asp:HyperLink ID="btnEditProfile" CssClass="buttonAdd "  runat="server" NavigateUrl='<%# Eval("UserID","EditAdmin.aspx?UserID={0}") %>'>Edit Information</asp:HyperLink>
+
                     <br />
                     <br />
                     
-                    <asp:Button ID="btnEditPassword" runat="server" Text="Edit Password" CssClass="buttonAdd "  BackColor="Red"/>
+                    <asp:HyperLink ID="btnEditPassword" CssClass="buttonAdd "  runat="server" NavigateUrl='<%# Eval("UserID","adminChangePassword.aspx?UserID={0}") %>'>Edit Password</asp:HyperLink>
+
                 </strong>
             </td>
 

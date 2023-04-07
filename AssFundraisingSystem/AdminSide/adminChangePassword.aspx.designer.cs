@@ -11,26 +11,8 @@ namespace AssFundraisingSystem.AdminSide
 {
 
 
-    public partial class EditAdmin
+    public partial class adminChangePassword
     {
-
-        /// <summary>
-        /// FileUpload1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
-
-        /// <summary>
-        /// Passvalue control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Passvalue;
 
         /// <summary>
         /// Label4 control.
@@ -42,13 +24,13 @@ namespace AssFundraisingSystem.AdminSide
         protected global::System.Web.UI.WebControls.Label Label4;
 
         /// <summary>
-        /// TextBox1 control.
+        /// oldPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox oldPassword;
 
         /// <summary>
         /// Label1 control.
@@ -60,13 +42,31 @@ namespace AssFundraisingSystem.AdminSide
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// TextBox5 control.
+        /// NewPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox5;
+        protected global::System.Web.UI.WebControls.TextBox NewPassword;
+
+        /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+
+        /// <summary>
+        /// CfmPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox CfmPassword;
 
         /// <summary>
         /// btnUpdateAdmin control.
