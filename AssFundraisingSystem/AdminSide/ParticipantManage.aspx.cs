@@ -29,7 +29,7 @@ namespace AssFundraisingSystem.AdminSide
 
             using (SqlConnection con = new SqlConnection(cs))
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT a.ProfilePic, a.Username, a.Name, p.Amount " +"FROM Account a INNER JOIN Payment p ON a.UserID = p.UserID " +"WHERE p.EventID = @EventID", con))
+                using (SqlCommand cmd = new SqlCommand("SELECT a.ProfilePic, a.Username, a.Name, 'RM' + CONVERT(varchar(10), p.Amount) AS Amount " + "FROM Account a INNER JOIN Payment p ON a.UserID = p.UserID " +"WHERE p.EventID = @EventID", con))
                 {
                     cmd.Parameters.AddWithValue("@EventID", EventID);
                     using (SqlDataAdapter sda = new SqlDataAdapter(cmd))

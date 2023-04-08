@@ -76,11 +76,34 @@ namespace AssFundraisingSystem.UserSide
                 }
                 con.Close();
 
+                this.BindRepeaterParticipant();
+
                 this.BindRepeaterComment();
 
             }
         }
 
+        private void BindRepeaterParticipant()
+        {
+            int EventID = Convert.ToInt32(Request.QueryString["EventID"] ?? Session["EventID"]);
+
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                using (SqlCommand cmd = new SqlCommand("SELECT a.ProfilePic, a.Username, a.Name, 'Donated RM ' + CONVERT(varchar(10), p.Amount) AS Amount FROM Account a INNER JOIN Payment p ON a.UserID = p.UserID WHERE p.EventID = @EventID", con))
+                {
+                    cmd.Parameters.AddWithValue("@EventID", EventID);
+                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                    {
+                        using (DataTable dt = new DataTable())
+                        {
+                            sda.Fill(dt);
+                            parRepeater.DataSource = dt;
+                            parRepeater.DataBind();
+                        }
+                    }
+                }
+            }
+        }
 
         private void BindRepeaterComment()
         {

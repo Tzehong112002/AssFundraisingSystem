@@ -62,33 +62,21 @@
                 <hr />
                 <div class="comments-area">
                     <div>
-                        <div class="w3-container">
+                  <div class="w3-container">
                   <h2>Participant List</h2>
-                  <ul class="w3-ul w3-card-4">
-                    <li class="w3-bar">
-                      <img src="Img/profile.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
-                      <div class="w3-bar-item">
-                        <span class="w3-large">Mike</span><br>
-                        <span>Donated RM100</span>
-                      </div>
-                    </li>
-
-                    <li class="w3-bar">
-                      <img src="Img/profile.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
-                      <div class="w3-bar-item">
-                        <span class="w3-large">Mike</span><br>
-                        <span>Donated RM100</span>
-                      </div>
-                    </li>
-
-                    <li class="w3-bar">
-                      <img src="Img/profile.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
-                      <div class="w3-bar-item">
-                        <span class="w3-large">Mike</span><br>
-                        <span>Donated RM100</span>
-                      </div>
-                    </li>
-                  </ul>
+                  <asp:Repeater ID="parRepeater" runat="server" OnItemCommand="commentRepeater_ItemCommand">
+                        <ItemTemplate>
+                            <ul class="w3-ul w3-card-4">
+                                <li class="w3-bar">
+                                  <asp:Image ID="profilePicP" runat="server" ImageUrl='<%# Eval("ProfilePic") %>' style="width:85px" ImageAlign="Left"/>
+                                  <div class="w3-bar-item">
+                                    <div class="usernameP" style="font-size:large; color:blue"><%# Eval("Username") %></div>
+                                    <div class="comment-body" ><%# Eval("Amount") %></div>
+                                  </div>
+                                </li>
+                              </ul>
+                        </ItemTemplate>
+                    </asp:Repeater>
                 </div>
               </div>
                     <br />
