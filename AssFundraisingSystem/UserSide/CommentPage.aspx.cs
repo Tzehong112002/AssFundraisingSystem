@@ -20,7 +20,8 @@ namespace AssFundraisingSystem.UserSide
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            int eventID = 17;  //Convert.ToInt32(Request.QueryString["EventID"] ?? Session["EventID"]);
+            int eventID = Convert.ToInt32(Request.QueryString["EventID"] ?? Session["EventID"]);
+
 
             string connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
             string query = "INSERT INTO Comment (EventID, UserID, CommentContent, DateCommented) VALUES (@EventID, @UserID, @CommentText, @DateCommented)";
@@ -35,8 +36,11 @@ namespace AssFundraisingSystem.UserSide
                     connection.Open();
                     command.ExecuteNonQuery();
                 }
+
             }
             txtComment.Text = "";
+            Response.Write("<script>alert('Comment Submit Successfully!')</script>");
+            Response.Redirect("historyPayment.aspx");
         }
     }
 }
