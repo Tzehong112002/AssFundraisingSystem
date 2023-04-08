@@ -16,9 +16,9 @@ namespace AssFundraisingSystem.AdminSide
         protected void Page_Load(object sender, EventArgs e)
         {
             
-            string eventid = Request.QueryString["EventID"];
+            string commentid = Request.QueryString["CommentID"];
             SqlConnection con = new SqlConnection(cs);
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Comment WHERE EventID = '" + eventid + "'", con);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Comment WHERE EventID = '" + commentid + "'", con);
             con.Open();
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -47,14 +47,14 @@ namespace AssFundraisingSystem.AdminSide
                 String Username = txtName.Text;
                 String CommentContent = txtComment.Text;
 
-
                 int eventid = Int32.Parse(Request.QueryString["EventID"]);
-                string sql = "Update Comment SET Username=@Username, CommentContent=@CommentContent WHERE EventID=@eventid ";
+                int commentid = Int32.Parse(Request.QueryString["CommentID"]);
+                string sql = "Update Comment SET Username=@Username, CommentContent=@CommentContent WHERE CommentID=@commentid ";
 
                 SqlConnection con = new SqlConnection(cs);
                 SqlCommand cmd = new SqlCommand(sql, con);
 
-                cmd.Parameters.AddWithValue("@EventID", eventid);
+                cmd.Parameters.AddWithValue("@CommentID", commentid);
                 cmd.Parameters.AddWithValue("@Username", Username);
                 cmd.Parameters.AddWithValue("@CommentContent", CommentContent);
                 
@@ -65,14 +65,15 @@ namespace AssFundraisingSystem.AdminSide
                 con.Close();
                 Response.Write("<script>alert('Comment Edited Successfully!')</script>");
 
-                Response.Redirect("ProgramList.aspx");
+                Response.Redirect("CommentManage.aspx?EventId=" + eventid);
 
             }
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("CommentManage.aspx");
+            int eventid = Int32.Parse(Request.QueryString["EventID"]);
+            Response.Redirect("CommentManage.aspx?EventId=" + eventid);
         }
     }
 }

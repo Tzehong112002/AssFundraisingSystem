@@ -12,17 +12,21 @@ namespace AssFundraisingSystem.UserSide
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["UserID"] == null)
+            {
+                Response.Redirect("../UserSide/Login.aspx");
+            }
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
-            string query = "INSERT INTO Comment (CommentContent, DateCommented) VALUES (@CommentText, @DateCommented)";
+            string query = "INSERT INTO Comment (UserID, CommentContent, DateCommented) VALUES (@UserID, @CommentText, @DateCommented)";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
+                    command.Parameters.AddWithValue("@UserID", Session["UserID"]);
                     command.Parameters.AddWithValue("@CommentText", txtComment.Text);
                     command.Parameters.AddWithValue("@DateCommented", DateTime.Now);
                     connection.Open();
