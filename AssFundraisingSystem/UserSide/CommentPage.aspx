@@ -13,7 +13,7 @@
                 <div class="inputerrormessage"></div>
             </div>   
 
-             <asp:Button ID="btnSubmit"  runat="server" Text="Submit" class="button" BackColor="Green"/>
+             <asp:Button ID="btnSubmit"  runat="server" Text="Submit" class="button" BackColor="Green" OnClick="btnSubmit_Click"/>
             <asp:Button ID="btnCancel"  runat="server" Text="Cancel" class="button" BackColor="Red"/>
 
 
