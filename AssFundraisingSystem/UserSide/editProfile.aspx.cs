@@ -48,7 +48,7 @@ namespace AssFundraisingSystem.UserSide
                                     string roles = reader["Roles"].ToString();
                                     string gender = reader["Gender"].ToString();
                                     DateTime? dateOfBirth = reader.IsDBNull(reader.GetOrdinal("DateOfBirth")) ? null : (DateTime?)reader.GetDateTime(reader.GetOrdinal("DateOfBirth"));
-
+                                    
 
 
 
@@ -61,6 +61,8 @@ namespace AssFundraisingSystem.UserSide
 
                                     if (gender != null) rblGender.SelectedValue = gender;
                                     if (dateOfBirth.HasValue) calendarBirth.SelectedDate = dateOfBirth.Value;
+
+
                                 }
                                 else
                                 {
