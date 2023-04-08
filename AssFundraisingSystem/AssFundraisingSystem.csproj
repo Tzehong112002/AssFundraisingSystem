@@ -79,6 +79,7 @@
   <ItemGroup>
     <Content Include="AdminSide\AddAdmin.aspx" />
     <Content Include="AdminSide\adminChangePassword.aspx" />
+    <Content Include="AdminSide\Ban.aspx" />
     <Content Include="AdminSide\CommentEdit.aspx" />
     <Content Include="AdminSide\CommentManage.aspx" />
     <Content Include="AdminSide\Create.aspx" />
@@ -222,6 +223,13 @@
     </Compile>
     <Compile Include="AdminSide\approveOrganization.aspx.designer.cs">
       <DependentUpon>approveOrganization.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminSide\Ban.aspx.cs">
+      <DependentUpon>Ban.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSide\Ban.aspx.designer.cs">
+      <DependentUpon>Ban.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminSide\CommentEdit.aspx.cs">
       <DependentUpon>CommentEdit.aspx</DependentUpon>

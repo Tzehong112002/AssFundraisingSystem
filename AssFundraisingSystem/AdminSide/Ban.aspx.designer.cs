@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AssFundraisingSystem
+namespace AssFundraisingSystem.AdminSide
 {
 
 
-    public partial class Delete
+    public partial class Ban
     {
 
         /// <summary>
@@ -33,13 +33,22 @@ namespace AssFundraisingSystem
         protected global::System.Web.UI.WebControls.Label lblName;
 
         /// <summary>
-        /// btnDelete control.
+        /// banStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDelete;
+        protected global::System.Web.UI.WebControls.RadioButtonList banStatus;
+
+        /// <summary>
+        /// btnBan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBan;
 
         /// <summary>
         /// btnCancel control.
