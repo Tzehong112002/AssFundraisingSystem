@@ -18,7 +18,7 @@
                     <table>
 
                         <tr>
-                            <td>ID:</td>
+                            <td>Username:</td>
                             <td id="lblUsername">
                                 <asp:Label ID="lblUsername" runat="server">TZEHONG112002</asp:Label></td>
                         </tr>

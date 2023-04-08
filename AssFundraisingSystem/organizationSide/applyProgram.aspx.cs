@@ -64,11 +64,12 @@ namespace AssFundraisingSystem.organizationSide
                 cmd.Parameters.AddWithValue("@EventEndDate", DateTime.Parse(EndDate));
                 cmd.Parameters.AddWithValue("@EventStatus", Status);
                 cmd.Parameters.AddWithValue("@UserID", Userid);
+                ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "alert('Program Submit Successfully!');", true);
 
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
-                Response.Write("<script>alert('Program Submit Successfully!')</script>");
+                
 
                 Response.Redirect("applyProgram.aspx");
 

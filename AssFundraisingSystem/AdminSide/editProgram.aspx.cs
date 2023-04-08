@@ -16,28 +16,38 @@ namespace AssFundraisingSystem.AdminSide
         string cs = ConfigurationManager.ConnectionStrings["MYConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
-            string eventid = Request.QueryString["EventID"];
-            SqlConnection con = new SqlConnection(cs);
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Event WHERE EventID = '" + eventid + "'", con);
-            con.Open();
-            SqlDataReader dr = cmd.ExecuteReader();
+            if (!IsPostBack)
+            {
+                string eventid = Request.QueryString["EventID"];
 
+                using (SqlConnection con = new SqlConnection(cs))
+                {
+                    using (SqlCommand cmd = new SqlCommand("SELECT * FROM Event WHERE EventID = @EventID", con))
+                    {
+                        cmd.Parameters.AddWithValue("@EventID", eventid);
 
-            if (dr.Read()) {
-                txtName.Text = dr["EventName"].ToString();
+                        con.Open();
+                        SqlDataReader dr = cmd.ExecuteReader();
 
-                txtTarget.Text = dr["EventTarget"].ToString();
-                txtDesc.Text = dr["EventDesc"].ToString();
-                txtCategories.Text = (dr["Categories"] != null) ? (string)dr["Categories"] : " ";
+                        if (dr.Read())
+                        {
+                            DateTime? dateStart = dr.IsDBNull(dr.GetOrdinal("EventStartDate")) ? null : (DateTime?)dr.GetDateTime(dr.GetOrdinal("EventStartDate"));
+                            if (dateStart.HasValue) cStartDate.SelectedDate = dateStart.Value;
+                            DateTime? dateEnd = dr.IsDBNull(dr.GetOrdinal("EventEndDate")) ? null : (DateTime?)dr.GetDateTime(dr.GetOrdinal("EventEndDate"));
+                            if (dateEnd.HasValue) cEndDate.SelectedDate = dateEnd.Value;
+
+                            txtName.Text = dr["EventName"].ToString();
+                            txtTarget.Text = dr["EventTarget"].ToString();
+                            txtDesc.Text = dr["EventDesc"].ToString();
+                            txtCategories.Text = dr["Categories"].ToString();
+                        }
+
+                        dr.Close();
+                    }
+                }
             }
-
-            
-
-
-            dr.Close();
-            con.Close();
-
         }
+
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {

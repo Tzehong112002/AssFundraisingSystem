@@ -9,7 +9,6 @@
                 <td class="editProfileLbl" style="padding-left: 50px;">Profile Picture</td>
                 <td>
                     <asp:FileUpload ID="fuProfilePic" runat="server"  text=""/>
-                    <asp:Button ID="btnUpdateProfilePic" runat="server" Text="Update Profile Picture"  />
                     
                     <asp:Literal ID="litFUErrorMessage" runat="server"></asp:Literal>
                     <br />

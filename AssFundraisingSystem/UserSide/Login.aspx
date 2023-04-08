@@ -27,7 +27,7 @@
     </h2>
 
 <div class ="form-group mb-4">
-<asp:TextBox required= "true" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Email" runat="server" ID="txtUsername" ></asp:TextBox>
+<asp:TextBox required= "true" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Username" runat="server" ID="txtUsername" ></asp:TextBox>
 
 </div>
 

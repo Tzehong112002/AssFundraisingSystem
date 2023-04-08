@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using BCrypt.Net;
 
 namespace AssFundraisingSystem.UserSide
 {
@@ -15,12 +11,10 @@ namespace AssFundraisingSystem.UserSide
         string cs = ConfigurationManager.ConnectionStrings["MYConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void Unnamed4_Click(object sender, EventArgs e)
         {
-
             string username = txtUsername.Text.Trim();
             string password = txtPassword.Text.Trim();
             string adminRoles = "Admin";
@@ -28,56 +22,53 @@ namespace AssFundraisingSystem.UserSide
 
             if (Page.IsValid)
             {
-
-                int RowCount;
-                SqlConnection con = new SqlConnection(cs);
-                con.Open();
-                string str = "SELECT * FROM Account";
-                SqlCommand cmd = new SqlCommand(str);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd.CommandText, con);
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-                RowCount = dt.Rows.Count;
-                for (int i = 0; i < RowCount; i++)
+                string query = "SELECT UserID, Username, Password, Roles FROM Account WHERE Username = @Username";
+                using (SqlConnection connection = new SqlConnection(cs))
                 {
-                    string Username = dt.Rows[i]["Username"].ToString();
-                    string Password = dt.Rows[i]["Password"].ToString();
-                    string Roles = dt.Rows[i]["Roles"].ToString();
-                    String Userid = dt.Rows[i]["UserID"].ToString();
-
-
-                    if (Username == username && Password == password && Roles == organizationRoles)
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        Session["UserID"] = Userid;
+                        command.Parameters.AddWithValue("@Username", username);
+                        connection.Open();
 
-                        con.Close();
+                        SqlDataReader reader = command.ExecuteReader();
+                        if (reader.Read())
+                        {
+                            string hashedPassword = reader["Password"].ToString();
+                            string roles = reader["Roles"].ToString();
+                            int userID = Convert.ToInt32(reader["UserID"]);
 
-                        Response.Redirect("../organizationSide/applyProgram.aspx");
+                            if (BCrypt.Net.BCrypt.Verify(password, hashedPassword))
+                            {
+                                if (roles == organizationRoles)
+                                {
+                                    Session["UserID"] = userID;
+                                    reader.Close();
+                                    Response.Redirect("../organizationSide/applyProgram.aspx");
+                                }
+                                else if (roles == adminRoles)
+                                {
+                                    Session["Username"] = username;
+                                    reader.Close();
+                                    Response.Redirect("../AdminSide/dashboard.aspx");
+                                }
+                            }
+                            else
+                            {
+                                lblMessage.Visible = true;
+                                lblMessage.Text = "Invalid Email and Password. Please Try Again!";
+                            }
+                        }
+                        else
+                        {
+                            lblMessage.Visible = true;
+                            lblMessage.Text = "Invalid Email and Password. Please Try Again!";
+                        }
 
-
+                        reader.Close(); // Close the data reader before exiting the method
                     }
-                    else if (Username == username && Password == password && Roles == adminRoles)
-                    {
-                        Session["Username"] = username;
-                        con.Close();
-
-                        Response.Redirect("../AdminSide/dashboard.aspx");
-
-                    }
-                    else
-                    {
-
-                        lblMessage.Visible = true;
-                        lblMessage.Text = "Invalid Email and Password.Please Try Again!";
-
-                    }
-
-
-
-
                 }
             }
-
         }
     }
 }
+
