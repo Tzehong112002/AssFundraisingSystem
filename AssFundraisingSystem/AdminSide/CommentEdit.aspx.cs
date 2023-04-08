@@ -25,7 +25,6 @@ namespace AssFundraisingSystem.AdminSide
 
             if (dr.Read())
             {
-                txtName.Text = dr["Username"].ToString();
 
                 txtComment.Text = dr["CommentContent"].ToString();
             }
@@ -44,20 +43,20 @@ namespace AssFundraisingSystem.AdminSide
 
             if (Page.IsValid)
             {
-                String Username = txtName.Text;
                 String CommentContent = txtComment.Text;
+                DateTime DateCommented = Calendar1.SelectedDate;
 
                 int eventid = Int32.Parse(Request.QueryString["EventID"]);
                 int commentid = Int32.Parse(Request.QueryString["CommentID"]);
-                string sql = "Update Comment SET Username=@Username, CommentContent=@CommentContent WHERE CommentID=@commentid ";
+                string sql = "Update Comment SET DateCommented=@DateCommented, CommentContent=@CommentContent WHERE CommentID=@commentid ";
 
                 SqlConnection con = new SqlConnection(cs);
                 SqlCommand cmd = new SqlCommand(sql, con);
 
                 cmd.Parameters.AddWithValue("@CommentID", commentid);
-                cmd.Parameters.AddWithValue("@Username", Username);
                 cmd.Parameters.AddWithValue("@CommentContent", CommentContent);
-                
+                cmd.Parameters.AddWithValue("@DateCommented", DateCommented);
+
 
 
                 con.Open();

@@ -6,11 +6,6 @@
 
             <h1 class="title">Edit Comment</h1>
             <div class="message messageerror"></div>
-            <div class="input">
-               <asp:Label ID="Label1" runat="server" Text="User :"></asp:Label>
-                <asp:TextBox ID="txtName" class="txtinput" placeholder="User" runat="server" ></asp:TextBox>
-                <div class="inputerrormessage"></div>
-            </div>
          <div class="input">
              <asp:Label ID="Label2" runat="server" Text="Time Commented :"></asp:Label>
              <asp:Calendar ID="Calendar1" runat="server" DateFormat="MM/dd/yyyy hh:mm:ss"></asp:Calendar>
