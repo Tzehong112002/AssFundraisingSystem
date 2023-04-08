@@ -17,7 +17,7 @@ namespace AssFundraisingSystem.AdminSide
         {
             if (!Page.IsPostBack)
             {
-                string sql = "SELECT UserID, Name, Email, PhoneNo FROM Account";
+                string sql = "SELECT UserID, Name, Email, PhoneNo FROM Account WHERE Roles = 'Organization' OR Roles = 'User'";
 
                 SqlConnection con = new SqlConnection(cs);
                 SqlCommand cmd = new SqlCommand(sql, con);

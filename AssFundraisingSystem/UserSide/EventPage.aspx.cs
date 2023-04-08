@@ -34,7 +34,17 @@ namespace AssFundraisingSystem.UserSide
                 {
                     EventImage.ImageUrl = reader["EventIMG"].ToString();
 
-                    decimal donated = (decimal)reader["DonatedAmount"];
+                    object donatedObj = reader["DonatedAmount"];
+                    decimal donated;
+                    if (donatedObj != DBNull.Value && donatedObj != null)
+                    {
+                        donated = (decimal)donatedObj;
+                    }
+                    else
+                    {
+                        donated = 0;
+                    }
+
                     string formattedDonated = "RM" + donated.ToString("N2");
                     lblDonated.Text = formattedDonated;
 
@@ -95,10 +105,10 @@ namespace AssFundraisingSystem.UserSide
             }
         }
 
-
         protected void donatebtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Payment.aspx");
+            int Eventid = Convert.ToInt32(Session["EventID"] ?? Request.QueryString["EventID"]);
+            Response.Redirect("Payment.aspx?EventID=" + Eventid);
         }
 
         protected void commentRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
