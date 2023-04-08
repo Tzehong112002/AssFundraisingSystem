@@ -81,6 +81,7 @@
     <Content Include="AdminSide\adminChangePassword.aspx" />
     <Content Include="AdminSide\CommentEdit.aspx" />
     <Content Include="AdminSide\CommentManage.aspx" />
+    <Content Include="AdminSide\Create.aspx" />
     <Content Include="AdminSide\css\AddAdminStyle.css" />
     <Content Include="AdminSide\addProgram.aspx" />
     <Content Include="AdminSide\adminAccount.aspx" />
@@ -90,6 +91,7 @@
     <Content Include="AdminSide\approveOrganization.aspx" />
     <Content Include="AdminSide\css\adminNav.css" />
     <Content Include="AdminSide\css\apporveOrganizationStyle.css" />
+    <Content Include="AdminSide\css\CssForCreate.css" />
     <Content Include="AdminSide\css\dashboardStyle.css" />
     <Content Include="AdminSide\css\addProgramStyle.css" />
     <Content Include="AdminSide\css\dataTable1.css" />
@@ -101,7 +103,9 @@
     <Content Include="AdminSide\css\Participants.css" />
     <Content Include="AdminSide\css\weiyao.css" />
     <Content Include="AdminSide\dashboard.aspx" />
+    <Content Include="AdminSide\Delete.aspx" />
     <Content Include="AdminSide\DonationList.aspx" />
+    <Content Include="AdminSide\Edit.aspx" />
     <Content Include="AdminSide\EditAdmin.aspx" />
     <Content Include="AdminSide\editProgram.aspx" />
     <Content Include="AdminSide\ParticipantEdit.aspx" />
@@ -152,9 +156,9 @@
     <Content Include="UserSide\EventPage.aspx" />
     <Content Include="UserSide\forgotPassword.aspx" />
     <Content Include="UserSide\Img\background6.jpg" />
-    <Content Include="UserSide\Img\download.png" />
     <Content Include="UserSide\Img\event.jpg" />
     <Content Include="UserSide\Img\IconLogin.jpg" />
+    <Content Include="UserSide\Img\IconLogin.png" />
     <Content Include="UserSide\Img\profile.png" />
     <Content Include="UserSide\Login.aspx" />
     <Content Include="UserSide\OrganizationLogin.aspx" />
@@ -162,6 +166,7 @@
     <Content Include="UserSide\Profile.aspx" />
     <Content Include="UserSide\program.aspx" />
     <Content Include="UserSide\Register.aspx" />
+    <Content Include="UserSide\UserCategory.aspx" />
     <Content Include="Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
@@ -232,6 +237,13 @@
     <Compile Include="AdminSide\CommentManage.aspx.designer.cs">
       <DependentUpon>CommentManage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminSide\Create.aspx.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSide\Create.aspx.designer.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminSide\dashboard.aspx.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -239,12 +251,26 @@
     <Compile Include="AdminSide\dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminSide\Delete.aspx.cs">
+      <DependentUpon>Delete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSide\Delete.aspx.designer.cs">
+      <DependentUpon>Delete.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminSide\DonationList.aspx.cs">
       <DependentUpon>DonationList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AdminSide\DonationList.aspx.designer.cs">
       <DependentUpon>DonationList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminSide\Edit.aspx.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSide\Edit.aspx.designer.cs">
+      <DependentUpon>Edit.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminSide\EditAdmin.aspx.cs">
       <DependentUpon>EditAdmin.aspx</DependentUpon>
@@ -414,6 +440,13 @@
     </Compile>
     <Compile Include="UserSide\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserSide\UserCategory.aspx.cs">
+      <DependentUpon>UserCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSide\UserCategory.aspx.designer.cs">
+      <DependentUpon>UserCategory.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
