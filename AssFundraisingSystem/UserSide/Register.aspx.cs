@@ -29,6 +29,7 @@ namespace AssFundraisingSystem.UserSide
                     string email = txtEmail.Text;
                     string password = txtPassword.Text.Trim();
                     string confirmPassword = txtConfirmPassword.Text.Trim();
+                    String StatusUser = "No";
 
                     if (password == confirmPassword)
                     {
@@ -39,7 +40,7 @@ namespace AssFundraisingSystem.UserSide
                         string salt = BCrypt.Net.BCrypt.GenerateSalt();
                         string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password, salt);
 
-                        string sql = "INSERT INTO Account(Name, Email, Password, Roles, ProfilePic ,Username) VALUES (@Name, @Email, @Password, @Roles, @ProfilePic ,@Username)";
+                        string sql = "INSERT INTO Account(Name, Email, Password, Roles, ProfilePic ,Username,BanStatus) VALUES (@Name, @Email, @Password, @Roles, @ProfilePic ,@Username,@BanStatus)";
                         SqlConnection con = new SqlConnection(cs);
                         SqlCommand cmd = new SqlCommand(sql, con);
 
@@ -49,6 +50,7 @@ namespace AssFundraisingSystem.UserSide
                         cmd.Parameters.AddWithValue("@Roles", roles);
                         cmd.Parameters.AddWithValue("@ProfilePic", image);
                         cmd.Parameters.AddWithValue("@Username", username);
+                        cmd.Parameters.AddWithValue("@BanStatus", StatusUser);
 
                         con.Open();
                         cmd.ExecuteNonQuery();

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -13,25 +11,25 @@ namespace AssFundraisingSystem
 {
     public partial class Delete : System.Web.UI.Page
     {
+        string conStr = ConfigurationManager.ConnectionStrings["MYConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
             string delid = Request.QueryString["id"] ?? "";
 
+            string delsql = "DELETE FROM Categories WHERE ID = @Id";
 
+            SqlConnection conn = new SqlConnection(conStr);
+            SqlCommand cmd = new SqlCommand(delsql, conn);
+            cmd.Parameters.AddWithValue("@Id", delid);
 
-
-
-
-
-            cmd.Parameters.AddWithValue("@Id", id);
-
-            con.Open();
+            conn.Open();
 
             cmd.ExecuteNonQuery();
 
-            con.Close();
+            conn.Close();
 
-            Response.Redirect("ParticipantsRecord.aspx");
+            Response.Redirect("Categories.aspx");
+            
         }
     }
 }
