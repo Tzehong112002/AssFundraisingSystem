@@ -104,7 +104,7 @@
                         <ItemTemplate>
                             <div class="comment">
                                 <div class="user-profile-pic">
-                                    <%--<asp:Image ID="profilePic" runat="server" ImageUrl='<%# Eval("ProfilePicturePath") %>' />--%>
+                                    <asp:Image ID="profilePic" runat="server" ImageUrl='<%# Eval("ProfilePic") %>' />
                                 </div>
                                 <div class="comment-text">
                                     <div class="username"><%# Eval("Username") %></div>

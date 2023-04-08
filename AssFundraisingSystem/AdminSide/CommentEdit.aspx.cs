@@ -16,9 +16,9 @@ namespace AssFundraisingSystem.AdminSide
         protected void Page_Load(object sender, EventArgs e)
         {
             
-            string eventid = Request.QueryString["EventID"];
+            string commentid = Request.QueryString["CommentID"];
             SqlConnection con = new SqlConnection(cs);
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Comment WHERE EventID = '" + eventid + "'", con);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Comment WHERE EventID = '" + commentid + "'", con);
             con.Open();
             SqlDataReader dr = cmd.ExecuteReader();
 

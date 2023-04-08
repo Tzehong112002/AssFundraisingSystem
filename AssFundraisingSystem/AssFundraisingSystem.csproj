@@ -109,10 +109,6 @@
     <Content Include="AdminSide\ParticipantRecord.aspx" />
     <Content Include="AdminSide\ProgramList.aspx" />
     <Content Include="AdminSide\Categories.aspx" />
-    <Content Include="App_Data\SystemDBA.mdf" />
-    <Content Include="App_Data\SystemDBA_log.ldf">
-      <DependentUpon>SystemDBA.mdf</DependentUpon>
-    </Content>
     <Content Include="Images\dgorescue.jpg" />
     <Content Include="Images\organization.jpg" />
     <Content Include="organizationSide\applyProgram.aspx" />
@@ -419,6 +415,7 @@
   <ItemGroup>
     <Folder Include="AdminSide\Img\AdminPic\" />
     <Folder Include="AdminSide\Img\EventImg\" />
+    <Folder Include="AppData\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
