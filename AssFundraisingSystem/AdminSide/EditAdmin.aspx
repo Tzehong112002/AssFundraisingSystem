@@ -8,8 +8,9 @@
 
          <div class="input">
                 <span id="lblPicture">Profile Picture:</span>
-               <input type="file" name="uplPicture" id="uplPicture" />
-                <div class="inputerrormessage"></div>
+                <asp:FileUpload ID="FileUpload1" runat="server" />
+                <asp:Label ID="Passvalue" runat="server" Text="Label" Visible="False"></asp:Label>
+&nbsp;<div class="inputerrormessage"></div>
             </div>
 
             <div class="input">
@@ -18,11 +19,7 @@
                 <div class="inputerrormessage"></div>
             </div>
 
-         <div class="input">
-               <asp:Label ID="Label7" runat="server" Text="UserName :"></asp:Label>
-                <asp:TextBox ID="TextBox4" class="txtinput" placeholder="Enter Username" runat="server" ></asp:TextBox>
-                <div class="inputerrormessage"></div>
-            </div>
+         
 
          <div class="input">
                <asp:Label ID="Label1" runat="server" Text="Contact Number :"></asp:Label>
@@ -32,9 +29,9 @@
 
         
 
-             <asp:Button ID="btnUpdate"  runat="server" Text="Update" class="button" BackColor="Green" />
+             <asp:Button ID="btnUpdateAdmin"  runat="server" Text="Update" class="button" BackColor="Green" OnClick="btnUpdateAdmin_Click" />
 
-             <asp:Button ID="btnCancel"  runat="server" Text="cancel" class="button" BackColor="Red" />
+             <asp:Button ID="btnCancel"  runat="server" Text="cancel" class="button" BackColor="Red" OnClick="btnCancel_Click" />
 
    </div>
 

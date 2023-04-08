@@ -41,6 +41,7 @@ namespace AssFundraisingSystem.AdminSide
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
+
             if (Page.IsValid)
             {
                 String Name = txtName.Text;
