@@ -152,6 +152,7 @@
     <Content Include="UserSide\editProfile.aspx" />
     <Content Include="UserSide\EventPage.aspx" />
     <Content Include="UserSide\forgotPassword.aspx" />
+    <Content Include="UserSide\historyPayment.aspx" />
     <Content Include="UserSide\Img\background6.jpg" />
     <Content Include="UserSide\Img\event.jpg" />
     <Content Include="UserSide\Img\IconLogin.jpg" />
@@ -402,6 +403,13 @@
     </Compile>
     <Compile Include="UserSide\forgotPassword.aspx.designer.cs">
       <DependentUpon>forgotPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserSide\historyPayment.aspx.cs">
+      <DependentUpon>historyPayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSide\historyPayment.aspx.designer.cs">
+      <DependentUpon>historyPayment.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserSide\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
