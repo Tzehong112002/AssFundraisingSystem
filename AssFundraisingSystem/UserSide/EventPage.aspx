@@ -89,30 +89,38 @@
                     </li>
                   </ul>
                 </div>
-                    </div>
+              </div>
                     <br />
                     <br />
 
 
     <%-- =====================================Comment================================================================ --%> 
 
+
+
+                    
+                    
+                
+              
+
                <div class="comments-area">
                   <h2>Comments</h2>
                   <div class="comment-list">
 
-                    <asp:Repeater ID="commentRepeater" runat="server">
+                    <asp:Repeater ID="commentRepeater" runat="server" OnItemCommand="commentRepeater_ItemCommand">
                         <ItemTemplate>
-                            <div class="comment">
-                                <div class="user-profile-pic">
-                                    <asp:Image ID="profilePic" runat="server" ImageUrl='<%# Eval("ProfilePic") %>' />
-                                </div>
-                                <div class="comment-text">
-                                    <div class="username"><%# Eval("Username") %></div>
+                            <div class="w3-container">
+                              <ul class="w3-ul w3-card-4">
+                                <li class="w3-bar">
+                                  <asp:Image ID="profilePic" runat="server" ImageUrl='<%# Eval("ProfilePic") %>' style="width:85px" ImageAlign="Left"/>
+                                  <div class="w3-bar-item">
+                                    <div class="username" style="font-size:large; color:blue"><%# Eval("Username") %></div>
                                     <div class="comment-body"><%# Eval("CommentContent") %></div>
                                     <small><%# Eval("DateCommented", "{0:MMMM dd, yyyy}") %></small>
-                                </div>
+                                  </div>
+                                </li>
+                              </ul>
                             </div>
-                            <br />
                         </ItemTemplate>
                     </asp:Repeater>
 

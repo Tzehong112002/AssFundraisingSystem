@@ -44,7 +44,15 @@ namespace AssFundraisingSystem.UserSide
 
                     
                     int progress = Convert.ToInt32((donated / target) * 100);
+
+                    if(progress > 100)
+                    {
+                        progress = 100;
+                    }
+
                     string progressPercent = progress.ToString();
+
+
 
                     progressBar.Attributes.Add("style", "width: " + progressPercent + "%");
                     progressBar.Attributes.Add("aria-valuenow", progressPercent);
@@ -70,7 +78,7 @@ namespace AssFundraisingSystem.UserSide
 
             using (SqlConnection con = new SqlConnection(cs))
             {
-                using (SqlCommand cmd = new SqlCommand("Select * from Comment WHERE EventID=@EventID ORDER BY DateCommented DESC", con))
+                using (SqlCommand cmd = new SqlCommand("SELECT c.*, a.ProfilePic, a.Username FROM Comment c JOIN Account a ON c.UserID = a.UserID WHERE c.EventID=@EventID ORDER BY c.DateCommented DESC", con))
                 {
                     using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
                     {
@@ -91,6 +99,11 @@ namespace AssFundraisingSystem.UserSide
         protected void donatebtn_Click(object sender, EventArgs e)
         {
             Response.Redirect("Payment.aspx");
+        }
+
+        protected void commentRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+
         }
     }
 }
