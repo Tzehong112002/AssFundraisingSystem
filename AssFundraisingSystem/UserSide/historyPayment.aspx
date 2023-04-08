@@ -25,7 +25,7 @@
         <asp:Repeater ID="RepeaterEvent" runat="server" >
             
 
-            <ItemTemplate>
+            
                     <ItemTemplate>
         <tr>
             
@@ -36,12 +36,12 @@
             <td data-label="Price" data-align="center">
                 
                 <strong>
-                    <asp:HyperLink ID="btnView" CssClass="button "   runat="server" NavigateUrl='<%# Eval("EventID","EventPage.aspx?EventID={0}") %>'>Write a review</asp:HyperLink>
+                    <asp:HyperLink ID="btnView" CssClass="button "   runat="server" NavigateUrl='<%# Eval("EventID","CommentPage.aspx?EventID={0}") %>'>Write a review</asp:HyperLink>
                 </strong>
             </td>
         </tr>
                 </ItemTemplate>
-                </ItemTemplate>
+                
 
         </asp:Repeater>
         
