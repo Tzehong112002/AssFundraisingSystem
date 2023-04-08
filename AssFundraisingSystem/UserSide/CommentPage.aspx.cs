@@ -20,12 +20,15 @@ namespace AssFundraisingSystem.UserSide
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            int eventID = 17;  //Convert.ToInt32(Request.QueryString["EventID"] ?? Session["EventID"]);
+
             string connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
-            string query = "INSERT INTO Comment (UserID, CommentContent, DateCommented) VALUES (@UserID, @CommentText, @DateCommented)";
+            string query = "INSERT INTO Comment (EventID, UserID, CommentContent, DateCommented) VALUES (@EventID, @UserID, @CommentText, @DateCommented)";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
+                    command.Parameters.AddWithValue("@EventID", eventID);
                     command.Parameters.AddWithValue("@UserID", Session["UserID"]);
                     command.Parameters.AddWithValue("@CommentText", txtComment.Text);
                     command.Parameters.AddWithValue("@DateCommented", DateTime.Now);

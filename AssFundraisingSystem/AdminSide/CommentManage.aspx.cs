@@ -26,7 +26,7 @@ namespace AssFundraisingSystem.AdminSide
 
             using (SqlConnection con = new SqlConnection(cs))
             {
-                using (SqlCommand cmd = new SqlCommand("Select * from Comment WHERE EventID=@EventID ORDER BY DateCommented DESC", con))
+                using (SqlCommand cmd = new SqlCommand("SELECT c.*, a.Username FROM Comment c JOIN Account a ON c.UserID = a.UserID WHERE c.EventID=@EventID ORDER BY c.DateCommented DESC", con))
                 {
                     using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
                     {
