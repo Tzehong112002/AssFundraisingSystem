@@ -32,6 +32,7 @@ namespace AssFundraisingSystem.UserSide
 
                     if (password == confirmPassword)
                     {
+                        
                         string roles = "User";
                         string image = "Img/profile.png";
 
