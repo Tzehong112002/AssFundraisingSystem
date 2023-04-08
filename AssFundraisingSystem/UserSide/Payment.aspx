@@ -29,7 +29,7 @@
 
 </div>
 <div class ="form-group mb-4">
-<asp:TextBox ID="txtEmail" required= "true" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Email Address" runat="server" OnTextChanged="Unnamed2_TextChanged" ></asp:TextBox>
+<asp:TextBox ID="txtEmail" required= "true" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Email Address" runat="server" ></asp:TextBox>
 
 </div>
 <div class ="form-group mb-4">
