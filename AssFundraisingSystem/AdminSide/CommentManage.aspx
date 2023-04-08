@@ -31,7 +31,7 @@
                     <td data-label="CommentContent" colspan="4" style="height: 32px"><%# Eval("CommentContent") %></td>
                     <td data-label="CommentTime" colspan="2" style="height: 32px"><%# Eval("DateCommented") %></td>
                     <td data-label="btnCommentManage" style="height: 32px" colspan="2">
-                        <asp:HyperLink ID="btnEditComment" CssClass="button "  runat="server" BackColor="Green" width="80px" NavigateUrl='<%# Eval("EventID","CommentEdit.aspx?EventID={0}") %>'>Edit</asp:HyperLink>
+                        <asp:HyperLink ID="btnEditComment" CssClass="button "  runat="server" BackColor="Green" width="80px" NavigateUrl='<%# Eval("CommentID","CommentEdit.aspx?CommentID={0}&EventID=" + Eval("EventID")) %>'>Edit</asp:HyperLink>
                         <asp:Button ID="btnDelComment" runat="server" CssClass="buttonDelete " Text="Delete" BackColor="Red" width="80px" OnClick="btnDelComment_Click" CommandArgument='<%#Eval("CommentID") %>' OnClientClick="return confirm('Do you want to delete this comment?');" />
                     </td>
                 </tr>
