@@ -1,6 +1,19 @@
 ﻿body, select, input, table {
     font: 16pt Calibri;
+    
 }
+
+.container {
+    margin-left: 1%;
+    margin-right: 1%;
+    box-shadow: 5px 10px;
+    padding: 10px;
+    border: 2px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 
 p {
     font-weight: bold;

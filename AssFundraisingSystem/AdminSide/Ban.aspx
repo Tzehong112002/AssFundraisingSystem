@@ -2,7 +2,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link href="css/BUpdate.css" rel="stylesheet" />
 <div class="title"><h1>Update Account</h1> </div>
-    <p> Are you sure you wan to update the following account?</p>
+
+    <div class ="container">
+
+        <p> Are you sure you wan to update the following account?</p>
      <table>
                 <tr>
                     <td>Id: </td>
@@ -29,5 +32,9 @@
             </table>
                 <br />
             <asp:Button ID="btnBan" runat="server" Text="Ban" OnClick="btnBan_Click" />
+        
             <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
+
+    </div>
+    
 </asp:Content>
