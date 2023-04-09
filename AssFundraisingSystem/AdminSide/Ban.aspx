@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminSide/adminMaster.Master" AutoEventWireup="true" CodeBehind="Ban.aspx.cs" Inherits="AssFundraisingSystem.AdminSide.Ban" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+    <link href="css/BUpdate.css" rel="stylesheet" />
 <div class="title"><h1>Update Account</h1> </div>
     <p> Are you sure you wan to update the following account?</p>
      <table>

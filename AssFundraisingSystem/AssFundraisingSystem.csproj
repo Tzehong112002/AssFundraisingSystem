@@ -92,6 +92,7 @@
     <Content Include="AdminSide\approveOrganization.aspx" />
     <Content Include="AdminSide\css\adminNav.css" />
     <Content Include="AdminSide\css\apporveOrganizationStyle.css" />
+    <Content Include="AdminSide\css\BUpdate.css" />
     <Content Include="AdminSide\css\CssForCreate.css" />
     <Content Include="AdminSide\css\dashboardStyle.css" />
     <Content Include="AdminSide\css\addProgramStyle.css" />
@@ -109,6 +110,7 @@
     <Content Include="AdminSide\Edit.aspx" />
     <Content Include="AdminSide\EditAdmin.aspx" />
     <Content Include="AdminSide\editProgram.aspx" />
+    <Content Include="AdminSide\ParticipantDelete.aspx" />
     <Content Include="AdminSide\ParticipantEdit.aspx" />
     <Content Include="AdminSide\ParticipantManage.aspx" />
     <Content Include="AdminSide\ParticipantRecord.aspx" />
@@ -290,6 +292,13 @@
     </Compile>
     <Compile Include="AdminSide\editProgram.aspx.designer.cs">
       <DependentUpon>editProgram.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminSide\ParticipantDelete.aspx.cs">
+      <DependentUpon>ParticipantDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSide\ParticipantDelete.aspx.designer.cs">
+      <DependentUpon>ParticipantDelete.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminSide\ParticipantEdit.aspx.cs">
       <DependentUpon>ParticipantEdit.aspx</DependentUpon>
