@@ -48,7 +48,7 @@ namespace AssFundraisingSystem.AdminSide
 
                 if (!found)
                 {
-                    Response.Redirect("ParticipantsRecord.aspx");
+                    Response.Redirect("ParticipantRecord.aspx");
                 }
 
             }
@@ -56,7 +56,7 @@ namespace AssFundraisingSystem.AdminSide
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Server.Transfer("ParticipantsRecord.aspx");
+            Response.Redirect("ParticipantRecord.aspx");
         }
 
         protected void btnBan_Click(object sender, EventArgs e)

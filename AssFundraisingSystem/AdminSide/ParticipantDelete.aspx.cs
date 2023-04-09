@@ -16,7 +16,7 @@ namespace AssFundraisingSystem.AdminSide
         {
 
             if (!Page.IsPostBack)
-            {//                                       if
+            {//                                       
                 string id = Request.QueryString["id"] ?? "";
                 bool found = false;
 

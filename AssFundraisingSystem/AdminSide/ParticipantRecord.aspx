@@ -10,6 +10,6 @@
             </Columns>
         </asp:GridView>
            
-        <asp:Button class ="cCate" ID="cCate" runat="server" Text="Back" />
+
     </div>
 </asp:Content>
