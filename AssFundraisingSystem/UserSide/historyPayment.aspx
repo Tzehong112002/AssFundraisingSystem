@@ -29,9 +29,9 @@
                     <ItemTemplate>
         <tr>
             
-            <td data-label="Account"><strong><%#Eval("AccountName") %></strong></td>
+            <td data-label="Account"><strong><%#Eval("Name") %></strong></td>
             <td data-label="Model"><%#Eval("EventName") %></td>
-            <td data-label="Model"><%#Eval("AccountEmail") %></td>
+            <td data-label="Model"><%#Eval("Email") %></td>
             <td data-label="Donation Amount"><%#Eval("Amount") %></td>
             <td data-label="Price" data-align="center">
                 

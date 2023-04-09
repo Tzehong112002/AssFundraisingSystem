@@ -1,99 +1,116 @@
 ﻿using System;
-using System.Configuration;
-using System.Data.SqlClient;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using System.Web.Security;
+using System.Configuration;
+using System.IO;
 
 namespace AssFundraisingSystem.AdminSide
 {
-    public partial class Edit : Page
+    public partial class Edit : System.Web.UI.Page
     {
-        private readonly string connectionString = ConfigurationManager.ConnectionStrings["MYConnectionString"].ConnectionString;
+        string conStr = ConfigurationManager.ConnectionStrings["MYConnectionString"].ConnectionString;
 
-        private int categoryId;
-        private string categoryImage;
+        public int cateId = 9;
 
+
+        public string cateImg = null;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if ((!this.IsPostBack))
+            if (!IsPostBack)
             {
-                if (!int.TryParse(Request.QueryString["ID"], out categoryId))
+                try
+                {
+                    cateId = Convert.ToInt32(Request.QueryString["ID"]);
+                }
+                catch (FormatException) // Invalid id being passed
                 {
                     Session["FormatException"] = true;
                     Response.Redirect("Artwork.aspx?id=1");
                     return;
                 }
 
-                if (!GetDataFromDB())
-                {
-                    Response.Redirect("Categories.aspx");
-                    return;
-                }
-
-                imageCon.InnerHtml = $"<img src='../Images/{categoryImage}' alt='' class='img-thumbnail' id='image_preview'>";
+                GetDataFromDB();
             }
         }
 
-        private bool GetDataFromDB()
+        private void GetDataFromDB()
         {
-            string sql = "SELECT CategoryTitle, Description, Image FROM Categories WHERE ID = @CategoryId";
+            bool doesExist = false;
 
-            using (var connection = new SqlConnection(connectionString))
+            string sql = @"SELECT * FROM Categories WHERE ID = @Id";
+
+            SqlConnection con = new SqlConnection(conStr);
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("@Id", cateId);
+
+            con.Open();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
             {
-                using (var command = new SqlCommand(sql, connection))
-                {
-                    command.Parameters.AddWithValue("@CategoryId", categoryId);
+                cid.Text = Convert.ToString(cateId);
+                cTitle.Text = (string)dr["CategoryTitle"];
 
-                    connection.Open();
 
-                    using (var reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            cTitle.Text = reader.GetString(reader.GetOrdinal("CategoryTitle"));
-                            cateDescription.Text = reader.GetString(reader.GetOrdinal("Description"));
-                            categoryImage = reader.GetString(reader.GetOrdinal("Image"));
-                            return true;
-                        }
-                    }
-                }
+
+
+                cateDescription.Text = (string)dr["Description"];
+                cateImg = (string)dr["Image"];
+                doesExist = true;
             }
 
-            return false;
+            imageCon.InnerHtml = "<img src='../Images/" + cateImg + "' alt='' class='img-thumbnail' id='image_preview'>";
+
+            if (!doesExist)
+            {
+                Response.Redirect("Categories.aspx");
+                return;
+            }
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
             try
             {
+
                 string title = cTitle.Text;
                 string description = cateDescription.Text.Trim();
+                string coid = cid.Text;
+                string[] validFile = { ".jpg", ".png", ".jpeg" };
+                string savePath = Server.MapPath("~/Images");
 
-                using (SqlConnection con = new SqlConnection(connectionString))
-                {
-                    string sql = "UPDATE Categories SET CategoryTitle=@title,Description=@cateDescription WHERE ID=@Id";
-                    SqlCommand cmd = new SqlCommand(sql, con);
+                string fileName = imageP.FileName;
+                //    string extension = Path.GetExtension(imageP.PostedFile.FileName);
+                //  string newFileName = fileName.Trim() + extension;
 
-                    cmd.Parameters.AddWithValue("@title", title);
-                    cmd.Parameters.AddWithValue("@cateDescription", description);
-                    cmd.Parameters.AddWithValue("@Id", categoryId);
+                SqlConnection con = new SqlConnection(conStr);
 
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                }
+                string sql = "UPDATE Categories SET CategoryTitle=@title,Description=@cateDescription,Image=@image WHERE ID=@Id";
+                SqlCommand cmd = new SqlCommand(sql, con);
 
+                cmd.Parameters.AddWithValue("@title", title);
+                cmd.Parameters.AddWithValue("@cateDescription", description);
+                cmd.Parameters.AddWithValue("@image", fileName);
+                cmd.Parameters.AddWithValue("@Id", coid);
+                con.Open();
+
+
+                cmd.ExecuteNonQuery();
+                Response.Write(cmd.ExecuteNonQuery().ToString());
                 Response.Redirect("Categories.aspx");
+
+                con.Close();
             }
             catch (Exception ex)
             {
                 Response.Write("<script>alert('" + ex.Message + "')</script>");
+
             }
-        }
-
-
-
-        protected void btnBack_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Categories.aspx");
         }
     }
 }

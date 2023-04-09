@@ -16,7 +16,7 @@
                         <div class="event_content">
                             <div class="custom_progress_bar">
                                 <div class="progress">
-                                    <div runat="server" id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                                    <div runat="server" id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="50" aria-valuemax="100">
                                         <span runat="server" class="progres_count" id="lblPercentage"></span>
                                     </div>
                                   </div>

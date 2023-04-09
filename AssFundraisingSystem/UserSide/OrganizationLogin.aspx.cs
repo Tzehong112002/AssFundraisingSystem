@@ -19,10 +19,11 @@ namespace AssFundraisingSystem.UserSide
             string password = txtPassword.Text.Trim();
             string adminRoles = "Admin";
             string organizationRoles = "Organization";
+            String Status = "No";
 
             if (Page.IsValid)
             {
-                string query = "SELECT UserID, Username, Password, Roles FROM Account WHERE Username = @Username";
+                string query = "SELECT UserID, Username, Password, Roles ,BanStatus FROM Account WHERE Username = @Username";
                 using (SqlConnection connection = new SqlConnection(cs))
                 {
                     using (SqlCommand command = new SqlCommand(query, connection))
@@ -41,9 +42,18 @@ namespace AssFundraisingSystem.UserSide
                             {
                                 if (roles == organizationRoles)
                                 {
-                                    Session["UserID"] = userID;
-                                    reader.Close();
-                                    Response.Redirect("../organizationSide/applyProgram.aspx");
+                                    if (reader["BanStatus"].ToString().Trim() == Status.Trim())
+                                    {
+                                        Session["UserID"] = userID;
+                                        reader.Close();
+                                        Response.Redirect("../organizationSide/applyProgram.aspx");
+                                        
+                                    }
+                                    else {
+                                        Response.Write("<script>alert('Ur accounr been ban by admin'+)</script>");
+
+                                    }
+                                    
                                 }
                                 else if (roles == adminRoles)
                                 {

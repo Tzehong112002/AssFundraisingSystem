@@ -91,10 +91,23 @@ namespace AssFundraisingSystem.UserSide
             string contactNumber = txtContactNumber.Text;
             DateTime birthDate = calendarBirth.SelectedDate;
 
+            string pathImg = "";
+            string fileName = "ProfilePicUser";
+            string fileextension = "jpg";
             int userID = Convert.ToInt32(Session["userID"]);
 
+            if (fuProfilePic.HasFile)
+            {
+                String pictureName = fuProfilePic.FileName;
+                fileextension = Path.GetExtension(fuProfilePic.FileName);
+                fuProfilePic.PostedFile.SaveAs(Server.MapPath("../UserSide/Img/" + fileName + "/" + userID + fileextension));
+                pathImg = "../UserSide/Img/" + fileName + "/" + userID + fileextension;
 
-            string updateQuery = "UPDATE account SET Name = @name, Gender = @gender, Email = @email, "
+
+            }
+
+
+            string updateQuery = "UPDATE account SET Name = @name, Gender = @gender, Email = @email, ProfilePic =@PathName, "
                 + "PhoneNo = @contactNumber, DateOfBirth = @birthDate WHERE UserID = @userID";
 
             using (SqlConnection connection = new SqlConnection(cs))
@@ -104,6 +117,8 @@ namespace AssFundraisingSystem.UserSide
                 command.Parameters.AddWithValue("@name", name);
                 command.Parameters.AddWithValue("@gender", gender);
                 command.Parameters.AddWithValue("@email", email);
+                command.Parameters.AddWithValue("@PathName", pathImg);
+
                 command.Parameters.AddWithValue("@contactNumber", contactNumber);
                 command.Parameters.AddWithValue("@birthDate", birthDate);
                 command.Parameters.AddWithValue("@userID", userID);

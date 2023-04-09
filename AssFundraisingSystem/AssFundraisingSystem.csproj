@@ -150,6 +150,7 @@
     <Content Include="UserSide\css\programStyle.css" />
     <Content Include="UserSide\css\test.css" />
     <Content Include="UserSide\editProfile.aspx" />
+    <Content Include="UserSide\EventFilter.aspx" />
     <Content Include="UserSide\EventPage.aspx" />
     <Content Include="UserSide\forgotPassword.aspx" />
     <Content Include="UserSide\historyPayment.aspx" />
@@ -390,6 +391,13 @@
     <Compile Include="UserSide\editProfile.aspx.designer.cs">
       <DependentUpon>editProfile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UserSide\EventFilter.aspx.cs">
+      <DependentUpon>EventFilter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSide\EventFilter.aspx.designer.cs">
+      <DependentUpon>EventFilter.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UserSide\EventPage.aspx.cs">
       <DependentUpon>EventPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -465,6 +473,7 @@
     <Folder Include="AdminSide\Img\AdminPic\" />
     <Folder Include="AdminSide\Img\EventImg\" />
     <Folder Include="AppData\" />
+    <Folder Include="UserSide\Img\ProfilePicUser\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

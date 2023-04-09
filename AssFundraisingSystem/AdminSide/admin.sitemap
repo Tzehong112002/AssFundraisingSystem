@@ -10,7 +10,7 @@
     <siteMapNode url="AdminSide/adminAccount.aspx" title="Admin Account" description=""/>
     <siteMapNode url="AdminSide/Categories.aspx" title="Categories " description=""/>
     <siteMapNode url="AdminSide/ParticipantRecord.aspx" title="Participants Account" description=""/>
-    <siteMapNode url="AdminSide/DonationList.aspx" title="Participants Account" description=""/>
+    <siteMapNode url="AdminSide/DonationList.aspx" title="Donation History" description=""/>
     <siteMapNode url="UserSide/Login.aspx" title="Log Out" description=""/>
   </siteMapNode>
 </siteMap>

@@ -6,13 +6,14 @@
 
         
    <div id="content">
+
             <br />
             <br />
             <div id="information">
                 <h1>Profile</h1>
                 <div id="img" class="inline">
 
-                <asp:Image ID="imgOrganization" runat="server"  Height="225px" Width="400px" src="Img/profile.png" />
+                <asp:Image ID="imgOrganization" runat="server"  Height="225px" Width="400px"  />
                     </div>
                 <div id="info" class="inline">
                     <table>

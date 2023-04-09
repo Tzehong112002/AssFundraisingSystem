@@ -19,6 +19,7 @@ namespace AssFundraisingSystem.UserSide
         {
             string username = txtUsername.Text.Trim();
             string password = txtPassword.Text.Trim();
+            String Status = "No";
 
             if (Page.IsValid)
             {
@@ -36,12 +37,22 @@ namespace AssFundraisingSystem.UserSide
                 if (RowCount > 0)
                 {
                     string hashedPasswordFromDatabase = dt.Rows[0]["Password"].ToString();
-
+                    
                     if (BCrypt.Net.BCrypt.Verify(password, hashedPasswordFromDatabase))
                     {
-                        con.Close();
-                        Session["UserID"] = dt.Rows[0]["UserID"].ToString();
-                        Response.Redirect("program.aspx");
+                        if (dt.Rows[0]["BanStatus"].ToString().Trim() == Status) {
+                            con.Close();
+                            Session["UserID"] = dt.Rows[0]["UserID"].ToString();
+                            Response.Redirect("program.aspx");
+
+                            
+                        }
+                        else {
+                            
+                            Response.Write("<script>alert('Ur accounr been ban by admin')</script>");
+
+                        }
+                        
                     }
                     else
                     {

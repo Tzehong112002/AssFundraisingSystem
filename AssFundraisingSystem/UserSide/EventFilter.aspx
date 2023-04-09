@@ -1,6 +1,7 @@
-﻿<%@ Page Title="Program" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="program.aspx.cs" Inherits="AssFundraisingSystem.UserSide.program" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="EventFilter.aspx.cs" Inherits="AssFundraisingSystem.UserSide.EventFilter" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
-    <link href="css/programStyle.css" rel="stylesheet" />
+
+        <link href="css/programStyle.css" rel="stylesheet" />
 
 <table class="product-table">
       <thead>
@@ -36,8 +37,5 @@
   </tbody>
 
  </table>
-
-
-
 
 </asp:Content>

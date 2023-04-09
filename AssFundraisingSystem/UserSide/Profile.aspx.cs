@@ -37,17 +37,18 @@ namespace AssFundraisingSystem.UserSide
                             if (reader.HasRows)
                             {
                                 reader.Read();
-                                string imgFile = "Img/profile.png";
+
                                 string username = reader["Username"].ToString();
+                                string imgFile = reader["ProfilePic"].ToString();
                                 string Name = reader["Name"].ToString();
                                 string email = reader["Email"].ToString();
                                 string phoneNo = reader["PhoneNo"].ToString();
                                 string roles = reader["Roles"].ToString();
 
-                                if (reader["ProfilePic"].ToString() != null) {
-                                    imgFile = reader["ProfilePic"].ToString();
-                                }
-                               
+                                
+
+                                
+
 
                                 lblUsername.Text = username;
                                 lblName.Text = Name;
