@@ -79,7 +79,7 @@ namespace AssFundraisingSystem.AdminSide
 
             con.Close();
 
-            Response.Redirect("ParticipantsRecord.aspx");
+            Response.Redirect("ParticipantRecord.aspx");
         }
     }
 }

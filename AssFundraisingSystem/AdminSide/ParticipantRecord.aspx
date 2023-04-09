@@ -6,7 +6,7 @@
         <asp:GridView ID="gvParticipants" runat="server">
             <Columns>
                 <asp:HyperLinkField DataNavigateUrlFormatString="Ban.aspx?id={0}" Text="Update" DataNavigateUrlFields="UserID" />
-                <asp:HyperLinkField DataNavigateUrlFields="UserID" DataNavigateUrlFormatString="ParticipantDelete.aspx?id={0}" Text="Delete" />
+               
             </Columns>
         </asp:GridView>
            
