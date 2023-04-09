@@ -29,12 +29,16 @@
                             </asp:RadioButtonList>
                     </td>
                 </tr>
-            </table>
-                <br />
-            <asp:Button ID="btnBan" runat="server" Text="Ban" OnClick="btnBan_Click" />
+                <tr>
+                    <td></td>
+                    <td>
+                        <asp:Button ID="btnBan" CssClass="btnBan" runat="server" Text="Ban" OnClick="btnBan_Click" />
         
-            <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
-
+                        <asp:Button ID="btnCancel" CssClass="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
+                    </td>
+                </tr>
+            </table>
+                
     </div>
     
 </asp:Content>
