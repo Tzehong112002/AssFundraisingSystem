@@ -1,0 +1,7 @@
+﻿body, select, input, table {
+    font: 16pt Calibri;
+}
+
+p {
+    font-weight: bold;
+}
