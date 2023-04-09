@@ -55,13 +55,13 @@ namespace AssFundraisingSystem.UserSide
                             else
                             {
                                 lblMessage.Visible = true;
-                                lblMessage.Text = "Invalid Email and Password. Please Try Again!";
+                                lblMessage.Text = "Invalid Username and Password. Please Try Again!";
                             }
                         }
                         else
                         {
                             lblMessage.Visible = true;
-                            lblMessage.Text = "Invalid Email and Password. Please Try Again!";
+                            lblMessage.Text = "Invalid Username and Password. Please Try Again!";
                         }
 
                         reader.Close(); // Close the data reader before exiting the method
