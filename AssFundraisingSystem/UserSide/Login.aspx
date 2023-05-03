@@ -8,6 +8,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/LoginStyle.css" rel="stylesheet" />
     <link href="css/ExtraLoginRegisterStyle.css" rel="stylesheet" />
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -23,8 +24,7 @@
 </div>
 <div class="col-lg-5 px-lg-4">
 <h1 class="text-base text-primary text-uppercase mb-4">Login Here</h1>
-<h2 class="mb-4">Welcome Back!<asp:Label ID="lblMessage" runat="server" ForeColor="Red" Text="Label" Visible="False"></asp:Label>
-    </h2>
+<h2 class="mb-4">Welcome Back!</h2>
 
 <div class ="form-group mb-4">
 <asp:TextBox required= "true" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Username" runat="server" ID="txtUsername" ></asp:TextBox>
@@ -40,7 +40,17 @@
 <asp:CheckBox Text="&nbsp&nbsp&nbspRemember Me" runat="server" />
 
 </div>
-    
+
+<div id="recaptcha-container">
+  <div class="g-recaptcha" data-sitekey="6LfJUNslAAAAAHM3ZOpAzFserQk75KOsmJcgwjh3" data-callback="onSubmit"></div>
+</div>
+
+
+
+    <asp:CustomValidator runat="server" ID="recaptchaValidator" ClientValidationFunction="validateCaptcha" ErrorMessage="Please check the reCAPTCHA checkbox." />
+
+    <asp:Label ID="lblMessage" runat="server" ForeColor="Red" Text="Label" Visible="False"></asp:Label>
+
 </div>
 <asp:Button Text="LOGIN" CssClass="btn btn-primary" Height="50px" Width="400px" runat="server" OnClick="Unnamed4_Click" />
 
@@ -70,5 +80,13 @@
 </div>
 
 </form>
+<script type="text/javascript">
+    function validateCaptcha(sender, args) {
+        args.IsValid = grecaptcha.getResponse().length !== 0;
+    }
+    function onSubmit(token) {
+        document.getElementById("recaptcha-container").style.display = "none";
+    }
+</script>
 </body>
 </html>
