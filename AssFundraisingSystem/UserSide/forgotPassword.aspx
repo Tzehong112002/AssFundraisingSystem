@@ -25,7 +25,7 @@
 <h2 class="mb-4">Forgot Password</h2>
 
 <div class ="form-group mb-4">
-<asp:TextBox required= "true" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Email" runat="server" ></asp:TextBox>
+<asp:TextBox required= "true" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Email" runat="server" ID="txtEmail" ></asp:TextBox>
 
 </div>
 
@@ -33,8 +33,12 @@
 <div class="form-group mb-4">
 
     
+    <asp:Label ID="lblError" runat="server" Text="Label" Visible="False"></asp:Label>
+    <asp:Label ID="lblSuccess" runat="server" Text="Label" Visible="False"></asp:Label>
+
+    
 </div>
-<asp:Button Text="SUBMIT" CssClass="btn btn-primary" Height="50px" Width="400px" runat="server" OnClick="Unnamed2_Click" />
+<asp:Button Text="SUBMIT" CssClass="btn btn-primary" Height="50px" Width="400px" runat="server" OnClick="Unnamed2_Click" ID="submitbtn" />
 
   
 

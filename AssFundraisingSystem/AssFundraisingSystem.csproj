@@ -167,6 +167,7 @@
     <Content Include="UserSide\Profile.aspx" />
     <Content Include="UserSide\program.aspx" />
     <Content Include="UserSide\Register.aspx" />
+    <Content Include="UserSide\resetPassword.aspx" />
     <Content Include="UserSide\UserCategory.aspx" />
     <Content Include="Web.sitemap" />
   </ItemGroup>
@@ -469,6 +470,13 @@
     </Compile>
     <Compile Include="UserSide\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserSide\resetPassword.aspx.cs">
+      <DependentUpon>resetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSide\resetPassword.aspx.designer.cs">
+      <DependentUpon>resetPassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserSide\UserCategory.aspx.cs">
       <DependentUpon>UserCategory.aspx</DependentUpon>
