@@ -8,7 +8,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-
 namespace AssFundraisingSystem.organizationSide
 {
     public partial class ProgramApplyHistory : System.Web.UI.Page
@@ -21,24 +20,22 @@ namespace AssFundraisingSystem.organizationSide
                 Response.Redirect("../UserSide/OrganizationLogin.aspx");
 
             }
-            else {
+            else
+            {
                 if (!this.IsPostBack)
                 {
                     this.BindRepeater();
                 }
             }
-            
         }
 
         private void BindRepeater()
         {
-            String UserID = Session["UserID"].ToString().Trim();
+            string UserID = Session["UserID"].ToString().Trim();
             using (SqlConnection con = new SqlConnection(cs))
             {
-                /*retrieve only show the event that select by one user*/
-                using (SqlCommand cmd = new SqlCommand("SELECT Event.*, Account.Name FROM Event INNER JOIN Account ON Event.UserID = Account.UserID WHERE Event.UserID = @UserID;", con))
+                using (SqlCommand cmd = new SqlCommand("SELECT Event.*, Account.Name, Categories.CategoryTitle FROM Event INNER JOIN Account ON Event.UserID = Account.UserID INNER JOIN Categories ON Event.CategoryID = Categories.ID WHERE Event.UserID = @UserID;", con))
                 {
-
                     cmd.Parameters.AddWithValue("@UserID", UserID);
                     using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
                     {

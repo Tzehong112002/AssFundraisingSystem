@@ -7,17 +7,12 @@
             <div class="message messageerror"></div>
             <div class="input">
                <asp:Label ID="Label4" runat="server" Text="Event Name :"></asp:Label>
-                <asp:TextBox ID="txtName" class="txtinput" placeholder="Event Name" runat="server" ></asp:TextBox>
+                <asp:TextBox ID="txtEventName" class="txtinput" placeholder="Event Name" runat="server" ></asp:TextBox>
                 <div class="inputerrormessage"></div>
             </div>
          <div class="input">
               <asp:Label ID="Label1" runat="server" Text="Categories :"></asp:Label>
-             <asp:DropDownList ID="txtCategories" runat="server" Width="100%" CssClass="dropdownlist">
-                 <asp:ListItem>Animal</asp:ListItem>
-                 <asp:ListItem>Human</asp:ListItem>
-                 <asp:ListItem>flood</asp:ListItem>
-                 <asp:ListItem></asp:ListItem>
-                </asp:DropDownList>
+             <asp:DropDownList ID="ddlCategories" runat="server" Width="100%" CssClass="dropdownlist"></asp:DropDownList>
 
          </div>
          <div class="input">
@@ -46,6 +41,7 @@
             <div class="input">
                 <span id="lblPicture">Profile Picture:</span>
                 <asp:FileUpload ID="ImgUpload" runat="server" />
+
 &nbsp;<div class="inputerrormessage"></div>
             </div>
           

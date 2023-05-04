@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/organizationSide/organizationMaster.Master" AutoEventWireup="true" CodeBehind="applyProgram.aspx.cs" Inherits="AssFundraisingSystem.organizationSide.applyProgram" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <link href="css/applyProgramStyle.css" rel="stylesheet" />
 
      <div class="container">
@@ -13,12 +14,8 @@
             </div>
          <div class="input">
               <asp:Label ID="Label1" runat="server" Text="Categories :"></asp:Label>
-             <asp:DropDownList ID="ddlCategories" runat="server" Width="100%" CssClass="dropdownlist">
-                 <asp:ListItem>Animal</asp:ListItem>
-                 <asp:ListItem>Human</asp:ListItem>
-                 <asp:ListItem>flood</asp:ListItem>
-                 <asp:ListItem></asp:ListItem>
-                </asp:DropDownList>
+             <asp:DropDownList ID="ddlCategories" runat="server" Width="100%" CssClass="dropdownlist"></asp:DropDownList>
+                 
 
          </div>
          <div class="input">

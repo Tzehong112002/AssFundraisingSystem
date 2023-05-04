@@ -15,18 +15,38 @@ namespace AssFundraisingSystem.AdminSide
     public partial class addProgram : System.Web.UI.Page
     {
         string cs = ConfigurationManager.ConnectionStrings["MYConnectionString"].ConnectionString;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                // Retrieve the categories from the database
+                using (SqlConnection con = new SqlConnection(cs))
+                {
+                    string query = "SELECT ID, CategoryTitle FROM Categories";
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    con.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    ddlCategories.DataSource = reader;
+                    ddlCategories.DataTextField = "CategoryTitle";
+                    ddlCategories.DataValueField = "ID";
+                    ddlCategories.DataBind();
+                }
+
+                // Set the default text of the categories DropDownList control
+                ddlCategories.Items.Insert(0, new ListItem("-- Select Category --", ""));
+            }
 
         }
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (Page.IsValid) {
+            if (Page.IsValid)
+            {
                 String Name = txtEventName.Text;
-                String Categories = ddlCategories.SelectedItem.Value;
-                String StartDate= cStartDate.SelectedDate.ToString();
-                String EndDate= cEndDate.SelectedDate.ToString();
+                int CategoryID = Convert.ToInt32(ddlCategories.SelectedItem.Value);
+                String StartDate = cStartDate.SelectedDate.ToString();
+                String EndDate = cEndDate.SelectedDate.ToString();
                 String Target = txtTarget.Text;
                 String Description = txtDesc.Text;
                 String Status = "Approved";
@@ -34,7 +54,8 @@ namespace AssFundraisingSystem.AdminSide
                 string fileName = "EventImg";
                 string fileextension = "jpg";
 
-                if (ImgUpload.HasFile) {
+                if (ImgUpload.HasFile)
+                {
                     String pictureName = ImgUpload.FileName;
                     fileextension = Path.GetExtension(ImgUpload.FileName);
                     ImgUpload.PostedFile.SaveAs(Server.MapPath("../AdminSide/Img/" + fileName + "/" + Name + fileextension));
@@ -43,12 +64,12 @@ namespace AssFundraisingSystem.AdminSide
 
                 }
 
-                string sql = "INSERT INTO Event (Categories, EventImg, EventName, EventTarget, EventDesc, EventStartDate, EventEndDate,EventStatus) VALUES (@Categories, @EventImg, @EventName, @EventTarget, @EventDesc, @EventStartDate, @EventEndDate,@EventStatus) ";
+                string sql = "INSERT INTO Event (CategoryID, EventImg, EventName, EventTarget, EventDesc, EventStartDate, EventEndDate,EventStatus) VALUES (@CategoryID, @EventImg, @EventName, @EventTarget, @EventDesc, @EventStartDate, @EventEndDate,@EventStatus) ";
 
                 SqlConnection con = new SqlConnection(cs);
                 SqlCommand cmd = new SqlCommand(sql, con);
 
-                cmd.Parameters.AddWithValue("@Categories", Categories);
+                cmd.Parameters.AddWithValue("@CategoryID", CategoryID);
                 cmd.Parameters.AddWithValue("@EventImg", pathImg);
                 cmd.Parameters.AddWithValue("@EventName", Name);
                 cmd.Parameters.AddWithValue("@EventTarget", Target);
@@ -67,6 +88,7 @@ namespace AssFundraisingSystem.AdminSide
             }
 
         }
+
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {

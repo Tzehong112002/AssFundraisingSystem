@@ -25,7 +25,7 @@ namespace AssFundraisingSystem.AdminSide
 
             using (SqlConnection con = new SqlConnection(cs))
             {
-                String status = "NTAproved";
+                String status = "Not Approved";
                 /*retrieve only show the event that select by one user*/
                 using (SqlCommand cmd = new SqlCommand("SELECT Event.*, Account.Name FROM Event INNER JOIN Account ON Event.UserID = Account.UserID WHERE Event.EventStatus = @EventStatus;", con))
                 {

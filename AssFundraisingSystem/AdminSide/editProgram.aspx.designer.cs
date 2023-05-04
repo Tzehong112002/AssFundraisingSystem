@@ -24,13 +24,13 @@ namespace AssFundraisingSystem.AdminSide
         protected global::System.Web.UI.WebControls.Label Label4;
 
         /// <summary>
-        /// txtName control.
+        /// txtEventName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtName;
+        protected global::System.Web.UI.WebControls.TextBox txtEventName;
 
         /// <summary>
         /// Label1 control.
@@ -42,13 +42,13 @@ namespace AssFundraisingSystem.AdminSide
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// txtCategories control.
+        /// ddlCategories control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList txtCategories;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCategories;
 
         /// <summary>
         /// Label2 control.

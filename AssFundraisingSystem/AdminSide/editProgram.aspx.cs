@@ -14,82 +14,126 @@ namespace AssFundraisingSystem.AdminSide
     public partial class editProgram : System.Web.UI.Page
     {
         string cs = ConfigurationManager.ConnectionStrings["MYConnectionString"].ConnectionString;
+        int eventId;
+        string  imagePath = null;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                string eventid = Request.QueryString["EventID"];
+                // Retrieve the EventID from the query string parameter
+                if (!int.TryParse(Request.QueryString["EventID"], out eventId))
+                {
+                    Response.Redirect("ProgramList.aspx");
+                }
 
+                // Retrieve the categories for the dropdownlist from the categories table
                 using (SqlConnection con = new SqlConnection(cs))
                 {
-                    using (SqlCommand cmd = new SqlCommand("SELECT * FROM Event WHERE EventID = @EventID", con))
+                    string query = "SELECT ID, CategoryTitle FROM Categories";
+                    SqlCommand cmd = new SqlCommand(query, con);
+
+                    con.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
                     {
-                        cmd.Parameters.AddWithValue("@EventID", eventid);
+                        ListItem category = new ListItem();
+                        category.Value = reader["ID"].ToString();
+                        category.Text = reader["CategoryTitle"].ToString();
+                        ddlCategories.Items.Add(category);
+                    }
 
-                        con.Open();
-                        SqlDataReader dr = cmd.ExecuteReader();
+                    reader.Close();
+                }
 
-                        if (dr.Read())
+                // Retrieve the event details from the database
+                using (SqlConnection con = new SqlConnection(cs))
+                {
+                    string query = "SELECT e.*, c.CategoryTitle FROM Event e JOIN Categories c ON e.CategoryID = c.ID WHERE e.EventID=@EventID";
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@EventID", eventId);
+
+                    con.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        txtEventName.Text = reader["EventName"].ToString();
+
+                        // Set the dropdownlist's default title based on the category ID retrieved from the event
+                        string categoryID = reader["CategoryID"].ToString();
+                        ddlCategories.ClearSelection();
+                        ListItem selectedCategory = ddlCategories.Items.FindByValue(categoryID);
+                        if (selectedCategory != null)
                         {
-                            DateTime? dateStart = dr.IsDBNull(dr.GetOrdinal("EventStartDate")) ? null : (DateTime?)dr.GetDateTime(dr.GetOrdinal("EventStartDate"));
-                            if (dateStart.HasValue) cStartDate.SelectedDate = dateStart.Value;
-                            DateTime? dateEnd = dr.IsDBNull(dr.GetOrdinal("EventEndDate")) ? null : (DateTime?)dr.GetDateTime(dr.GetOrdinal("EventEndDate"));
-                            if (dateEnd.HasValue) cEndDate.SelectedDate = dateEnd.Value;
-
-                            txtName.Text = dr["EventName"].ToString();
-                            txtTarget.Text = dr["EventTarget"].ToString();
-                            txtDesc.Text = dr["EventDesc"].ToString();
-                            txtCategories.Text = dr["Categories"].ToString();
+                            selectedCategory.Selected = true;
                         }
 
-                        dr.Close();
+                        cStartDate.SelectedDate = (DateTime)reader["EventStartDate"];
+                        cEndDate.SelectedDate = (DateTime)reader["EventEndDate"];
+                        txtTarget.Text = reader["EventTarget"].ToString();
+                        txtDesc.Text = reader["EventDesc"].ToString();
+
+                        // Retrieve the image path from the database
+                        imagePath = reader["EventImg"].ToString();
                     }
+                    else
+                    {
+                        Response.Redirect("ProgramList.aspx");
+                    }
+
+                    reader.Close();
                 }
             }
         }
 
 
+
+
+
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-
             if (Page.IsValid)
             {
-                String Name = txtName.Text;
-                String Categories = txtCategories.SelectedItem.Value;
-                String StartDate = cStartDate.SelectedDate.ToString();
-                String EndDate = cEndDate.SelectedDate.ToString();
-                String Target = txtTarget.Text;
-                String Description = txtDesc.Text;
+                string Name = txtEventName.Text;
+                string Categories = ddlCategories.SelectedItem.Value; // corrected to use ddlCategories control
+                string StartDate = cStartDate.SelectedDate.ToString();
+                string EndDate = cEndDate.SelectedDate.ToString();
+                string Target = txtTarget.Text;
+                string Description = txtDesc.Text;
 
-                string pathImg = "unknown";
                 string fileName = "EventImg";
                 string fileextension = "jpg";
 
                 if (ImgUpload.HasFile)
                 {
-                    String pictureName = ImgUpload.FileName;
+                    string pictureName = ImgUpload.FileName;
                     fileextension = Path.GetExtension(ImgUpload.FileName);
                     ImgUpload.PostedFile.SaveAs(Server.MapPath("../AdminSide/Img/" + fileName + "/" + Name + fileextension));
-                    pathImg = "../AdminSide/Img/" + fileName + "/" + Name + fileextension;
-
-
+                    imagePath = "../AdminSide/Img/" + fileName + "/" + Name + fileextension;
                 }
 
-                int eventid = Int32.Parse(Request.QueryString["EventID"]);
-                string sql = "Update Event SET  Categories=@Categories, EventImg=@EventImg, EventName=@EventName, EventTarget=@EventTarget, EventDesc= @EventDesc, EventStartDate=@EventStartDate, EventEndDate=@EventEndDate WHERE EventID=@eventid ";
-                
+                int eventid = int.Parse(Request.QueryString["EventID"]);
+                string sql = "Update Event SET  CategoryID=@CategoryID, EventName=@EventName, EventTarget=@EventTarget, EventDesc=@EventDesc, EventStartDate=@EventStartDate, EventEndDate=@EventEndDate";
+                if (!string.IsNullOrEmpty(imagePath))
+                {
+                    sql += ", EventImg=@EventImg";
+                }
+                sql += " WHERE EventID=@eventid ";
                 SqlConnection con = new SqlConnection(cs);
                 SqlCommand cmd = new SqlCommand(sql, con);
 
                 cmd.Parameters.AddWithValue("@eventid", eventid);
-                cmd.Parameters.AddWithValue("@Categories", Categories);
-                cmd.Parameters.AddWithValue("@EventImg", pathImg);
+                cmd.Parameters.AddWithValue("@CategoryID", Categories);
                 cmd.Parameters.AddWithValue("@EventName", Name);
                 cmd.Parameters.AddWithValue("@EventTarget", Target);
                 cmd.Parameters.AddWithValue("@EventDesc", Description);
                 cmd.Parameters.AddWithValue("@EventStartDate", DateTime.Parse(StartDate));
                 cmd.Parameters.AddWithValue("@EventEndDate", DateTime.Parse(EndDate));
-
+                if (!string.IsNullOrEmpty(imagePath))
+                {
+                    cmd.Parameters.AddWithValue("@EventImg", imagePath);
+                }
 
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -97,11 +141,15 @@ namespace AssFundraisingSystem.AdminSide
                 Response.Write("<script>alert('Program Edit Successfully!')</script>");
 
                 Response.Redirect("ProgramList.aspx");
-
             }
-
-            
         }
+
+
+
+
+
+
+
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {

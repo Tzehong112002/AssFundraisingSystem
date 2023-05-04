@@ -1,79 +1,102 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.IO;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+
 namespace AssFundraisingSystem.organizationSide
 {
     public partial class applyProgram : System.Web.UI.Page
     {
         string cs = ConfigurationManager.ConnectionStrings["MYConnectionString"].ConnectionString;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["UserID"] == null)
             {
                 Response.Redirect("../UserSide/OrganizationLogin.aspx");
-
             }
-            
 
+            if (!IsPostBack)
+            {
+                PopulateCategoryDropDownList();
+            }
         }
 
         protected void btnApply_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)
             {
-
-                String Userid = Session["UserID"].ToString();
-                String Name = txtEventName.Text;
-                String Categories = ddlCategories.SelectedItem.Value;
-                String StartDate = cStartDate.SelectedDate.ToString();
-                String EndDate = cEndDate.SelectedDate.ToString();
-                String Target = txtTarget.Text;
-                String Description = txtTarget.Text;
-                String Status = "NTAproved";
-                string pathImg = "unknown";
+                string userId = Session["UserID"].ToString();
+                string name = txtEventName.Text;
+                int categoryId = Convert.ToInt32(ddlCategories.SelectedValue);
+                string startDate = cStartDate.SelectedDate.ToString();
+                string endDate = cEndDate.SelectedDate.ToString();
+                decimal target = Convert.ToDecimal(txtTarget.Text);
+                string description = txtDesc.Text;
+                string status = "Not Approved";
+                string imgPath = "";
                 string fileName = "EventImg";
-                string fileextension = "jpg";
+                string fileExtension = "jpg";
 
                 if (ImgUpload.HasFile)
                 {
-                    String pictureName = ImgUpload.FileName;
-                    fileextension = Path.GetExtension(ImgUpload.FileName);
-                    ImgUpload.PostedFile.SaveAs(Server.MapPath("../AdminSide/Img/" + fileName + "/" + Name + fileextension));
-                    pathImg = "../AdminSide/Img/" + fileName + "/" + Name + fileextension;
-
-
+                    string pictureName = ImgUpload.FileName;
+                    fileExtension = Path.GetExtension(pictureName);
+                    imgPath = "../AdminSide/Img/" + fileName + "/" + name + fileExtension;
+                    ImgUpload.SaveAs(Server.MapPath(imgPath));
                 }
 
-                string sql = "INSERT INTO Event (Categories, EventImg, EventName, EventTarget, EventDesc, EventStartDate, EventEndDate,EventStatus,UserID) VALUES (@Categories, @EventImg, @EventName, @EventTarget, @EventDesc, @EventStartDate, @EventEndDate,@EventStatus,@UserID) ";
+                string sql = "INSERT INTO Event (CategoryID, EventIMG, EventName, EventTarget, EventDesc, EventStartDate, EventEndDate, EventStatus, UserID) VALUES (@CategoryID, @EventIMG, @EventName, @EventTarget, @EventDesc, @EventStartDate, @EventEndDate, @EventStatus, @UserID)";
 
-                SqlConnection con = new SqlConnection(cs);
-                SqlCommand cmd = new SqlCommand(sql, con);
+                using (SqlConnection con = new SqlConnection(cs))
+                {
+                    using (SqlCommand cmd = new SqlCommand(sql, con))
+                    {
+                        cmd.Parameters.AddWithValue("@CategoryID", categoryId);
+                        cmd.Parameters.AddWithValue("@EventIMG", imgPath);
+                        cmd.Parameters.AddWithValue("@EventName", name);
+                        cmd.Parameters.AddWithValue("@EventTarget", target);
+                        cmd.Parameters.AddWithValue("@EventDesc", description);
+                        cmd.Parameters.AddWithValue("@EventStartDate", DateTime.Parse(startDate));
+                        cmd.Parameters.AddWithValue("@EventEndDate", DateTime.Parse(endDate));
+                        cmd.Parameters.AddWithValue("@EventStatus", status);
+                        cmd.Parameters.AddWithValue("@UserID", userId);
 
-                cmd.Parameters.AddWithValue("@Categories", Categories);
-                cmd.Parameters.AddWithValue("@EventImg", pathImg);
-                cmd.Parameters.AddWithValue("@EventName", Name);
-                cmd.Parameters.AddWithValue("@EventTarget", Target);
-                cmd.Parameters.AddWithValue("@EventDesc", Description);
-                cmd.Parameters.AddWithValue("@EventStartDate", DateTime.Parse(StartDate));
-                cmd.Parameters.AddWithValue("@EventEndDate", DateTime.Parse(EndDate));
-                cmd.Parameters.AddWithValue("@EventStatus", Status);
-                cmd.Parameters.AddWithValue("@UserID", Userid);
-                ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "alert('Program Submit Successfully!');", true);
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
 
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
-                
+                ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "alert('Program submitted successfully!');", true);
 
-                Response.Redirect("applyProgram.aspx");
-
+                // Redirect to ProgramApplyHistory.aspx
+                //Response.Redirect("ProgramApplyHistory.aspx");
             }
+        }
+
+        private void PopulateCategoryDropDownList()
+        {
+            string query = "SELECT ID, CategoryTitle FROM Categories";
+
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    con.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        ddlCategories.DataSource = reader;
+                        ddlCategories.DataValueField = "ID";
+                        ddlCategories.DataTextField = "CategoryTitle";
+                        ddlCategories.DataBind();
+                    }
+                }
+            }
+
+            ddlCategories.Items.Insert(0, new ListItem("Select a category", ""));
         }
     }
 }

@@ -30,7 +30,7 @@
             <ItemTemplate>
         <tr>
            <td data-label="Model"><strong><%#Eval("Name") %></strong></td>
-           <td data-label="Model"><%#Eval("Categories") %></td>
+           <td data-label="Model"><%#Eval("CategoryTitle") %></td>
            <td data-label="Model"><%#Eval("EventStartDate") %></td>
            <td data-label="Model"><%#Eval("EventEndDate") %></td>
             <td data-label="Model"><%#Eval("EventTarget") %></td>
