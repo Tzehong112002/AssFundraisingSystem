@@ -17,6 +17,13 @@ namespace AssFundraisingSystem.UserSide
         {
             if (!this.IsPostBack)
             {
+
+                // Increment TotalVisitors count
+                Application.Lock();
+                Application["TotalVisitors"] = (int)Application["TotalVisitors"] + 1;
+                Application.UnLock();
+
+
                 this.BindRepeater();
             }
         }

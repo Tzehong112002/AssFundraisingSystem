@@ -121,6 +121,7 @@
     <Content Include="AdminSide\ParticipantRecord.aspx" />
     <Content Include="AdminSide\ProgramList.aspx" />
     <Content Include="AdminSide\Categories.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="Images\dgorescue.jpg" />
     <Content Include="Images\organization.jpg" />
     <Content Include="organizationSide\applyProgram.aspx" />
@@ -341,6 +342,9 @@
     </Compile>
     <Compile Include="AdminSide\Categories.aspx.designer.cs">
       <DependentUpon>Categories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="organizationSide\applyProgram.aspx.cs">
       <DependentUpon>applyProgram.aspx</DependentUpon>

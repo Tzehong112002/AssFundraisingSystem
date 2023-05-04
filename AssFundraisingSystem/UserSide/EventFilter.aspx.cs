@@ -24,23 +24,39 @@ namespace AssFundraisingSystem.UserSide
 
         private void BindRepeater()
         {
-            string category = Request.QueryString["CategoryTitle"];
+            string categoryTitle = Request.QueryString["CategoryTitle"];
+            string categoryId = "";
             using (SqlConnection con = new SqlConnection(cs))
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Event WHERE Categories = @category AND EventEndDate >= CURRENT_TIMESTAMP AND EventStatus='Approved'", con))
+                using (SqlCommand cmd = new SqlCommand("SELECT ID FROM Categories WHERE CategoryTitle = @categoryTitle", con))
                 {
-                    cmd.Parameters.AddWithValue("@category", category);
-                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                    cmd.Parameters.AddWithValue("@categoryTitle", categoryTitle);
+                    con.Open();
+                    categoryId = cmd.ExecuteScalar()?.ToString();
+                }
+            }
+
+            if (!string.IsNullOrEmpty(categoryId))
+            {
+                using (SqlConnection con = new SqlConnection(cs))
+                {
+                    using (SqlCommand cmd = new SqlCommand("SELECT * FROM Event WHERE CategoryID = @categoryId AND EventEndDate >= CURRENT_TIMESTAMP AND EventStatus='Approved'", con))
                     {
-                        using (DataTable dt = new DataTable())
+                        cmd.Parameters.AddWithValue("@categoryId", categoryId);
+                        using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
                         {
-                            sda.Fill(dt);
-                            RepeaterEventList.DataSource = dt;
-                            RepeaterEventList.DataBind();
+                            using (DataTable dt = new DataTable())
+                            {
+                                sda.Fill(dt);
+                                RepeaterEventList.DataSource = dt;
+                                RepeaterEventList.DataBind();
+                            }
                         }
                     }
                 }
             }
         }
+
+
     }
 }
