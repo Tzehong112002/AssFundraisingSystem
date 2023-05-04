@@ -38,7 +38,7 @@ namespace AssFundraisingSystem.UserSide
                 }
 
             }
-            txtComment.Text = "1";
+            txtComment.Text = "";
             Response.Write("<script>alert('Comment Submit Successfully!')</script>");
             Response.Redirect("historyPayment.aspx");
         }
