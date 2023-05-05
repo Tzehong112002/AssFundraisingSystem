@@ -33,7 +33,12 @@ namespace AssFundraisingSystem.UserSide
 
                     if (password == confirmPassword)
                     {
-                        
+                        if (username.Length < 6)
+                        {
+                            Response.Write("<script>alert('Username must be at least 6 characters long.')</script>");
+                            return;
+                        }
+
                         string roles = "User";
                         string image = "Img/profile.png";
 
@@ -67,6 +72,32 @@ namespace AssFundraisingSystem.UserSide
                 }
             }
         }
+
+        protected void ValidateUsername(object source, ServerValidateEventArgs args)
+        {
+            string username = args.Value.Trim();
+            if (username.Length < 6)
+            {
+                args.IsValid = false;
+                usernameValidator.ErrorMessage = "Username must be at least 6 characters long";
+                return;
+            }
+
+            using (SqlConnection connection = new SqlConnection(cs))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM Account WHERE Username = @Username", connection);
+                command.Parameters.AddWithValue("@Username", username);
+                int count = (int)command.ExecuteScalar();
+                if (count > 0)
+                {
+                    args.IsValid = false;
+                    usernameValidator.ErrorMessage = "Username already exists";
+                }
+            }
+        }
+
+
 
         private Boolean checkExist()
         {

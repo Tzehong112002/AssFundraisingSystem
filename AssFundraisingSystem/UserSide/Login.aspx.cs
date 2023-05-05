@@ -60,22 +60,22 @@ namespace AssFundraisingSystem.UserSide
                     }
                     else
                     {
-                        lblMessage.Visible = true;
-                        lblMessage.Text = "Invalid Username and Password. Please try again!";
+                        errorMessage.Visible = true;
+                        errorMessage.Text = "Invalid Username and Password. Please try again!";
                     }
                 }
                 else
                 {
-                    lblMessage.Visible = true;
-                    lblMessage.Text = "Invalid Username and Password. Please try again!";
+                    errorMessage.Visible = true;
+                    errorMessage.Text = "Invalid Username and Password. Please try again!";
                 }
 
                 con.Close();
             }
             else
             {
-                lblMessage.Visible = true;
-                lblMessage.Text = "Invalid reCAPTCHA. Please try again!";
+                errorMessage.Visible = true;
+                errorMessage.Text = "Invalid reCAPTCHA. Please try again!";
             }
         }
 

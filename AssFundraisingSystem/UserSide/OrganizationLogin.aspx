@@ -26,14 +26,15 @@
 <h2 class="mb-4">Welcome Organization Thank For Join Us</h2>
 
 <div class ="form-group mb-4">
-<asp:TextBox required= "true" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Username" runat="server" ID="txtUsername" ></asp:TextBox>
-
+    <asp:TextBox CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Username" runat="server" ID="txtUsername" ></asp:TextBox>
+    <asp:RequiredFieldValidator ID="usernameRequired" runat="server" ControlToValidate="txtUsername" ErrorMessage="Username is required" Display="Dynamic"></asp:RequiredFieldValidator>
 </div>
 
 <div class ="form-group mb-4">
-<asp:TextBox required= "true" TextMode="Password" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Password" runat="server" ID="txtPassword" ></asp:TextBox>
-
+    <asp:TextBox TextMode="Password" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Password" runat="server" ID="txtPassword" ></asp:TextBox>
+    <asp:RequiredFieldValidator ID="passwordRequired" runat="server" ControlToValidate="txtPassword" ErrorMessage="Password is required" Display="Dynamic"></asp:RequiredFieldValidator>
 </div>
+
 <div class="form-group mb-4">
 <div class="custom-control custom-checkbox">
 <asp:CheckBox Text="&nbsp&nbsp&nbspRemember Me" runat="server" />
@@ -45,7 +46,8 @@
 
   
 
-    <asp:Label ID="lblMessage" runat="server" Text="Label" Visible="False"></asp:Label>
+    <asp:Label ID="lblMessage" runat="server" Text="Label" Visible="False" ForeColor="Red"></asp:Label>
+
 
   
 
