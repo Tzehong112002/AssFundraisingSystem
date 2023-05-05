@@ -45,36 +45,40 @@ namespace AssFundraisingSystem.UserSide
         }
 
 
-        protected void Unnamed7_Click(object sender, EventArgs e)
+        protected void Pay_Click(object sender, EventArgs e)
         {
-            int userID = Convert.ToInt32(Session["UserID"]);
-            int eventID = Convert.ToInt32(Request.QueryString["EventID"]);
+            //Create a new ID
+            string donateID = "D" + Guid.NewGuid().ToString().Substring(0, Guid.NewGuid().ToString().IndexOf("-"));
 
             string name = txtName.Text.Trim();
             string email = txtEmail.Text.Trim();
             string ic = txtIC.Text.Trim();
             string contact = txtContact.Text.Trim();
             string amount = txtAmount.Text.Trim();
+            string paymentStatus = "Unpaid";
 
-            using (SqlConnection con = new SqlConnection(cs))
-            {
-                SqlCommand cmd = new SqlCommand("INSERT INTO Payment(Name, Email, IC, ContactNumber, Amount, UserID, EventID) VALUES (@Name, @Email, @Ic, @Contact, @Amount, @UserID, @EventID)", con);
+            string sql = "INSERT INTO Payment(PaymentID, Name, Email, IC, ContactNumber, Amount, PaymentStatus) VALUES (@PaymentID, @Name, @Email, @Ic, @Contact, @Amount, @PaymentStatus)";
 
-                cmd.Parameters.AddWithValue("@Name", name);
-                cmd.Parameters.AddWithValue("@Email", email);
-                cmd.Parameters.AddWithValue("@Ic", ic);
-                cmd.Parameters.AddWithValue("@Contact", contact);
-                cmd.Parameters.AddWithValue("@Amount", amount);
-                cmd.Parameters.AddWithValue("@UserID", userID);
-                cmd.Parameters.AddWithValue("@EventID", eventID);
+            SqlConnection con = new SqlConnection(cs);
+            SqlCommand cmd = new SqlCommand(sql, con);
 
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
-            }
+            cmd.Parameters.AddWithValue("@PaymentID", donateID);
+            cmd.Parameters.AddWithValue("@Name", name);
+            cmd.Parameters.AddWithValue("@Email", email);
+            cmd.Parameters.AddWithValue("@Ic", ic);
+            cmd.Parameters.AddWithValue("@Contact", contact);
+            cmd.Parameters.AddWithValue("@Amount", amount);
+            cmd.Parameters.AddWithValue("@PaymentStatus", paymentStatus);
 
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
+
+            Session["totalAmt"] = amount;
+            Session["DonateID"] = donateID;
             Response.Write("<script>alert('Thanks for your Donation')</script>");
-            Server.Transfer("program.aspx");
+            Response.Redirect("donationPayment.aspx");
+
         }
     }
 }

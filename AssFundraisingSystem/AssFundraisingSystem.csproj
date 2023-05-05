@@ -45,12 +45,21 @@
     <Reference Include="BCrypt.Net-Next, Version=4.0.3.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
       <HintPath>..\packages\BCrypt.Net-Next.4.0.3\lib\net48\BCrypt.Net-Next.dll</HintPath>
     </Reference>
-    <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
-      <HintPath>..\packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.3, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Stripe.net, Version=39.80.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stripe.net.39.80.0\lib\net461\Stripe.net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -69,6 +78,14 @@
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -151,12 +168,14 @@
     <Content Include="UserSide\css\editProfileStyle.css" />
     <Content Include="UserSide\css\ExtraLoginRegisterStyle.css" />
     <Content Include="UserSide\css\ExtraPayment.css" />
+    <Content Include="UserSide\css\invoice.css" />
     <Content Include="UserSide\css\LoginStyle.css" />
     <Content Include="UserSide\css\organizationLoginStyle.css" />
     <Content Include="UserSide\css\Payment.css" />
     <Content Include="UserSide\css\ProfieStyle.css" />
     <Content Include="UserSide\css\programStyle.css" />
     <Content Include="UserSide\css\test.css" />
+    <Content Include="UserSide\donationPayment.aspx" />
     <Content Include="UserSide\editProfile.aspx" />
     <Content Include="UserSide\EventFilter.aspx" />
     <Content Include="UserSide\EventPage.aspx" />
@@ -165,8 +184,11 @@
     <Content Include="UserSide\Img\background6.jpg" />
     <Content Include="UserSide\Img\event.jpg" />
     <Content Include="UserSide\Img\IconLogin.jpg" />
-    <Content Include="UserSide\Img\IconLogin.png" />
+    <Content Include="UserSide\Img\donationIcon.png" />
     <Content Include="UserSide\Img\profile.png" />
+    <Content Include="UserSide\invoice-footer.png" />
+    <Content Include="UserSide\invoice.aspx" />
+    <Content Include="UserSide\invoice.png" />
     <Content Include="UserSide\Login.aspx" />
     <Content Include="UserSide\OrganizationLogin.aspx" />
     <Content Include="UserSide\Payment.aspx" />
@@ -403,6 +425,13 @@
     <Compile Include="UserSide\CommentPage.aspx.designer.cs">
       <DependentUpon>CommentPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UserSide\donationPayment.aspx.cs">
+      <DependentUpon>donationPayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSide\donationPayment.aspx.designer.cs">
+      <DependentUpon>donationPayment.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UserSide\editProfile.aspx.cs">
       <DependentUpon>editProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -437,6 +466,13 @@
     </Compile>
     <Compile Include="UserSide\historyPayment.aspx.designer.cs">
       <DependentUpon>historyPayment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserSide\invoice.aspx.cs">
+      <DependentUpon>invoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSide\invoice.aspx.designer.cs">
+      <DependentUpon>invoice.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserSide\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

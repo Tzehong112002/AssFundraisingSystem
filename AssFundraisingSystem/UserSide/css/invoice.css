@@ -1,0 +1,72 @@
+﻿.text-center {
+    padding: 150px 300px 30px 300px;
+}
+
+.invoice1 {
+    width: 100%;
+    height: 200px;
+}
+
+.invoiceImg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 50px;
+}
+
+.auto-style2 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 28px;
+}
+
+.invoice3 {
+    text-align: left;
+}
+
+.container {
+    margin: 0 auto;
+}
+
+#container1 {
+    border: 2px solid #c9c9c9;
+}
+
+.panelBox {
+    padding: 30px 50px 50px 50px;
+}
+
+.footerText {
+    text-align: center;
+}
+
+.footer-grid {
+    font-size: 18px;
+}
+
+.lnkbtn {
+    justify-content: center;
+    display: flex;
+    color: gray;
+    text-decoration: underline;
+    font-size: 17px;
+}
+
+    .lnkbtn:hover {
+        color: #aaaaaa;
+        text-decoration: none;
+    }
+
+.homeBtn {
+    margin: 0 auto;
+    display: flex;
+    border: 1px solid #CCCCCC;
+    background: transparent;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+    .homeBtn:hover {
+        background: #CCCCCC;
+        color: #FFFFFF;
+    }
