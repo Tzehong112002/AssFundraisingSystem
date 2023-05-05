@@ -60,21 +60,13 @@ namespace AssFundraisingSystem.AdminSide
         protected global::System.Web.UI.WebControls.TextBox TextBox1;
 
         /// <summary>
-<<<<<<< HEAD
         /// RequiredFieldValidator1 control.
-=======
-        /// nameValidator control.
->>>>>>> 16f016919bdb28cca9f901d35af24fb6a5343fb5
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-<<<<<<< HEAD
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-=======
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator nameValidator;
->>>>>>> 16f016919bdb28cca9f901d35af24fb6a5343fb5
 
         /// <summary>
         /// Label1 control.
@@ -95,19 +87,12 @@ namespace AssFundraisingSystem.AdminSide
         protected global::System.Web.UI.WebControls.TextBox TextBox5;
 
         /// <summary>
-<<<<<<< HEAD
-        /// RequiredFieldValidator2 control.
-=======
         /// contactNumberValidator control.
->>>>>>> 16f016919bdb28cca9f901d35af24fb6a5343fb5
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-<<<<<<< HEAD
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
-=======
         protected global::System.Web.UI.WebControls.RequiredFieldValidator contactNumberValidator;
 
         /// <summary>
@@ -118,7 +103,6 @@ namespace AssFundraisingSystem.AdminSide
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
->>>>>>> 16f016919bdb28cca9f901d35af24fb6a5343fb5
 
         /// <summary>
         /// btnUpdateAdmin control.

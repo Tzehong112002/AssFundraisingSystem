@@ -60,19 +60,21 @@ namespace AssFundraisingSystem.AdminSide
         protected global::System.Web.UI.WebControls.TextBox NewPassword;
 
         /// <summary>
-<<<<<<< HEAD
         /// RequiredFieldValidator2 control.
-=======
-        /// NewPasswordRequiredFieldValidator control.
->>>>>>> 16f016919bdb28cca9f901d35af24fb6a5343fb5
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-<<<<<<< HEAD
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
-=======
+
+        /// <summary>
+        /// NewPasswordRequiredFieldValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator NewPasswordRequiredFieldValidator;
 
         /// <summary>
@@ -83,7 +85,6 @@ namespace AssFundraisingSystem.AdminSide
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator NewPasswordRegularExpressionValidator;
->>>>>>> 16f016919bdb28cca9f901d35af24fb6a5343fb5
 
         /// <summary>
         /// Label2 control.
@@ -104,19 +105,21 @@ namespace AssFundraisingSystem.AdminSide
         protected global::System.Web.UI.WebControls.TextBox CfmPassword;
 
         /// <summary>
-<<<<<<< HEAD
         /// RequiredFieldValidator3 control.
-=======
-        /// CfmPasswordRequiredFieldValidator control.
->>>>>>> 16f016919bdb28cca9f901d35af24fb6a5343fb5
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-<<<<<<< HEAD
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
-=======
+
+        /// <summary>
+        /// CfmPasswordRequiredFieldValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator CfmPasswordRequiredFieldValidator;
 
         /// <summary>
@@ -127,7 +130,6 @@ namespace AssFundraisingSystem.AdminSide
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CompareValidator CfmPasswordCompareValidator;
->>>>>>> 16f016919bdb28cca9f901d35af24fb6a5343fb5
 
         /// <summary>
         /// btnUpdateAdmin control.

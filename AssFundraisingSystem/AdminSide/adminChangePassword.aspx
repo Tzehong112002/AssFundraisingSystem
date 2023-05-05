@@ -38,11 +38,9 @@
 
              <asp:Button ID="btnUpdateAdmin"  runat="server" Text="Update" class="button" BackColor="Green" OnClick="btnUpdateAdmin_Click" />
 
-<<<<<<< HEAD
-             <asp:Button ID="btnCancel"  runat="server" Text="cancel" class="button" BackColor="Red" OnClick="btnCancel_Click" CausesValidation="false"/>
-=======
+
             <asp:Button ID="btnCancel" runat="server" Text="Cancel" CausesValidation="false" CssClass="button" BackColor="Red" OnClick="btnCancel_Click" />
->>>>>>> 16f016919bdb28cca9f901d35af24fb6a5343fb5
+
 
    </div>
 </asp:Content>

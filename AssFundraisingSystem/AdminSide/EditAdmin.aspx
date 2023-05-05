@@ -6,7 +6,7 @@
             <h1 class="title">Edit Admin</h1>
             <div class="message messageerror"></div>
 
-<<<<<<< HEAD
+
          <div class="input">
                 <span id="lblPicture">Profile Picture:</span>
                 <asp:FileUpload ID="FileUpload1" runat="server" />
@@ -21,21 +21,7 @@
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox1" ErrorMessage="Please enter an admin name"></asp:RequiredFieldValidator>
                 <div class="inputerrormessage"></div>
             </div>
-=======
-        <div class="input">
-            <span id="lblPicture">Profile Picture:</span>
-            <asp:FileUpload ID="FileUpload1" runat="server" />
-            <asp:Label ID="Passvalue" runat="server" Text="Label" Visible="False"></asp:Label>
-            &nbsp;<div class="inputerrormessage"></div>
-        </div>
 
-        <div class="input">
-            <asp:Label ID="Label4" runat="server" Text="Admin Name :"></asp:Label>
-            <asp:TextBox ID="TextBox1" class="txtinput" placeholder="Enter Admin Name" runat="server" ></asp:TextBox>
-            <div class="inputerrormessage"></div>
-            <asp:RequiredFieldValidator ID="nameValidator" runat="server" ControlToValidate="TextBox1" ErrorMessage="Please enter your name" Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
-        </div>
->>>>>>> 16f016919bdb28cca9f901d35af24fb6a5343fb5
 
         <div class="input">
             <asp:Label ID="Label1" runat="server" Text="Contact Number :"></asp:Label>
@@ -46,26 +32,15 @@
                 ErrorMessage="Contact number must be 10-11 digits" ValidationExpression="^\d{10,11}$" Display="Dynamic"></asp:RegularExpressionValidator>
         </div>
 
-<<<<<<< HEAD
-         <div class="input">
-               <asp:Label ID="Label1" runat="server" Text="Contact Number :"></asp:Label>
-                <asp:TextBox ID="TextBox5" class="txtinput" placeholder="Enter Contact Number" runat="server" ></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TextBox5" ErrorMessage="Please enter the contact number"></asp:RequiredFieldValidator>
-                <div class="inputerrormessage"></div>
-           </div>
-=======
->>>>>>> 16f016919bdb28cca9f901d35af24fb6a5343fb5
+
 
         
 
              <asp:Button ID="btnUpdateAdmin"  runat="server" Text="Update" class="button" BackColor="Green" OnClick="btnUpdateAdmin_Click" />
 
-<<<<<<< HEAD
-             <asp:Button ID="btnCancel"  runat="server" Text="cancel" class="button" BackColor="Red" OnClick="btnCancel_Click" CausesValidation="false"/>
-=======
-             <asp:Button ID="btnCancel" runat="server" Text="Cancel" class="button" BackColor="Red" CausesValidation="false" OnClick="btnCancel_Click" />
 
->>>>>>> 16f016919bdb28cca9f901d35af24fb6a5343fb5
+             <asp:Button ID="btnCancel"  runat="server" Text="cancel" class="button" BackColor="Red" OnClick="btnCancel_Click" CausesValidation="false"/>
+
 
    </div>
 
