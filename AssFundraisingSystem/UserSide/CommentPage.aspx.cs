@@ -42,5 +42,10 @@ namespace AssFundraisingSystem.UserSide
             Response.Write("<script>alert('Comment Submit Successfully!')</script>");
             Response.Redirect("historyPayment.aspx");
         }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("historyPayment.aspx");
+        }
     }
 }
