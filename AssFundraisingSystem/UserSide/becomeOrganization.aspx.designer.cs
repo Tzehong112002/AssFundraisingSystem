@@ -33,6 +33,15 @@ namespace AssFundraisingSystem.UserSide
         protected global::System.Web.UI.WebControls.TextBox txtCompanyName;
 
         /// <summary>
+        /// rfvCompanyName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCompanyName;
+
+        /// <summary>
         /// UploadFrontIC control.
         /// </summary>
         /// <remarks>
@@ -42,6 +51,15 @@ namespace AssFundraisingSystem.UserSide
         protected global::System.Web.UI.WebControls.FileUpload UploadFrontIC;
 
         /// <summary>
+        /// revUploadFrontIC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revUploadFrontIC;
+
+        /// <summary>
         /// UploadBackIC control.
         /// </summary>
         /// <remarks>
@@ -49,6 +67,15 @@ namespace AssFundraisingSystem.UserSide
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload UploadBackIC;
+
+        /// <summary>
+        /// revUploadBackIC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revUploadBackIC;
 
         /// <summary>
         /// btnSubmit control.
