@@ -24,20 +24,25 @@
 <h1 class="text-base text-primary text-uppercase mb-4">Sign up Here</h1>
 <h2 class="mb-4">Welcome Back!</h2>
 
-<div class ="form-group mb-4">
+<div class="form-group mb-4">
     <asp:TextBox required="true" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Name" runat="server" ID="txtName"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="nameValidator" runat="server" ControlToValidate="txtName" ErrorMessage="Name is required" Display="Dynamic"></asp:RequiredFieldValidator>
     <asp:RegularExpressionValidator runat="server" ControlToValidate="txtName" ErrorMessage="Name should contain only alphabets" ValidationExpression="^[a-zA-Z]+$"></asp:RegularExpressionValidator>
 </div>
 
 
 <div class="form-group mb-4">
     <asp:TextBox required="true" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="User Name" runat="server" ID="txtusername"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="usernameRequired" runat="server" ControlToValidate="txtusername" ErrorMessage="Username is required" Display="Dynamic"></asp:RequiredFieldValidator>
     <asp:CustomValidator ID="usernameValidator" runat="server" ControlToValidate="txtusername" OnServerValidate="ValidateUsername" ErrorMessage="Username already exists or is less than 6 characters" Display="Dynamic"></asp:CustomValidator>
 </div>
+
 <div class="form-group mb-4">
-    <asp:TextBox required="true" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Email" runat="server" ID="txtEmail"></asp:TextBox>
+    <asp:TextBox CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Email" runat="server" ID="txtEmail"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="emailRequired" runat="server" ControlToValidate="txtEmail" ErrorMessage="Email is required" Display="Dynamic"></asp:RequiredFieldValidator>
     <asp:RegularExpressionValidator ID="emailValidator" runat="server" ControlToValidate="txtEmail" ValidationExpression="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" ErrorMessage="Invalid email format" Display="Dynamic"></asp:RegularExpressionValidator>
 </div>
+
 
 <div class="form-group mb-4">
   <asp:TextBox required="true" TextMode="Password" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Password" runat="server" ID="txtPassword"></asp:TextBox>

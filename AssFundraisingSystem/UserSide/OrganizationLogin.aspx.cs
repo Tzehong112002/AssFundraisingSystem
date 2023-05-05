@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using BCrypt.Net;
+using System.Web;
 
 namespace AssFundraisingSystem.UserSide
 {
@@ -11,6 +12,15 @@ namespace AssFundraisingSystem.UserSide
         string cs = ConfigurationManager.ConnectionStrings["MYConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                if (Request.Cookies["AdminUsername"] != null && Request.Cookies["AdminPassword"] != null)
+                {
+                    txtUsername.Text = Request.Cookies["AdminUsername"].Value;
+                    txtPassword.Attributes["value"] = Request.Cookies["AdminPassword"].Value;
+                    chkRememberMe.Checked = true;
+                }
+            }
         }
 
         protected void Unnamed4_Click(object sender, EventArgs e)
@@ -45,15 +55,30 @@ namespace AssFundraisingSystem.UserSide
                                     if (reader["BanStatus"].ToString().Trim() == Status.Trim())
                                     {
                                         Session["UserID"] = userID;
+
+                                        // Remember me functionality
+                                        if (chkRememberMe.Checked)
+                                        {
+                                            HttpCookie cookieAdminUsername = new HttpCookie("AdminUsername", username);
+                                            HttpCookie cookieAdminPassword = new HttpCookie("AdminPassword", password);
+                                            cookieAdminUsername.Expires = DateTime.Now.AddDays(7);
+                                            cookieAdminPassword.Expires = DateTime.Now.AddDays(7);
+                                            Response.Cookies.Add(cookieAdminUsername);
+                                            Response.Cookies.Add(cookieAdminPassword);
+                                        }
+                                        else
+                                        {
+                                            Response.Cookies["Username"].Expires = DateTime.Now.AddDays(-1);
+                                            Response.Cookies["Password"].Expires = DateTime.Now.AddDays(-1);
+                                        }
+
                                         reader.Close();
                                         Response.Redirect("../organizationSide/applyProgram.aspx");
-                                        
                                     }
-                                    else {
+                                    else
+                                    {
                                         Response.Write("<script>alert('Ur accounr been ban by admin'+)</script>");
-
                                     }
-                                    
                                 }
                                 else if (roles == adminRoles)
                                 {
@@ -80,5 +105,7 @@ namespace AssFundraisingSystem.UserSide
             }
         }
     }
+
 }
+
 

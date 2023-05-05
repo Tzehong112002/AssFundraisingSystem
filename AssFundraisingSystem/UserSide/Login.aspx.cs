@@ -6,6 +6,8 @@ using BCrypt.Net;
 using Newtonsoft.Json.Linq;
 using System.Net;
 using System.IO;
+using System.Web;
+
 
 namespace AssFundraisingSystem.UserSide
 {
@@ -15,6 +17,18 @@ namespace AssFundraisingSystem.UserSide
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                HttpCookie loginCookie = Request.Cookies["LoginCookie"];
+                if (loginCookie != null)
+                {
+                    string username = loginCookie.Values["Username"];
+                    string password = loginCookie.Values["Password"];
+                    txtUsername.Text = username;
+                    txtPassword.Attributes["value"] = password; // set password field without showing the actual password
+                    chkRememberMe.Checked = true;
+                }
+            }
 
         }
 
@@ -49,6 +63,16 @@ namespace AssFundraisingSystem.UserSide
 
                         if (dt.Rows[0]["BanStatus"].ToString().Trim() == status)
                         {
+                            // Set a cookie if the "Remember Me" checkbox is checked
+                            if (chkRememberMe.Checked)
+                            {
+                                HttpCookie loginCookie = new HttpCookie("LoginCookie");
+                                loginCookie.Values.Add("Username", username);
+                                loginCookie.Values.Add("Password", password);
+                                loginCookie.Expires = DateTime.Now.AddDays(7);
+                                Response.Cookies.Add(loginCookie);
+                            }
+
                             con.Close();
                             Session["UserID"] = dt.Rows[0]["UserID"].ToString();
                             Response.Redirect("program.aspx");
