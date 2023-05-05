@@ -40,6 +40,34 @@ namespace AssFundraisingSystem.organizationSide
                 string fileName = "EventImg";
                 string fileExtension = "jpg";
 
+                String StartDate = cStartDate.SelectedDate.ToString();
+                String EndDate = cEndDate.SelectedDate.ToString();
+                DateTime startDateTime;
+                DateTime endDateTime;
+
+                if (!DateTime.TryParse(StartDate, out startDateTime))
+                {
+                    ErrorMessage("Invalid start date format. Please select a valid date.");
+                    return;
+                }
+
+                if (!DateTime.TryParse(EndDate, out endDateTime))
+                {
+                    ErrorMessage("Invalid end date format. Please select a valid date.");
+                    return;
+                }
+
+                if (cStartDate.SelectedDate < DateTime.Today || cEndDate.SelectedDate < DateTime.Today)
+                {
+                    ErrorMessage("Start and end dates must be on or after the current date.");
+                    return;
+                }
+                if (cEndDate.SelectedDate <= cStartDate.SelectedDate)
+                {
+                    ErrorMessage("End date must be after start date.");
+                    return;
+                }
+
                 if (ImgUpload.HasFile)
                 {
                     string pictureName = ImgUpload.FileName;
@@ -97,6 +125,31 @@ namespace AssFundraisingSystem.organizationSide
             }
 
             ddlCategories.Items.Insert(0, new ListItem("Select a category", ""));
+        }
+
+        protected void cStartDate_DayRender(object sender, DayRenderEventArgs e)
+        {
+            if (e.Day.Date < DateTime.Today)
+            {
+                e.Day.IsSelectable = false;
+                e.Cell.ForeColor = System.Drawing.Color.Gray;
+            }
+        }
+
+        protected void cEndDate_DayRender(object sender, DayRenderEventArgs e)
+        {
+
+            if (cStartDate.SelectedDate != null && e.Day.Date < cStartDate.SelectedDate)
+            {
+                e.Day.IsSelectable = false;
+                e.Cell.ForeColor = System.Drawing.Color.Gray;
+            }
+
+        }
+
+        protected void ErrorMessage(string msg)
+        {
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "ErrorMessage", "alert('" + msg + "');", true);
         }
     }
 }

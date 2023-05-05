@@ -51,6 +51,24 @@ namespace AssFundraisingSystem.AdminSide
         protected global::System.Web.UI.WebControls.TextBox NewPassword;
 
         /// <summary>
+        /// NewPasswordRequiredFieldValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator NewPasswordRequiredFieldValidator;
+
+        /// <summary>
+        /// NewPasswordRegularExpressionValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator NewPasswordRegularExpressionValidator;
+
+        /// <summary>
         /// Label2 control.
         /// </summary>
         /// <remarks>
@@ -67,6 +85,24 @@ namespace AssFundraisingSystem.AdminSide
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox CfmPassword;
+
+        /// <summary>
+        /// CfmPasswordRequiredFieldValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator CfmPasswordRequiredFieldValidator;
+
+        /// <summary>
+        /// CfmPasswordCompareValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator CfmPasswordCompareValidator;
 
         /// <summary>
         /// btnUpdateAdmin control.
