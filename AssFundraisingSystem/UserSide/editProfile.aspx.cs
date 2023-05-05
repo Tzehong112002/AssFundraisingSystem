@@ -48,7 +48,7 @@ namespace AssFundraisingSystem.UserSide
                                     string roles = reader["Roles"].ToString();
                                     string gender = reader["Gender"].ToString();
                                     DateTime? dateOfBirth = reader.IsDBNull(reader.GetOrdinal("DateOfBirth")) ? null : (DateTime?)reader.GetDateTime(reader.GetOrdinal("DateOfBirth"));
-                                    
+
 
 
 
@@ -75,7 +75,7 @@ namespace AssFundraisingSystem.UserSide
                 }
 
             }
-            
+
         }
         protected void btnCancel_Click(object sender, EventArgs e)
         {

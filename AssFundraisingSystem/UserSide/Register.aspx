@@ -25,25 +25,27 @@
 <h2 class="mb-4">Welcome Back!</h2>
 
 <div class ="form-group mb-4">
-<asp:TextBox required= "true" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Name" runat="server" ID="txtName" ></asp:TextBox>
-
+    <asp:TextBox required="true" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Name" runat="server" ID="txtName"></asp:TextBox>
+    <asp:RegularExpressionValidator runat="server" ControlToValidate="txtName" ErrorMessage="Name should contain only alphabets" ValidationExpression="^[a-zA-Z]+$"></asp:RegularExpressionValidator>
 </div>
 
-<div class ="form-group mb-4">
-<asp:TextBox required= "true" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="User Name" runat="server" ID="txtusername" ></asp:TextBox>
 
+<div class="form-group mb-4">
+    <asp:TextBox required="true" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="User Name" runat="server" ID="txtusername"></asp:TextBox>
+    <asp:CustomValidator ID="usernameValidator" runat="server" ControlToValidate="txtusername" OnServerValidate="ValidateUsername" ErrorMessage="Username already exists or is less than 6 characters" Display="Dynamic"></asp:CustomValidator>
+</div>
+<div class="form-group mb-4">
+    <asp:TextBox required="true" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Email" runat="server" ID="txtEmail"></asp:TextBox>
+    <asp:RegularExpressionValidator ID="emailValidator" runat="server" ControlToValidate="txtEmail" ValidationExpression="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" ErrorMessage="Invalid email format" Display="Dynamic"></asp:RegularExpressionValidator>
+</div>
+
+<div class="form-group mb-4">
+  <asp:TextBox required="true" TextMode="Password" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Password" runat="server" ID="txtPassword"></asp:TextBox>
+  <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="txtPassword" ValidationExpression="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$" ErrorMessage="Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number" Display="Dynamic"></asp:RegularExpressionValidator>
 </div>
 <div class ="form-group mb-4">
-<asp:TextBox required= "true" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Email" runat="server" ID="txtEmail" ></asp:TextBox>
-
-</div>
-<div class ="form-group mb-4">
-<asp:TextBox required= "true" TextMode="Password" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Password" runat="server" ID="txtPassword" ></asp:TextBox>
-
-</div>
-<div class ="form-group mb-4">
-<asp:TextBox required= "true" TextMode="Password" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Confirm Password" runat="server" ID="txtConfirmPassword" ></asp:TextBox>
-
+  <asp:TextBox required= "true" TextMode="Password" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Confirm Password" runat="server" ID="txtConfirmPassword"></asp:TextBox>
+  <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtPassword" ControlToValidate="txtConfirmPassword" ErrorMessage="The passwords do not match." Display="Dynamic"></asp:CompareValidator>
 </div>
 
 <asp:Button Text="Sign up" CssClass="btn btn-primary" Height="50px" Width="400px" runat="server" OnClick="Unnamed7_Click" />
@@ -66,8 +68,6 @@
 
 
 </div>
-
-
 </form>
 </body>
 </html>
