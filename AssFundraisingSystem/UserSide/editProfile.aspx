@@ -48,32 +48,35 @@
                 </td>
 
             </tr>
-            <tr>
-                <td class="editProfileLbl" style="padding-left: 50px;">Contact Number</td>
-                <td>
-                    <asp:TextBox ID="txtContactNumber" runat="server" CssClass="input" placeholder="Phone No"></asp:TextBox>
-                    <br />
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" 
-                        ControlToValidate="txtContactNumber" ErrorMessage="Please enter a valid phone number" 
-                        ValidationExpression="^\d{10,11}$"></asp:RegularExpressionValidator>
-                </td>
-
-            </tr>
-            
-            <tr>
-               <td class="editProfileLbl" style="padding-left: 50px;">Date of birth</td>
-                <td>
-                    <asp:Calendar ID="calendarBirth" runat="server" SelectMonthText="&amp;gt;"></asp:Calendar>
-                </td>
-
-            </tr>
+           
+                <tr>
+                    <td class="editProfileLbl" style="padding-left: 50px;">Contact Number</td>
+                    <td>
+                        <asp:TextBox ID="txtContactNumber" runat="server" CssClass="input" placeholder="Phone No"></asp:TextBox>
+                        <br />
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" 
+                            ControlToValidate="txtContactNumber" ErrorMessage="Please enter a valid phone number" 
+                            ValidationExpression="^\d{10,11}$"></asp:RegularExpressionValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                            ControlToValidate="txtContactNumber" ErrorMessage="Please enter your contact number" 
+                            Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
+                    </td>
+                </tr>
+                <tr>
+                   <td class="editProfileLbl" style="padding-left: 50px;">Date of birth</td>
+                    <td>
+                        <asp:Calendar ID="calendarBirth" runat="server" SelectMonthText="&amp;gt;"></asp:Calendar>
+                       
+                    </td>
+                </tr>
             
             <tr>
                 <td></td>
                 <td>
                     <div class="flex-parent jc-center">
                         <asp:Button ID="btnUpdate" runat="server" Text="Update"  CssClass="button " BackColor="Green" OnClick="btnUpdate_Click" />
-                            <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="button " BackColor="Red" OnClick="btnCancel_Click" />
+                            <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="button " BackColor="Red" OnClick="btnCancel_Click" CausesValidation="False" />
+
                     
                     </div>
                     

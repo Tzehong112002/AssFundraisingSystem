@@ -26,9 +26,9 @@ namespace AssFundraisingSystem.UserSide
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            string oldPassword = TextBox1.Text.Trim();
-            string newPassword = TextBox2.Text.Trim();
-            string confirmPassword = TextBox3.Text.Trim();
+            string oldPassword = txtCurrentPassword.Text.Trim();
+            string newPassword = txtNewPassword.Text.Trim();
+            string confirmPassword = txtRepeatPassword.Text.Trim();
 
             if (newPassword != confirmPassword)
             {

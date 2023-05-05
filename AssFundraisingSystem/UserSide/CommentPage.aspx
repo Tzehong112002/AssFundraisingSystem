@@ -9,12 +9,16 @@
             <div class="message messageerror"></div>
             <div class="input">
                <asp:Label ID="Label4" runat="server" Text="Share your word of support! :"></asp:Label>
-                <asp:TextBox ID="txtComment" class="txtinput" placeholder="Comment" runat="server" Rows="8" TextMode="MultiLine" ></asp:TextBox>
-                <div class="inputerrormessage"></div>
-            </div>   
+               <asp:TextBox ID="txtComment" class="txtinput" placeholder="Comment" runat="server" Rows="8" TextMode="MultiLine"></asp:TextBox>
+               <div class="inputerrormessage"></div>
+               <asp:RequiredFieldValidator ID="rfvComment" runat="server" ControlToValidate="txtComment"
+                   ErrorMessage="Please enter a comment" Display="Dynamic"></asp:RequiredFieldValidator>
+            </div>
+  
 
              <asp:Button ID="btnSubmit"  runat="server" Text="Submit" class="button" BackColor="Green" OnClick="btnSubmit_Click"/>
-            <asp:Button ID="btnCancel"  runat="server" Text="Cancel" class="button" BackColor="Red"/>
+            <asp:Button ID="btnCancel" runat="server" Text="Cancel" class="button" BackColor="Red" OnClick="btnCancel_Click" OnClientClick="return confirm('Are you sure you want to cancel?');"/>
+
 
 
    </div>
