@@ -31,8 +31,8 @@
             <td data-label="Username" colspan="2" style="height: 32px"><%#Eval("Name") %></td>
             <td data-label="DonateAmount" colspan="2" style="height: 32px"><%#Eval("Amount") %></td>
             <td data-label="btnParticipantManage" style="height: 32px" colspan="2">
-                   
-                    <asp:Button ID="btnDelParticipant" runat="server" CssClass="buttonDelete " Text="Delete" BackColor="Red" width="80px"/>
+            <asp:Button ID="btnDelParticipant" runat="server" CssClass="buttonDelete " Text="Delete" BackColor="Red" width="80px" OnClick="btnDeleteParticipant_Click" CommandArgument='<%#Eval("PaymentID") %>' OnClientClick="return confirm('Do you want to delete this donor?');" />
+       
             </td>
         </tr> 
 

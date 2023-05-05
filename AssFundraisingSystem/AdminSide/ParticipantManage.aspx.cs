@@ -18,18 +18,18 @@ namespace AssFundraisingSystem.AdminSide
         {
             if (!this.IsPostBack)
             {
-                this.BindRepeater();
+                this.BindRepeaterParticipant();
             }
 
         }
 
-        private void BindRepeater()
+        private void BindRepeaterParticipant()
         {
             int EventID = Convert.ToInt32(Request.QueryString["EventID"] ?? Session["EventID"]);
 
             using (SqlConnection con = new SqlConnection(cs))
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT a.ProfilePic, a.Username, a.Name, 'RM ' + CONVERT(varchar(10), p.Amount) AS Amount " + "FROM Account a INNER JOIN Payment p ON a.UserID = p.UserID " +"WHERE p.EventID = @EventID", con))
+                using (SqlCommand cmd = new SqlCommand("SELECT p.PaymentID, a.ProfilePic, a.Username, a.Name, 'RM ' + CONVERT(varchar(10), p.Amount) AS Amount " + "FROM Account a INNER JOIN Payment p ON a.UserID = p.UserID " + "WHERE p.EventID = @EventID", con))
                 {
                     cmd.Parameters.AddWithValue("@EventID", EventID);
                     using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
@@ -43,11 +43,36 @@ namespace AssFundraisingSystem.AdminSide
                     }
                 }
             }
+
         }
 
         protected void btnEditParticipant_Click(object sender, EventArgs e)
         {
             Response.Redirect("ParticipantEdit.aspx");
         }
+
+        protected void btnDeleteParticipant_Click(object sender, EventArgs e)
+        {
+            Button btnDelParticipant = (Button)sender;
+            string paymentID = btnDelParticipant.CommandArgument;
+
+
+
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                using (SqlCommand cmd = new SqlCommand("DELETE FROM Payment WHERE PaymentID = @PaymentID", con))
+                {
+                    cmd.Parameters.AddWithValue("@PaymentID", paymentID);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+
+            this.BindRepeaterParticipant();
+        }
+
     }
+
+
 }
