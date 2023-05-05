@@ -18,7 +18,6 @@ namespace AssFundraisingSystem.UserSide
         {
             if (!IsPostBack)
             {
-
                 int id = Convert.ToInt32(Session["EventID"] ?? Request.QueryString["EventID"]);
 
                 SqlConnection con = new SqlConnection(cs);
@@ -34,15 +33,21 @@ namespace AssFundraisingSystem.UserSide
                 {
                     EventImage.ImageUrl = reader["EventIMG"].ToString();
 
-                    object donatedObj = reader["DonatedAmount"];
-                    decimal donated;
-                    if (donatedObj != DBNull.Value && donatedObj != null)
+                    decimal donated = 0;
+
+                    // Calculate the total donated amount by summing up the values in Payment table
+                    using (SqlConnection paymentCon = new SqlConnection(cs))
                     {
-                        donated = (decimal)donatedObj;
-                    }
-                    else
-                    {
-                        donated = 0;
+                        paymentCon.Open();
+                        using (SqlCommand paymentCmd = new SqlCommand("SELECT SUM(CONVERT(decimal(10,2), Amount)) FROM Payment WHERE EventID=@EventID", paymentCon))
+                        {
+                            paymentCmd.Parameters.AddWithValue("@EventID", id);
+                            object result = paymentCmd.ExecuteScalar();
+                            if (result != DBNull.Value && result != null)
+                            {
+                                donated = Convert.ToDecimal(result);
+                            }
+                        }
                     }
 
                     string formattedDonated = "RM" + donated.ToString("N2");
@@ -52,17 +57,19 @@ namespace AssFundraisingSystem.UserSide
                     string formattedTarget = "RM" + target.ToString("N2");
                     lblTarget.Text = formattedTarget;
 
-                    
-                    int progress = Convert.ToInt32((donated / target) * 100);
+                    // Calculate the percentage donated and update the progress bar
+                    int progress = 0;
+                    if (target != 0)
+                    {
+                        progress = Convert.ToInt32((donated / target) * 100);
+                    }
 
-                    if(progress > 100)
+                    if (progress > 100)
                     {
                         progress = 100;
                     }
 
                     string progressPercent = progress.ToString();
-
-
 
                     progressBar.Attributes.Add("style", "width: " + progressPercent + "%");
                     progressBar.Attributes.Add("aria-valuenow", progressPercent);
@@ -70,9 +77,6 @@ namespace AssFundraisingSystem.UserSide
 
                     lblEventTitle.Text = reader["EventName"].ToString();
                     lblEventDetail.Text = reader["EventDesc"].ToString();
-
-
-                    
                 }
                 con.Close();
 
@@ -82,6 +86,7 @@ namespace AssFundraisingSystem.UserSide
 
             }
         }
+
 
         private void BindRepeaterParticipant()
         {
