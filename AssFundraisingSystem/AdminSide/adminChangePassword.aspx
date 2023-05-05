@@ -11,6 +11,7 @@
             <div class="input">
                <asp:Label ID="Label4" runat="server" Text="Old Password :"></asp:Label>
                 <asp:TextBox ID="oldPassword" class="txtinput" placeholder="Enter Old Password" runat="server" TextMode="Password" ></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="oldPassword" ErrorMessage="Please enter the old password"></asp:RequiredFieldValidator>
                 <div class="inputerrormessage"></div>
             </div>
 
@@ -19,12 +20,14 @@
          <div class="input">
                <asp:Label ID="Label1" runat="server" Text="New Password :"></asp:Label>
                 <asp:TextBox ID="NewPassword" class="txtinput" placeholder="Enter New Password" runat="server" TextMode="Password" ></asp:TextBox>
+             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="NewPassword" ErrorMessage="Please enter the new password"></asp:RequiredFieldValidator>
                 <div class="inputerrormessage"></div>
            </div>
 
          <div class="input">
                <asp:Label ID="Label2" runat="server" Text="Contact Number :"></asp:Label>
                 <asp:TextBox ID="CfmPassword" class="txtinput" placeholder="Enter again the password" runat="server" TextMode="Password" ></asp:TextBox>
+             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="CfmPassword" ErrorMessage="Please confirm the password you have entered"></asp:RequiredFieldValidator>
                 <div class="inputerrormessage"></div>
            </div>
 
@@ -32,7 +35,7 @@
 
              <asp:Button ID="btnUpdateAdmin"  runat="server" Text="Update" class="button" BackColor="Green" OnClick="btnUpdateAdmin_Click" />
 
-             <asp:Button ID="btnCancel"  runat="server" Text="cancel" class="button" BackColor="Red" OnClick="btnCancel_Click" />
+             <asp:Button ID="btnCancel"  runat="server" Text="cancel" class="button" BackColor="Red" OnClick="btnCancel_Click" CausesValidation="false"/>
 
    </div>
 </asp:Content>

@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
+using Org.BouncyCastle.Asn1.X509;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace AssFundraisingSystem.AdminSide
 {
@@ -90,6 +92,12 @@ namespace AssFundraisingSystem.AdminSide
                 }
 
 
+            if (string.IsNullOrEmpty(TextBox1.Text) || string.IsNullOrEmpty(TextBox5.Text) || string.IsNullOrEmpty(FileUpload1.PostedFile.FileName))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "alert('Please fill out all fields.');", true);
+            }
+            else
+            {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
@@ -118,6 +126,7 @@ namespace AssFundraisingSystem.AdminSide
                         }
                     }
                 }
+            }
 
             
             
