@@ -54,6 +54,32 @@ namespace AssFundraisingSystem.AdminSide
                 string fileName = "EventImg";
                 string fileextension = "jpg";
 
+                DateTime startDateTime;
+                DateTime endDateTime;
+
+                if (!DateTime.TryParse(StartDate, out startDateTime))
+                {
+                    ErrorMessage("Invalid start date format. Please select a valid date.");
+                    return;
+                }
+
+                if (!DateTime.TryParse(EndDate, out endDateTime))
+                {
+                    ErrorMessage("Invalid end date format. Please select a valid date.");
+                    return;
+                }
+
+                if (cStartDate.SelectedDate < DateTime.Today || cEndDate.SelectedDate < DateTime.Today)
+                {
+                    ErrorMessage("Start and end dates must be on or after the current date.");
+                    return;
+                }
+                if (cEndDate.SelectedDate <= cStartDate.SelectedDate)
+                {
+                    ErrorMessage("End date must be after start date.");
+                    return;
+                }
+
                 if (ImgUpload.HasFile)
                 {
                     String pictureName = ImgUpload.FileName;
@@ -64,31 +90,68 @@ namespace AssFundraisingSystem.AdminSide
 
                 }
 
-                string sql = "INSERT INTO Event (CategoryID, EventImg, EventName, EventTarget, EventDesc, EventStartDate, EventEndDate,EventStatus) VALUES (@CategoryID, @EventImg, @EventName, @EventTarget, @EventDesc, @EventStartDate, @EventEndDate,@EventStatus) ";
 
-                SqlConnection con = new SqlConnection(cs);
-                SqlCommand cmd = new SqlCommand(sql, con);
+                if (string.IsNullOrEmpty(txtEventName.Text) || ddlCategories.SelectedValue == "0" || cStartDate.SelectedDate == DateTime.MinValue || cEndDate.SelectedDate == DateTime.MinValue || string.IsNullOrEmpty(txtTarget.Text) || string.IsNullOrEmpty(txtDesc.Text) || ImgUpload.PostedFile == null || string.IsNullOrEmpty(ImgUpload.PostedFile.FileName))
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "alert('Please fill out all fields.');", true);
+                    }
+                    else
+                    {
+                        string sql = "INSERT INTO Event (CategoryID, EventImg, EventName, EventTarget, EventDesc, EventStartDate, EventEndDate,EventStatus) VALUES (@CategoryID, @EventImg, @EventName, @EventTarget, @EventDesc, @EventStartDate, @EventEndDate,@EventStatus) ";
 
-                cmd.Parameters.AddWithValue("@CategoryID", CategoryID);
-                cmd.Parameters.AddWithValue("@EventImg", pathImg);
-                cmd.Parameters.AddWithValue("@EventName", Name);
-                cmd.Parameters.AddWithValue("@EventTarget", Target);
-                cmd.Parameters.AddWithValue("@EventDesc", Description);
-                cmd.Parameters.AddWithValue("@EventStartDate", DateTime.Parse(StartDate));
-                cmd.Parameters.AddWithValue("@EventEndDate", DateTime.Parse(EndDate));
-                cmd.Parameters.AddWithValue("@EventStatus", Status);
+                        SqlConnection con = new SqlConnection(cs);
+                        SqlCommand cmd = new SqlCommand(sql, con);
 
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
-                Response.Write("<script>alert('Program Added Successfully!')</script>");
+                        cmd.Parameters.AddWithValue("@CategoryID", CategoryID);
+                        cmd.Parameters.AddWithValue("@EventImg", pathImg);
+                        cmd.Parameters.AddWithValue("@EventName", Name);
+                        cmd.Parameters.AddWithValue("@EventTarget", Target);
+                        cmd.Parameters.AddWithValue("@EventDesc", Description);
+                        cmd.Parameters.AddWithValue("@EventStartDate", DateTime.Parse(StartDate));
+                        cmd.Parameters.AddWithValue("@EventEndDate", DateTime.Parse(EndDate));
+                        cmd.Parameters.AddWithValue("@EventStatus", Status);
 
-                Response.Redirect("ProgramList.aspx");
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                        Response.Write("<script>alert('Program Added Successfully!')</script>");
+
+                        Response.Redirect("ProgramList.aspx");
+                    }
+
+
 
             }
 
         }
 
+
+        protected void cStartDate_DayRender(object sender, DayRenderEventArgs e)
+        {
+            if (e.Day.Date < DateTime.Today)
+            {
+                e.Day.IsSelectable = false;
+                e.Cell.ForeColor = System.Drawing.Color.Gray;
+            }
+        }
+
+        protected void cEndDate_DayRender(object sender, DayRenderEventArgs e)
+        {
+            
+            if (cStartDate.SelectedDate != null && e.Day.Date < cStartDate.SelectedDate)
+            {
+                e.Day.IsSelectable = false;
+                e.Cell.ForeColor = System.Drawing.Color.Gray;
+            }
+            
+        }
+
+
+
+        protected void ErrorMessage(string msg)
+        {
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "ErrorMessage", "alert('" + msg + "');", true);
+        }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
