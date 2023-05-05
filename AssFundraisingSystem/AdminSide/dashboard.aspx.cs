@@ -6,18 +6,24 @@ using System.Web.UI.WebControls;
 
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Data;
+
 
 namespace AssFundraisingSystem.AdminSide
 {
     public partial class dashboard : System.Web.UI.Page
     {
+        string cs = ConfigurationManager.ConnectionStrings["MYConnectionString"].ConnectionString;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             int totalVisitor;
             if (!IsPostBack)
             {
+                this.BindRepeater();
+
                 // Retrieve total number of events with "Approved" status
-                string cs = ConfigurationManager.ConnectionStrings["MYConnectionString"].ConnectionString;
+
                 using (SqlConnection con = new SqlConnection(cs))
                 {
                     con.Open();
@@ -59,8 +65,59 @@ namespace AssFundraisingSystem.AdminSide
 
                 totalVisitor = Convert.ToInt32(Application["TotalVisitors"]);
                 ttlVisitor.Text = totalVisitor.ToString();
+            }
 
+            this.BindRepeater2();
+        }
+
+        private void BindRepeater2()
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Event WHERE EventStatus = 'Not Approved'", con))
+                {
+                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                    {
+                        using (DataTable dt = new DataTable())
+                        {
+                            sda.Fill(dt);
+                            RepeaterDashboard2.DataSource = dt;
+                            RepeaterDashboard2.DataBind();
+                        }
+                    }
+                }
             }
         }
+
+
+        private void BindRepeater()
+        {
+
+
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                using (SqlCommand cmd = new SqlCommand("SELECT p.Amount, a.Name, e.EventName " +
+                       "FROM Payment p " +
+                       "INNER JOIN Account a ON p.UserID = a.UserID " +
+                       "INNER JOIN Event e ON p.EventID = e.EventID", con))
+                {
+                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                    {
+                        using (DataTable dt = new DataTable())
+                        {
+                            sda.Fill(dt);
+                            RepeaterDashboard.DataSource = dt;
+                            RepeaterDashboard.DataBind();
+                        }
+                    }
+                }
+            }
+
+        }
+
+       
+
+
+
     }
 }

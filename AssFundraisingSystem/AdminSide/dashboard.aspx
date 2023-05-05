@@ -2,10 +2,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <link href="css/dashboardStyle.css" rel="stylesheet" />
+    <link href="css/approveEventStyle.css" rel="stylesheet" />
 
+    <div id="divToPrint">
     <div class="title">
 
         <h1 style="margin:0px;">Dashboard</h1> 
+        <asp:Button ID="btnPrint" runat="server" Text="Print" CssClass="buttonAdd " OnClientClick="javascript:printDiv('divToPrint');" />
     </div>
 
     <div class="home-content">
@@ -59,34 +62,74 @@
 
       <div class="sales-boxes">
         <div class="top-sales box">
-          <div class="title">Event</div>
+          <div class="title">Recent Donation List</div>
           <ul class="top-sales-details">
+              <li>
+                
+                  <span><b>Name</b></span>
+                  <span><b>Event Name</b></span>
+                  <span><b>Amount</b></span>
+
+              </li>
+
+         <asp:Repeater ID="RepeaterDashboard" runat="server" >
+                <ItemTemplate>
+
             <li>
-            <a href="#">
-              <img src="../Images/dgorescue.jpg" alt="">
-              <span class="product">Animal recuise</span>
-            </a>
-            <span class="price">RM1107</span>
+            
+              
+              <span class="product">><%#Eval("Name") %></span>
+              <span class="product"><%#Eval("EventName") %></span>
+           
+            <span class="price">RM<%#Eval("Amount") %></span>
           </li>
+
+
+              </ItemTemplate>
+        </asp:Repeater>
 
 
           </ul>
         </div>
+
+
         <div class="top-sales box">
-          <div class="title">Event</div>
+          <div class="title">Event Not Yet Approve</div>
           <ul class="top-sales-details">
+              <li>
+                
+                  <span><b>Image</b></span>
+                  <span><b>Event Name</b></span>
+                  <span><b>Status</b></span>
+
+              </li>
+              <asp:Repeater ID="RepeaterDashboard2" runat="server" >
+                <ItemTemplate>
             <li>
-            <a href="#">
-              <img src="../Images/dgorescue.jpg" alt="">
-              <span class="product">Animal recuise</span>
-            </a>
-            <span class="price">RM1107</span>
+   
+              <img src='<%#Eval("EventIMG") %>' alt="Event Image" class="event-image" />
+            <span class="product"><%#Eval("EventName") %></span>
+            <span class="product"><%#Eval("EventStatus") %></span>
+            
+       
+
           </li>
+
+              </ItemTemplate>
+        </asp:Repeater>
 
 
           </ul>
         </div>
       </div>
     </div>
-  </section>
+</div>
+    <script type="text/javascript">
+        function printDiv(divName) {
+            window.print();
+        }
+    </script>ipt>
 </asp:Content>
+
+
+
