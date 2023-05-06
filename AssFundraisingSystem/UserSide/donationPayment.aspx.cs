@@ -34,15 +34,15 @@ namespace AssFundraisingSystem.UserSide
                 {
                     // products
                     new SessionLineItemOptions {
-                        Name = "Donation Payment 1001",
-                        Description = "Afghanistan Food Supplement",
+                        Name = "Donation Payment",
+                        Description = "Donation Event",
                         Amount = totalAmount,
                         Currency = "myr",
                         Quantity = 1,
                         // Product Images
                         Images = new List<string>
                         {
-                            HttpUtility.UrlPathEncode("https://www.globaltimes.cn/Portals/0/attachment/2021/2021-10-12/714338f8-ce74-443c-8cca-fa28ad22dcd5.jpeg"),
+                            HttpUtility.UrlPathEncode("https://snacknation.com/wp-content/uploads/2022/05/charity-team-building-e1651509883636.png"),
                             HttpUtility.UrlPathEncode("https://miro.medium.com/max/2728/1*MfOHvI5b1XZKYTXIAKY7PQ.png")
                         }
                     }
@@ -57,7 +57,7 @@ namespace AssFundraisingSystem.UserSide
                     {
                         // For example: Order ID, Description
                         { "Order_ID", "123456" }, // Order ID in your database
-                        { "Description", "Comfortable cotton t-shirt - TD Shop - 2019" }
+                        { "Description", "Donation Event" }
                     }
                 }
             };

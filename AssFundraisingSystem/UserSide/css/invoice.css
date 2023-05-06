@@ -52,21 +52,23 @@
     font-size: 17px;
 }
 
-    .lnkbtn:hover {
-        color: #aaaaaa;
-        text-decoration: none;
-    }
+.lnkbtn:hover {
+    color: #aaaaaa;
+    text-decoration: none;
+}
 
-.homeBtn {
+.backBtn {
     margin: 0 auto;
     display: flex;
     border: 1px solid #CCCCCC;
     background: transparent;
     padding: 10px 20px;
     cursor: pointer;
+    margin-bottom: 100px;
 }
 
-    .homeBtn:hover {
-        background: #CCCCCC;
-        color: #FFFFFF;
-    }
+.backBtn:hover {
+    border: 1px solid #CCB323;
+    background: #CCB323;
+    color: #FFFFFF;
+}

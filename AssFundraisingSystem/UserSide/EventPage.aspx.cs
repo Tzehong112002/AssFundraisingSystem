@@ -16,6 +16,8 @@ namespace AssFundraisingSystem.UserSide
         string cs = ConfigurationManager.ConnectionStrings["MYConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session.Remove("DonateID");
+
             if (!IsPostBack)
             {
                 int id = Convert.ToInt32(Session["EventID"] ?? Request.QueryString["EventID"]);

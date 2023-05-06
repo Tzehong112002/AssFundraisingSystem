@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="invoice.aspx.cs" Inherits="AssFundraisingSystem.UserSide.invoice" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <link href="css/invoice.css" rel="stylesheet" />
-<div class="text-center">
+    <div class="text-center">
         <div class="container" id="container1">
             <asp:Image ID="Image1" runat="server" ImageUrl="invoice.png" CssClass="invoiceImg" />
 
@@ -89,7 +89,7 @@
     </div>
     <asp:LinkButton ID="downloadbtn" runat="server" CssClass="lnkbtn" OnClick="DownloadBtn_Click">Download Invoice</asp:LinkButton>
     <br />
-    <asp:Button ID="backbtn" class="btn" runat="server" Text="Back to Home" OnClick="BackBtn_Click" CssClass="homeBtn" />
+    <asp:Button ID="backbtn" class="btn" runat="server" Text="Back to Event Page" OnClick="BackBtn_Click" CssClass="backBtn" />
 
 
 

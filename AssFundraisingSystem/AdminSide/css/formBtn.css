@@ -1,0 +1,74 @@
+﻿.title h1 {
+    text-align: center;
+}
+
+.formUpdateBtn {
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background: #008000;
+    color: #FFFFFF;
+}
+
+    .formUpdateBtn:hover {
+        text-decoration: none;
+        background: transparent;
+        color: #008000;
+        border: 1px solid #008000;
+    }
+
+.formDeleteBtn {
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background: #FF0000;
+    color: #FFFFFF;
+}
+
+    .formDeleteBtn:hover {
+        text-decoration: none;
+        background: transparent;
+        color: #FF0000;
+        border: 1px solid #FF0000;
+    }
+
+.btnUpdate {
+    width: 100px;
+    height: 40px;
+    margin-left: 10px;
+    cursor: pointer;
+    background: #008000;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+}
+
+    .btnUpdate:hover {
+        background: #FFFFFF;
+        color: #008000;
+        border: 1px solid #008000;
+    }
+
+.btnUpdate1 {
+    text-decoration: none;
+    width: 100px;
+    height: 40px;
+    padding: 10px 15px;
+    margin-left: 10px;
+    cursor: pointer;
+    background: #008000;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+}
+
+    .btnUpdate1:hover {
+        text-decoration: none;
+        background: #FFFFFF;
+        color: #008000;
+        border: 1px solid #008000;
+    }
+
+.formRow {
+    padding-bottom: 20px;
+}

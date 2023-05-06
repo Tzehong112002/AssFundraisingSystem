@@ -62,6 +62,7 @@ namespace AssFundraisingSystem.UserSide
                     showgrid();
                     invoicePDF();
                     changePaymentStatus();
+                    Session.Remove("totalAmt");
                 }
             }
             else
@@ -143,8 +144,8 @@ namespace AssFundraisingSystem.UserSide
                 con.Close();
             }
 
-            string logo = Server.MapPath("invoice.png");
-            string footer = Server.MapPath("invoice-footer.png");
+            string logo = Server.MapPath("invoice-pdf.png");
+            string footer = Server.MapPath("invoice_footer_pdf.png");
             using (StringWriter sw = new StringWriter())
             {
                 using (HtmlTextWriter hw = new HtmlTextWriter(sw))
@@ -231,8 +232,8 @@ namespace AssFundraisingSystem.UserSide
             {
                 using (HtmlTextWriter hw = new HtmlTextWriter(sw))
                 {
-                    string logo = Server.MapPath("invoice.png");
-                    string footer = Server.MapPath("invoice-footer.png");
+                    string logo = Server.MapPath("invoice-pdf.png");
+                    string footer = Server.MapPath("invoice_footer_pdf.png");
 
                     GridView1.RenderControl(hw);
                     string gridHTML = sw.ToString().Replace("\"", "'").Replace(System.Environment.NewLine, "");
