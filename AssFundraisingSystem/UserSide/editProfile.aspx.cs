@@ -107,6 +107,12 @@ namespace AssFundraisingSystem.UserSide
             }
 
 
+            if (calendarBirth.SelectedDate < DateTime.Today)
+            {
+                ErrorMessage("Start must be on or after the current date.");
+                return;
+            }
+
             string updateQuery = "UPDATE account SET Name = @name, Gender = @gender, Email = @email, ProfilePic =@PathName, "
                 + "PhoneNo = @contactNumber, DateOfBirth = @birthDate WHERE UserID = @userID";
 
@@ -148,6 +154,11 @@ namespace AssFundraisingSystem.UserSide
 
             // Display a hyperlink that allows the user to go back
             Response.Write("<p><a href='javascript:history.back()' style='color:red; text-decoration:none;'>Go back</a></p>");
+        }
+
+        protected void ErrorMessage(string msg)
+        {
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "ErrorMessage", "alert('" + msg + "');", true);
         }
 
 
