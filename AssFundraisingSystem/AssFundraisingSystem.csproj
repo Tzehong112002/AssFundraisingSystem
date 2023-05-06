@@ -138,6 +138,10 @@
     <Content Include="AdminSide\ParticipantRecord.aspx" />
     <Content Include="AdminSide\ProgramList.aspx" />
     <Content Include="AdminSide\Categories.aspx" />
+    <Content Include="Error\Error403.aspx" />
+    <Content Include="Error\Style\403Style.css" />
+    <Content Include="Error\Style\404Style.css" />
+    <Content Include="Error\Error404.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Images\dgorescue.jpg" />
     <Content Include="Images\organization.jpg" />
@@ -364,6 +368,20 @@
     </Compile>
     <Compile Include="AdminSide\Categories.aspx.designer.cs">
       <DependentUpon>Categories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error\Error403.aspx.cs">
+      <DependentUpon>Error403.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error\Error403.aspx.designer.cs">
+      <DependentUpon>Error403.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error\Error404.aspx.cs">
+      <DependentUpon>Error404.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error\Error404.aspx.designer.cs">
+      <DependentUpon>Error404.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

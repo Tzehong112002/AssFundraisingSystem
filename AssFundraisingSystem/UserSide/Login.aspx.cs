@@ -34,52 +34,60 @@ namespace AssFundraisingSystem.UserSide
 
         protected void Unnamed4_Click(object sender, EventArgs e)
         {
-            string username = txtUsername.Text.Trim();
-            string password = txtPassword.Text.Trim();
-            string secretKey = "6LfJUNslAAAAADSC7im1g7ZZWAEfqZF1j6Z5yaOY";
-            string captchaResponse = Request.Form["g-recaptcha-response"];
-            bool captchaValid = VerifyCaptcha(captchaResponse, secretKey);
-
-            if (Page.IsValid && captchaValid)
+            try
             {
-                int RowCount;
-                SqlConnection con = new SqlConnection(cs);
-                con.Open();
-                string str = "SELECT * FROM Account WHERE Username=@Username";
-                SqlCommand cmd = new SqlCommand(str, con);
-                cmd.Parameters.AddWithValue("@Username", username);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-                RowCount = dt.Rows.Count;
+                string username = txtUsername.Text.Trim();
+                string password = txtPassword.Text.Trim();
+                string secretKey = "6LfJUNslAAAAADSC7im1g7ZZWAEfqZF1j6Z5yaOY";
+                string captchaResponse = Request.Form["g-recaptcha-response"];
+                bool captchaValid = VerifyCaptcha(captchaResponse, secretKey);
 
-                if (RowCount > 0)
+                if (Page.IsValid && captchaValid)
                 {
-                    string hashedPasswordFromDatabase = dt.Rows[0]["Password"].ToString();
+                    int RowCount;
+                    SqlConnection con = new SqlConnection(cs);
+                    con.Open();
+                    string str = "SELECT * FROM Account WHERE Username=@Username";
+                    SqlCommand cmd = new SqlCommand(str, con);
+                    cmd.Parameters.AddWithValue("@Username", username);
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    RowCount = dt.Rows.Count;
 
-                    if (BCrypt.Net.BCrypt.Verify(password, hashedPasswordFromDatabase))
+                    if (RowCount > 0)
                     {
-                        string status = "No";
+                        string hashedPasswordFromDatabase = dt.Rows[0]["Password"].ToString();
 
-                        if (dt.Rows[0]["BanStatus"].ToString().Trim() == status)
+                        if (BCrypt.Net.BCrypt.Verify(password, hashedPasswordFromDatabase))
                         {
-                            // Set a cookie if the "Remember Me" checkbox is checked
-                            if (chkRememberMe.Checked)
-                            {
-                                HttpCookie loginCookie = new HttpCookie("LoginCookie");
-                                loginCookie.Values.Add("Username", username);
-                                loginCookie.Values.Add("Password", password);
-                                loginCookie.Expires = DateTime.Now.AddDays(7);
-                                Response.Cookies.Add(loginCookie);
-                            }
+                            string status = "No";
 
-                            con.Close();
-                            Session["UserID"] = dt.Rows[0]["UserID"].ToString();
-                            Response.Redirect("program.aspx");
+                            if (dt.Rows[0]["BanStatus"].ToString().Trim() == status)
+                            {
+                                // Set a cookie if the "Remember Me" checkbox is checked
+                                if (chkRememberMe.Checked)
+                                {
+                                    HttpCookie loginCookie = new HttpCookie("LoginCookie");
+                                    loginCookie.Values.Add("Username", username);
+                                    loginCookie.Values.Add("Password", password);
+                                    loginCookie.Expires = DateTime.Now.AddDays(7);
+                                    Response.Cookies.Add(loginCookie);
+                                }
+
+                                con.Close();
+                                Session["UserID"] = dt.Rows[0]["UserID"].ToString();
+                                Response.Redirect("program.aspx");
+                            }
+                            else
+                            {
+                                Response.Write("<script>alert('Your account has been banned by the admin.')</script>");
+                            }
                         }
                         else
                         {
-                            Response.Write("<script>alert('Your account has been banned by the admin.')</script>");
+                            errorMessage.Visible = true;
+                            errorMessage.Text = "Invalid Username and Password. Please try again!";
                         }
                     }
                     else
@@ -87,21 +95,24 @@ namespace AssFundraisingSystem.UserSide
                         errorMessage.Visible = true;
                         errorMessage.Text = "Invalid Username and Password. Please try again!";
                     }
+
+                    con.Close();
                 }
                 else
                 {
                     errorMessage.Visible = true;
-                    errorMessage.Text = "Invalid Username and Password. Please try again!";
+                    errorMessage.Text = "Invalid reCAPTCHA. Please try again!";
                 }
-
-                con.Close();
             }
-            else
+            catch (Exception ex)
             {
                 errorMessage.Visible = true;
-                errorMessage.Text = "Invalid reCAPTCHA. Please try again!";
+                errorMessage.Text = "An error occurred while processing your request. Please try again later.";
+                // Log the exception for debugging purposes
+                Console.WriteLine(ex.ToString());
             }
         }
+
 
         private bool VerifyCaptcha(string captchaResponse, string secretKey)
         {
@@ -131,5 +142,9 @@ namespace AssFundraisingSystem.UserSide
 
             return result;
         }
+
+        
+
+    
     }
 }

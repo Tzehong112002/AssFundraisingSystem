@@ -10,81 +10,80 @@ namespace AssFundraisingSystem.UserSide
     public partial class OrganizationLogin : System.Web.UI.Page
     {
         string cs = ConfigurationManager.ConnectionStrings["MYConnectionString"].ConnectionString;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            try
             {
-                if (Request.Cookies["AdminUsername"] != null && Request.Cookies["AdminPassword"] != null)
+                if (!IsPostBack)
                 {
-                    txtUsername.Text = Request.Cookies["AdminUsername"].Value;
-                    txtPassword.Attributes["value"] = Request.Cookies["AdminPassword"].Value;
-                    chkRememberMe.Checked = true;
+                   
                 }
+            }
+            catch (Exception ex)
+            {
+                errorMessage.Visible = true;
+                errorMessage.Text = "An error occurred while processing your request. Please try again later.";
             }
         }
 
         protected void Unnamed4_Click(object sender, EventArgs e)
         {
-            string username = txtUsername.Text.Trim();
-            string password = txtPassword.Text.Trim();
-            string adminRoles = "Admin";
-            string organizationRoles = "Organization";
-            String Status = "No";
-
-            if (Page.IsValid)
+            try
             {
-                string query = "SELECT UserID, Username, Password, Roles ,BanStatus FROM Account WHERE Username = @Username";
-                using (SqlConnection connection = new SqlConnection(cs))
+                string username = txtUsername.Text.Trim();
+                string password = txtPassword.Text.Trim();
+                string adminRoles = "Admin";
+                string organizationRoles = "Organization";
+                String Status = "No";
+
+                if (Page.IsValid)
                 {
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    string query = "SELECT UserID, Username, Password, Roles ,BanStatus FROM Account WHERE Username = @Username";
+                    using (SqlConnection connection = new SqlConnection(cs))
                     {
-                        command.Parameters.AddWithValue("@Username", username);
-                        connection.Open();
-
-                        SqlDataReader reader = command.ExecuteReader();
-                        if (reader.Read())
+                        using (SqlCommand command = new SqlCommand(query, connection))
                         {
-                            string hashedPassword = reader["Password"].ToString();
-                            string roles = reader["Roles"].ToString();
-                            int userID = Convert.ToInt32(reader["UserID"]);
+                            command.Parameters.AddWithValue("@Username", username);
+                            connection.Open();
 
-                            if (BCrypt.Net.BCrypt.Verify(password, hashedPassword))
+                            SqlDataReader reader = command.ExecuteReader();
+                            if (reader.Read())
                             {
-                                if (roles == organizationRoles)
-                                {
-                                    if (reader["BanStatus"].ToString().Trim() == Status.Trim())
-                                    {
-                                        Session["UserID"] = userID;
+                                string hashedPassword = reader["Password"].ToString();
+                                string roles = reader["Roles"].ToString();
+                                int userID = Convert.ToInt32(reader["UserID"]);
 
-                                        // Remember me functionality
-                                        if (chkRememberMe.Checked)
+                                if (BCrypt.Net.BCrypt.Verify(password, hashedPassword))
+                                {
+                                    if (roles == organizationRoles)
+                                    {
+                                        if (reader["BanStatus"].ToString().Trim() == Status.Trim())
                                         {
-                                            HttpCookie cookieAdminUsername = new HttpCookie("AdminUsername", username);
-                                            HttpCookie cookieAdminPassword = new HttpCookie("AdminPassword", password);
-                                            cookieAdminUsername.Expires = DateTime.Now.AddDays(7);
-                                            cookieAdminPassword.Expires = DateTime.Now.AddDays(7);
-                                            Response.Cookies.Add(cookieAdminUsername);
-                                            Response.Cookies.Add(cookieAdminPassword);
+                                            Session["UserID"] = userID;
+
+                                         
+                                           
+
+                                            reader.Close();
+                                            Response.Redirect("../organizationSide/applyProgram.aspx");
                                         }
                                         else
                                         {
-                                            Response.Cookies["Username"].Expires = DateTime.Now.AddDays(-1);
-                                            Response.Cookies["Password"].Expires = DateTime.Now.AddDays(-1);
+                                            Response.Write("<script>alert('Your account has been banned by the admin.')</script>");
                                         }
-
-                                        reader.Close();
-                                        Response.Redirect("../organizationSide/applyProgram.aspx");
                                     }
-                                    else
+                                    else if (roles == adminRoles)
                                     {
-                                        Response.Write("<script>alert('Ur accounr been ban by admin'+)</script>");
+                                        Session["Username"] = username;
+                                        reader.Close();
+                                        Response.Redirect("../AdminSide/dashboard.aspx");
                                     }
                                 }
-                                else if (roles == adminRoles)
+                                else
                                 {
-                                    Session["Username"] = username;
-                                    reader.Close();
-                                    Response.Redirect("../AdminSide/dashboard.aspx");
+                                    lblMessage.Visible = true;
+                                    lblMessage.Text = "Invalid Username and Password. Please Try Again!";
                                 }
                             }
                             else
@@ -92,20 +91,18 @@ namespace AssFundraisingSystem.UserSide
                                 lblMessage.Visible = true;
                                 lblMessage.Text = "Invalid Username and Password. Please Try Again!";
                             }
-                        }
-                        else
-                        {
-                            lblMessage.Visible = true;
-                            lblMessage.Text = "Invalid Username and Password. Please Try Again!";
-                        }
 
-                        reader.Close(); // Close the data reader before exiting the method
+                            reader.Close(); // Close the data reader before exiting the method
+                        }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                errorMessage.Visible = true;
+                errorMessage.Text = "An error occurred while processing your request. Please try again";
+
+            }
         }
     }
-
 }
-
-

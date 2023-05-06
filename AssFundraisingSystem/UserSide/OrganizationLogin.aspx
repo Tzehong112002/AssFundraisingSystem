@@ -37,7 +37,7 @@
 
 <div class="form-group mb-4">
 <div class="custom-control custom-checkbox">
-<asp:CheckBox ID="chkRememberMe" Text="&nbsp;&nbsp;&nbsp;Remember Me" runat="server" />
+
 
 </div>
     
@@ -47,6 +47,7 @@
   
 
     <asp:Label ID="lblMessage" runat="server" Text="Label" Visible="False" ForeColor="Red"></asp:Label>
+     <asp:Label ID="errorMessage" runat="server" ForeColor="Red" Text="Label" Visible="False"></asp:Label>
 
 
   

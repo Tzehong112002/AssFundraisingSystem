@@ -31,5 +31,17 @@ namespace AssFundraisingSystem
             Response.Redirect("Categories.aspx");
             
         }
+
+        void Page_Error()
+        {
+            Response.Write("<h1> Sorry <h1>" +
+
+                Server.GetLastError().Message
+
+                );
+            Server.ClearError();
+        }
+
+
     }
 }

@@ -17,7 +17,7 @@
         <th scope="col">Image</th>
         <th scope="col">Name</th>
         <th scope="col">Target</th>
-        <th scope="col">Progress</th>
+
         <th scope="col">Button</th>
 
 
@@ -32,15 +32,7 @@
                         <td data-label="Image"><img class="lazyload" loading="lazy" alt="picture" title="event" src="<%#Eval("EventIMG") %>"></td>
                         <td data-label="Model"><strong><%#Eval("EventName") %></strong></td>
                         <td data-label="Model">RM<%#Eval("EventTarget") %></td>
-                        <td>
-                            <div class="container" >               
-                                <div class="progress progress-striped">
-                                  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                    <span>40% Complete </span>
-                                </div>
-                            </div>
-                            </div>
-                        </td>
+                        
  
                         <td data-label="Price" data-align="center">
 
