@@ -1,6 +1,23 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="invoice.aspx.cs" Inherits="AssFundraisingSystem.UserSide.invoice" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="server">
     <link href="css/invoice.css" rel="stylesheet" />
+    <style>
+        .backBtn {
+            margin: 0 auto;
+            display: flex;
+            border: 1px solid #CCCCCC;
+            background: transparent;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-bottom: 100px;
+        }
+
+        .backBtn:hover {
+            border: 1px solid #CCB323;
+            background: #CCB323;
+            color: #FFFFFF;
+        }
+    </style>
     <div class="text-center">
         <div class="container" id="container1">
             <asp:Image ID="Image1" runat="server" ImageUrl="invoice.png" CssClass="invoiceImg" />
@@ -89,7 +106,7 @@
     </div>
     <asp:LinkButton ID="downloadbtn" runat="server" CssClass="lnkbtn" OnClick="DownloadBtn_Click">Download Invoice</asp:LinkButton>
     <br />
-    <asp:Button ID="backbtn" class="btn" runat="server" Text="Back to Event Page" OnClick="BackBtn_Click" CssClass="backBtn" />
+    <asp:Button ID="backbtn" runat="server" Text="Back to Event Page" OnClick="BackBtn_Click" class="backBtn" />
 
 
 
