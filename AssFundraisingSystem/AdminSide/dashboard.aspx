@@ -128,7 +128,7 @@
         function printDiv(divName) {
             window.print();
         }
-    </script>ipt>
+    </script>
 </asp:Content>
 
 
