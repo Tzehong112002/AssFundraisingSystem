@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
+using Org.BouncyCastle.Asn1.X509;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace AssFundraisingSystem.AdminSide
 {
@@ -90,6 +92,12 @@ namespace AssFundraisingSystem.AdminSide
                 }
 
 
+            if (string.IsNullOrEmpty(TextBox1.Text) || string.IsNullOrEmpty(TextBox5.Text) || string.IsNullOrEmpty(FileUpload1.PostedFile.FileName))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "alert('Please fill out all fields.');", true);
+            }
+            else
+            {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
@@ -118,9 +126,26 @@ namespace AssFundraisingSystem.AdminSide
                         }
                     }
                 }
+            }
 
             
             
         }
+
+        void Page_Error()
+        {
+            // Get the exception object
+            Exception ex = Server.GetLastError();
+
+            // Clear the error so it doesn't propagate further
+            Server.ClearError();
+
+            // Display a message indicating that there might be an error
+            Response.Write("<h1>Sorry, an error occurred while processing your request.</h1>");
+
+            // Display a hyperlink that allows the user to go back
+            Response.Write("<p><a href='javascript:history.back()' style='color:red; text-decoration:none;'>Go back</a></p>");
+        }
+
     }
 }

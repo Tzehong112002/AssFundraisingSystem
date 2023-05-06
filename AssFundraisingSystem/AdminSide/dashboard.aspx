@@ -8,7 +8,7 @@
     <div class="title">
 
         <h1 style="margin:0px;">Dashboard</h1> 
-        <asp:Button ID="btnPrint" runat="server" Text="Print" CssClass="buttonAdd " OnClientClick="javascript:printDiv('divToPrint');" />
+       
     </div>
 
     <div class="home-content">
@@ -128,7 +128,7 @@
         function printDiv(divName) {
             window.print();
         }
-    </script>ipt>
+    </script>
 </asp:Content>
 
 

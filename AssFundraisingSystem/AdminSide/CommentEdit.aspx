@@ -9,15 +9,17 @@
          <div class="input">
              <asp:Label ID="Label2" runat="server" Text="Time Commented :"></asp:Label>
              <asp:Calendar ID="Calendar1" runat="server" DateFormat="MM/dd/yyyy hh:mm:ss"></asp:Calendar>
+              
          </div>
 
             <div class="input">
                 <asp:Label ID="Label3" runat="server" Text="Comment Content :"></asp:Label>
                 <asp:TextBox ID="txtComment" class="txtinput" placeholder="Enter  comment content" runat="server" Height="250px" TextMode="MultiLine" ></asp:TextBox>
+                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtComment" ErrorMessage="Please enter an admin name"></asp:RequiredFieldValidator>
             </div>
 
              <asp:Button ID="btnUpdate"  runat="server" Text="Update" class="button" BackColor="Green" OnClick="btnUpdate_Click" />
-             <asp:Button ID="btnCancel"  runat="server" Text="Cancel" class="button" BackColor="Red" OnClick="btnCancel_Click" />
+             <asp:Button ID="btnCancel"  runat="server" Text="Cancel" class="button" BackColor="Red" OnClick="btnCancel_Click" CausesValidation="false"/>
 
    </div>
 

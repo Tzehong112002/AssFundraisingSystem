@@ -70,36 +70,45 @@ namespace AssFundraisingSystem.AdminSide
 
             }
 
-            using (SqlConnection connection = new SqlConnection(cs))
-            {
-                using (SqlCommand command = new SqlCommand(insertQuery, connection))
-                {
-                    command.Parameters.AddWithValue("@Name", TextBox1.Text);
-                    command.Parameters.AddWithValue("@Email", TextBox1.Text);
-                    command.Parameters.AddWithValue("@Password", hashedPassword);
-                    command.Parameters.AddWithValue("@PhoneNo", TextBox5.Text);
-                    command.Parameters.AddWithValue("@Roles", "Admin");
-                    command.Parameters.AddWithValue("@ProfilePic", pathImg);
-                    command.Parameters.AddWithValue("@Gender", "");
-                    command.Parameters.AddWithValue("@DateOfBirth", DBNull.Value);
-                    command.Parameters.AddWithValue("@Username", TextBox4.Text);
-                    command.Parameters.AddWithValue("@StatusBecomeOrganization", DBNull.Value);
-                    command.Parameters.AddWithValue("@submitICFront", DBNull.Value);
-                    command.Parameters.AddWithValue("@submitICBack", DBNull.Value);
-                    command.Parameters.AddWithValue("@submitCompanyName", DBNull.Value);
 
-                    connection.Open();
-                    int result = command.ExecuteNonQuery();
-                    if (result > 0)
+            if (string.IsNullOrEmpty(TextBox1.Text) || string.IsNullOrEmpty(TextBox2.Text) || string.IsNullOrEmpty(TextBox3.Text) || string.IsNullOrEmpty(TextBox4.Text) || string.IsNullOrEmpty(TextBox5.Text) || string.IsNullOrEmpty(FileUpload1.PostedFile.FileName))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "alert('Please fill out all fields.');", true);
+            }
+            else
+            {
+                using (SqlConnection connection = new SqlConnection(cs))
+                {
+                    using (SqlCommand command = new SqlCommand(insertQuery, connection))
                     {
-                        Response.Redirect("adminAccount.aspx");
-                    }
-                    else
-                    {
-                        Response.Write("<script>alert('Failed to add admin.');</script>");
+                        command.Parameters.AddWithValue("@Name", TextBox1.Text);
+                        command.Parameters.AddWithValue("@Email", TextBox1.Text);
+                        command.Parameters.AddWithValue("@Password", hashedPassword);
+                        command.Parameters.AddWithValue("@PhoneNo", TextBox5.Text);
+                        command.Parameters.AddWithValue("@Roles", "Admin");
+                        command.Parameters.AddWithValue("@ProfilePic", pathImg);
+                        command.Parameters.AddWithValue("@Gender", "");
+                        command.Parameters.AddWithValue("@DateOfBirth", DBNull.Value);
+                        command.Parameters.AddWithValue("@Username", TextBox4.Text);
+                        command.Parameters.AddWithValue("@StatusBecomeOrganization", DBNull.Value);
+                        command.Parameters.AddWithValue("@submitICFront", DBNull.Value);
+                        command.Parameters.AddWithValue("@submitICBack", DBNull.Value);
+                        command.Parameters.AddWithValue("@submitCompanyName", DBNull.Value);
+
+                        connection.Open();
+                        int result = command.ExecuteNonQuery();
+                        if (result > 0)
+                        {
+                            Response.Redirect("adminAccount.aspx");
+                        }
+                        else
+                        {
+                            Response.Write("<script>alert('Failed to add admin.');</script>");
+                        }
                     }
                 }
             }
+
         }
 
 
@@ -108,5 +117,21 @@ namespace AssFundraisingSystem.AdminSide
         {
             Response.Redirect("adminAccount.aspx");
         }
+
+        void Page_Error()
+        {
+            // Get the exception object
+            Exception ex = Server.GetLastError();
+
+            // Clear the error so it doesn't propagate further
+            Server.ClearError();
+
+            // Display a message indicating that there might be an error
+            Response.Write("<h1>Sorry, an error occurred while processing your request.</h1>");
+
+            // Display a hyperlink that allows the user to go back
+            Response.Write("<p><a href='javascript:history.back()' style='color:red; text-decoration:none;'>Go back</a></p>");
+        }
+
     }
 }

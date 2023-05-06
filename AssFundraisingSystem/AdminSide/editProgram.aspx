@@ -47,6 +47,7 @@
             <div class="input">
                 <span id="lblPicture">Profile Picture:</span>
                 <asp:FileUpload ID="ImgUpload" runat="server" />
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="ImgUpload" ErrorMessage="Please upload the profile picture"></asp:RequiredFieldValidator>
 
 &nbsp;<div class="inputerrormessage"></div>
             </div>
@@ -54,7 +55,7 @@
 
              <asp:Button ID="btnUpdate"  runat="server" Text="Update" class="button" BackColor="Green" OnClick="btnUpdate_Click" />
 
-             <asp:Button ID="btnCancel"  runat="server" Text="Cancel" class="button" BackColor="Red" OnClick="btnCancel_Click" />
+             <asp:Button ID="btnCancel"  runat="server" Text="Cancel" class="button" BackColor="Red" OnClick="btnCancel_Click" CausesValidation="false"/>
 
    </div>
 

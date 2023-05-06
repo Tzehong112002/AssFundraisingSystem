@@ -26,7 +26,7 @@
 
 <div class="form-group mb-4">
     <asp:TextBox required="true" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Email" runat="server" ID="txtEmail"></asp:TextBox>
-    <asp:RegularExpressionValidator ID="emailValidator" runat="server" ControlToValidate="txtEmail" ValidationExpression="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" ErrorMessage="Please enter a valid email address" Display="Dynamic"></asp:RegularExpressionValidator>
+    <asp:RegularExpressionValidator ID="emailValidator" runat="server" ControlToValidate="txtEmail" ValidationExpression="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" ErrorMessage="Please enter a valid email address" Display="Dynamic" ForeColor="Red"></asp:RegularExpressionValidator>
 </div>
 
 

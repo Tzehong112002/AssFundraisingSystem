@@ -40,39 +40,64 @@ namespace AssFundraisingSystem.AdminSide
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-
             if (Page.IsValid)
             {
-                String CommentContent = txtComment.Text;
-                DateTime DateCommented = Calendar1.SelectedDate;
+                int commentId = Int32.Parse(Request.QueryString["CommentID"]);
+                int EventId = Int32.Parse(Request.QueryString["EventID"]);
+                string commentContent = txtComment.Text;
+                DateTime dateCommented = Calendar1.SelectedDate;
 
-                int eventid = Int32.Parse(Request.QueryString["EventID"]);
-                int commentid = Int32.Parse(Request.QueryString["CommentID"]);
-                string sql = "Update Comment SET DateCommented=@DateCommented, CommentContent=@CommentContent WHERE CommentID=@commentid ";
+                using (SqlConnection con = new SqlConnection(cs))
+                {
+                    string sql = "UPDATE Comment SET CommentContent = @CommentContent, DateCommented = @DateCommented WHERE CommentID = @CommentID";
 
-                SqlConnection con = new SqlConnection(cs);
-                SqlCommand cmd = new SqlCommand(sql, con);
+                    using (SqlCommand cmd = new SqlCommand(sql, con))
+                    {
+                        cmd.Parameters.AddWithValue("@CommentID", commentId);
+                        cmd.Parameters.AddWithValue("@CommentContent", commentContent);
+                        cmd.Parameters.AddWithValue("@DateCommented", dateCommented);
 
-                cmd.Parameters.AddWithValue("@CommentID", commentid);
-                cmd.Parameters.AddWithValue("@CommentContent", CommentContent);
-                cmd.Parameters.AddWithValue("@DateCommented", DateCommented);
+                        con.Open();
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        con.Close();
 
-
-
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
-                Response.Write("<script>alert('Comment Edited Successfully!')</script>");
-
-                Response.Redirect("CommentManage.aspx?EventId=" + eventid);
-
+                        if (rowsAffected > 0)
+                        {
+                            Response.Write("<script>alert('Comment updated successfully!')</script>");
+                            Response.Redirect("ProgramList.aspx?EventID=" + EventId);
+                        }
+                        else
+                        {
+                            Response.Write("<script>alert('No rows were updated. Please try again.')</script>");
+                        }
+                    }
+                }
             }
         }
+
+
+
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             int eventid = Int32.Parse(Request.QueryString["EventID"]);
             Response.Redirect("CommentManage.aspx?EventId=" + eventid);
         }
+
+        void Page_Error()
+        {
+            // Get the exception object
+            Exception ex = Server.GetLastError();
+
+            // Clear the error so it doesn't propagate further
+            Server.ClearError();
+
+            // Display a message indicating that there might be an error
+            Response.Write("<h1>Sorry, an error occurred while processing your request.</h1>");
+
+            // Display a hyperlink that allows the user to go back
+            Response.Write("<p><a href='javascript:history.back()' style='color:red; text-decoration:none;'>Go back</a></p>");
+        }
+
     }
 }

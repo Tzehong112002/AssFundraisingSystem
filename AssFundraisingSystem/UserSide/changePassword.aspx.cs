@@ -26,9 +26,9 @@ namespace AssFundraisingSystem.UserSide
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            string oldPassword = TextBox1.Text.Trim();
-            string newPassword = TextBox2.Text.Trim();
-            string confirmPassword = TextBox3.Text.Trim();
+            string oldPassword = txtCurrentPassword.Text.Trim();
+            string newPassword = txtNewPassword.Text.Trim();
+            string confirmPassword = txtRepeatPassword.Text.Trim();
 
             if (newPassword != confirmPassword)
             {
@@ -71,5 +71,20 @@ namespace AssFundraisingSystem.UserSide
         {
             Response.Redirect("Profile.aspx");
         }
+        void Page_Error()
+        {
+            // Get the exception object
+            Exception ex = Server.GetLastError();
+
+            // Clear the error so it doesn't propagate further
+            Server.ClearError();
+
+            // Display a message indicating that there might be an error
+            Response.Write("<h1>Sorry, an error occurred while processing your request.</h1>");
+
+            // Display a hyperlink that allows the user to go back
+            Response.Write("<p><a href='javascript:history.back()' style='color:red; text-decoration:none;'>Go back</a></p>");
+        }
+
     }
 }

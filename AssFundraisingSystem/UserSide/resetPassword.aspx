@@ -25,13 +25,19 @@
 
 <h2 class="mb-4">Reset Password</h2>
 
-<div class ="form-group mb-4">
-<asp:TextBox required= "true" TextMode="Password" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Enter New Password" runat="server" ID="txtPassword" ></asp:TextBox>
-
-    <br />
-<asp:TextBox required= "true" TextMode="Password" CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Reenter Password" runat="server" ID="txtcfmPassword" ></asp:TextBox>
-
+<div class="form-group mb-4">
+    <asp:Label runat="server" AssociatedControlID="txtPassword" Text="Enter New Password"></asp:Label>
+    <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control border-0 shadow form-control-lg text-base" TextMode="Password"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="txtPassword" ErrorMessage="Password is required"></asp:RequiredFieldValidator>
 </div>
+
+<div class="form-group mb-4">
+    <asp:Label runat="server" AssociatedControlID="txtcfmPassword" Text="Reenter Password"></asp:Label>
+    <asp:TextBox ID="txtcfmPassword" runat="server" CssClass="form-control border-0 shadow form-control-lg text-base" TextMode="Password"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="rfvConfirmPassword" runat="server" ControlToValidate="txtcfmPassword" ErrorMessage="Confirm Password is required"></asp:RequiredFieldValidator>
+    <asp:CompareValidator ID="cvPasswordMatch" runat="server" ControlToCompare="txtPassword" ControlToValidate="txtcfmPassword" ErrorMessage="Passwords do not match"></asp:CompareValidator>
+</div>
+
 
 
 <div class="form-group mb-4">

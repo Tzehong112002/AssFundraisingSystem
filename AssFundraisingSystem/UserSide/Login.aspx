@@ -37,7 +37,7 @@
 
                     <div class="form-group mb-4">
                         <div class="custom-control custom-checkbox">
-                            <asp:CheckBox Text="&nbsp;&nbsp;&nbsp;Remember Me" runat="server" />
+                            <asp:CheckBox ID="chkRememberMe" Text="&nbsp;&nbsp;&nbsp;Remember Me" runat="server" />
                         </div>
 
                         <div id="recaptcha-container">
@@ -73,5 +73,6 @@
         document.getElementById("recaptcha-container").style.display = "none";
     }
 </script>
+
 </body>
 </html>

@@ -8,6 +8,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/LoginStyle.css" rel="stylesheet" />
     <link href="css/ExtraLoginRegisterStyle.css" rel="stylesheet" />
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -36,9 +37,9 @@
 </div>
 
 <div class="form-group mb-4">
-<div class="custom-control custom-checkbox">
-<asp:CheckBox Text="&nbsp&nbsp&nbspRemember Me" runat="server" />
 
+<div id="recaptcha-container">
+<div class="g-recaptcha" data-sitekey="6LfJUNslAAAAAHM3ZOpAzFserQk75KOsmJcgwjh3" data-callback="onSubmit"></div>
 </div>
     
 </div>
@@ -47,6 +48,7 @@
   
 
     <asp:Label ID="lblMessage" runat="server" Text="Label" Visible="False" ForeColor="Red"></asp:Label>
+     <asp:Label ID="errorMessage" runat="server" ForeColor="Red" Text="Label" Visible="False"></asp:Label>
 
 
   
@@ -78,5 +80,14 @@
 
 </div>
     </form>
+
+    <script type="text/javascript">
+    function validateCaptcha(sender, args) {
+        args.IsValid = grecaptcha.getResponse().length !== 0;
+    }
+    function onSubmit(token) {
+        document.getElementById("recaptcha-container").style.display = "none";
+    }
+    </script>
 </body>
 </html>
