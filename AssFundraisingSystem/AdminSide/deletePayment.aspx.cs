@@ -78,7 +78,7 @@ namespace AssFundraisingSystem.AdminSide
             con.Close();
 
             Response.Write("<script>alert('Delete Successful')</script>");
-            Response.Redirect("paymentlist.aspx");
+            Response.Redirect("paymentHistory.aspx");
         }
     }
 }

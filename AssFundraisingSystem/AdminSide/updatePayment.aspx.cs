@@ -80,7 +80,7 @@ namespace AssFundraisingSystem.AdminSide
             con.Close();
             Response.Write("<script>alert('Successful')</script>");
 
-            Response.Redirect("paymentlist.aspx");
+            Response.Redirect("paymentHistory.aspx");
         }
     }
 }
