@@ -123,11 +123,13 @@
     <Content Include="AdminSide\css\editAdminStyle.css" />
     <Content Include="AdminSide\css\editProgramStyle.css" />
     <Content Include="AdminSide\css\EventLListStyle.css" />
+    <Content Include="AdminSide\css\formBtn.css" />
     <Content Include="AdminSide\css\Participant.css" />
     <Content Include="AdminSide\css\Participants.css" />
     <Content Include="AdminSide\css\weiyao.css" />
     <Content Include="AdminSide\dashboard.aspx" />
     <Content Include="AdminSide\Delete.aspx" />
+    <Content Include="AdminSide\deletePayment.aspx" />
     <Content Include="AdminSide\DonationList.aspx" />
     <Content Include="AdminSide\Edit.aspx" />
     <Content Include="AdminSide\EditAdmin.aspx" />
@@ -136,8 +138,10 @@
     <Content Include="AdminSide\ParticipantEdit.aspx" />
     <Content Include="AdminSide\ParticipantManage.aspx" />
     <Content Include="AdminSide\ParticipantRecord.aspx" />
+    <Content Include="AdminSide\paymentHistory.aspx" />
     <Content Include="AdminSide\ProgramList.aspx" />
     <Content Include="AdminSide\Categories.aspx" />
+    <Content Include="AdminSide\updatePayment.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Images\dgorescue.jpg" />
     <Content Include="Images\organization.jpg" />
@@ -295,6 +299,13 @@
     <Compile Include="AdminSide\Delete.aspx.designer.cs">
       <DependentUpon>Delete.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminSide\deletePayment.aspx.cs">
+      <DependentUpon>deletePayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSide\deletePayment.aspx.designer.cs">
+      <DependentUpon>deletePayment.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminSide\DonationList.aspx.cs">
       <DependentUpon>DonationList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -351,6 +362,13 @@
     <Compile Include="AdminSide\ParticipantRecord.aspx.designer.cs">
       <DependentUpon>ParticipantRecord.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminSide\paymentHistory.aspx.cs">
+      <DependentUpon>paymentHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSide\paymentHistory.aspx.designer.cs">
+      <DependentUpon>paymentHistory.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminSide\ProgramList.aspx.cs">
       <DependentUpon>ProgramList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -364,6 +382,13 @@
     </Compile>
     <Compile Include="AdminSide\Categories.aspx.designer.cs">
       <DependentUpon>Categories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminSide\updatePayment.aspx.cs">
+      <DependentUpon>updatePayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSide\updatePayment.aspx.designer.cs">
+      <DependentUpon>updatePayment.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

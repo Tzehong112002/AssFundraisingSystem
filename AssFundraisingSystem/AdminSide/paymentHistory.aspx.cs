@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace AssFundraisingSystem.AdminSide
 {
-    public partial class ParticipantRecord : System.Web.UI.Page
+    public partial class paymentHistory : System.Web.UI.Page
     {
         string cs = ConfigurationManager.ConnectionStrings["MYConnectionString"].ConnectionString;
 
@@ -26,20 +26,20 @@ namespace AssFundraisingSystem.AdminSide
         {
             using (SqlConnection con = new SqlConnection(cs))
             {
-                using (SqlDataAdapter sda = new SqlDataAdapter("SELECT UserID, Name, Email, PhoneNo FROM Account", con))
+                using (SqlDataAdapter sda = new SqlDataAdapter("SELECT PaymentID, Name, Email, ContactNumber, PaymentStatus FROM Payment", con))
                 {
                     using (DataTable dt = new DataTable())
                     {
                         sda.Fill(dt);
-                        gvParticipants.DataSource = dt;
-                        gvParticipants.DataBind();
+                        paymentListForm.DataSource = dt;
+                        paymentListForm.DataBind();
                     }
                 }
             }
 
             //Required for jQuery DataTables to work.
-            gvParticipants.UseAccessibleHeader = true;
-            gvParticipants.HeaderRow.TableSection = TableRowSection.TableHeader;
+            paymentListForm.UseAccessibleHeader = true;
+            paymentListForm.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
     }
 }
