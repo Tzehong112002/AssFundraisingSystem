@@ -47,24 +47,32 @@ namespace AssFundraisingSystem.AdminSide
 
         protected void btnDelComment_Click(object sender, EventArgs e)
         {
-            Button btnDelComment = (Button)sender;
-            string commentID = btnDelComment.CommandArgument;
-
-
-
-            using (SqlConnection con = new SqlConnection(cs))
+            try
             {
-                using (SqlCommand cmd = new SqlCommand("DELETE FROM Comment WHERE CommentID = @CommentID", con))
-                {
-                    cmd.Parameters.AddWithValue("@CommentID", commentID);
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                }
-            }
+                Button btnDelComment = (Button)sender;
+                string commentID = btnDelComment.CommandArgument;
 
-            this.BindRepeaterComment();
+                using (SqlConnection con = new SqlConnection(cs))
+                {
+                    using (SqlCommand cmd = new SqlCommand("DELETE FROM Comment WHERE CommentID = @CommentID", con))
+                    {
+                        cmd.Parameters.AddWithValue("@CommentID", commentID);
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                    }
+                }
+
+                this.BindRepeaterComment();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<h1>Sorry, an error occurred while deleting the comment. Please try again.</h1>");
+                Response.Write("<p><a href='javascript:history.back()' style='color:red; text-decoration:none;'>Go back</a></p>");
+            }
         }
+
+
 
         void Page_Error()
         {

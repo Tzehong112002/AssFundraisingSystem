@@ -51,25 +51,58 @@ namespace AssFundraisingSystem.AdminSide
 
         protected void DeleteCustomer(object sender, EventArgs e)
         {
-
-            LinkButton lnkDelete = (LinkButton)sender;
-            string eventID = lnkDelete.CommandArgument;
-
-
-
-            using (SqlConnection con = new SqlConnection(cs))
+            try
             {
-                using (SqlCommand cmd = new SqlCommand("DELETE FROM Event WHERE EventID = @EventID", con))
+                LinkButton lnkDelete = (LinkButton)sender;
+                string eventID = lnkDelete.CommandArgument;
+
+                // Check if there are any related records before deleting the event
+                bool hasRelatedRecords = false;
+                using (SqlConnection con = new SqlConnection(cs))
                 {
-                    cmd.Parameters.AddWithValue("@EventID", eventID);
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                    con.Close();
+                    using (SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Payment WHERE EventID = @EventID", con))
+                    {
+                        cmd.Parameters.AddWithValue("@EventID", eventID);
+                        con.Open();
+                        int count = (int)cmd.ExecuteScalar();
+                        if (count > 0)
+                        {
+                            hasRelatedRecords = true;
+                        }
+                        con.Close();
+                    }
+                }
+
+                if (hasRelatedRecords)
+                {
+                    Response.Write("<script>alert('Please delete the payment information related to this event before deleting the event.')</script>");
+                }
+                else
+                {
+                    using (SqlConnection con = new SqlConnection(cs))
+                    {
+                        using (SqlCommand cmd = new SqlCommand("DELETE FROM Event WHERE EventID = @EventID", con))
+                        {
+                            cmd.Parameters.AddWithValue("@EventID", eventID);
+                            con.Open();
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                        }
+                    }
+
+                    this.BindRepeater();
                 }
             }
+            catch (Exception ex)
+            {
+                // Display a generic error message
+                Response.Write("<h1>Sorry, an error occurred while processing your request.</h1>");
 
-            this.BindRepeater();
+                // Display a hyperlink that allows the user to go back
+                Response.Write("<p><a href='javascript:history.back()'>Go back</a></p>");
+            }
         }
+
 
 
         void Page_Error()
