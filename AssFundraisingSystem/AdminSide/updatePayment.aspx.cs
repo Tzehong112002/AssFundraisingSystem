@@ -48,7 +48,7 @@ namespace AssFundraisingSystem.AdminSide
 
                 if (!found)
                 {
-                    Response.Redirect("paymentlist.aspx");
+                    Response.Redirect("paymentHistory.aspx");
                 }
 
             }
@@ -56,7 +56,7 @@ namespace AssFundraisingSystem.AdminSide
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Server.Transfer("paymentlist.aspx");
+            Server.Transfer("paymentHistory.aspx");
         }
 
         protected void btnUpdate_Click(object sender, EventArgs e)
