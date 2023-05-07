@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -15,23 +16,30 @@ namespace AssFundraisingSystem.AdminSide
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (!this.IsPostBack)
             {
-                string sql = "SELECT UserID, Name, Email, PhoneNo FROM Account WHERE Roles = 'Organization' OR Roles = 'User'";
-
-                SqlConnection con = new SqlConnection(cs);
-                SqlCommand cmd = new SqlCommand(sql, con);
-
-                con.Open();
-
-                SqlDataReader dr = cmd.ExecuteReader();
-
-                gvParticipants.DataSource = dr;
-                gvParticipants.DataBind();
-
-                dr.Close();
-                con.Close();
+                this.BindGrid();
             }
+        }
+
+        private void BindGrid()
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                using (SqlDataAdapter sda = new SqlDataAdapter("SELECT UserID, Name, Email, PhoneNo FROM Account WHERE Roles = 'Organization' OR Roles = 'User'", con))
+                {
+                    using (DataTable dt = new DataTable())
+                    {
+                        sda.Fill(dt);
+                        gvParticipants.DataSource = dt;
+                        gvParticipants.DataBind();
+                    }
+                }
+            }
+
+            //Required for jQuery DataTables to work.
+            gvParticipants.UseAccessibleHeader = true;
+            gvParticipants.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         void Page_Error()
