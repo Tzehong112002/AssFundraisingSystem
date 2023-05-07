@@ -14,7 +14,7 @@
 
             <div class="input">
                 <asp:Label ID="Label3" runat="server" Text="Comment Content :"></asp:Label>
-                <asp:TextBox ID="txtComment" class="txtinput" placeholder="Enter  comment content" runat="server" Height="250px" TextMode="MultiLine" ></asp:TextBox>
+                <asp:TextBox ID="txtComment" class="txtinput" placeholder="Enter  comment content" runat="server" Height="250px"  ></asp:TextBox>
                  <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtComment" ErrorMessage="Please enter the comment"></asp:RequiredFieldValidator>
             </div>
 

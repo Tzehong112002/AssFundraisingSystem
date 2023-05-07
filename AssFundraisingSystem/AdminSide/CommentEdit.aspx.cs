@@ -15,60 +15,83 @@ namespace AssFundraisingSystem.AdminSide
         string cs = ConfigurationManager.ConnectionStrings["MYConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
-            string commentid = Request.QueryString["CommentID"];
-            SqlConnection con = new SqlConnection(cs);
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Comment WHERE CommentID = '" + commentid + "'", con);
-            con.Open();
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            if (dr.Read())
+            if (!this.IsPostBack)
             {
-                txtComment.Text = dr["CommentContent"].ToString();
-                Calendar1.SelectedDate = Convert.ToDateTime(dr["DateCommented"]);
-            }
+                string commentid = Request.QueryString["CommentID"];
+                SqlConnection con = new SqlConnection(cs);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Comment WHERE CommentID = '" + commentid + "'", con);
+                con.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
 
-            dr.Close();
-            con.Close();
+                if (dr.Read())
+                {
+                    txtComment.Text = dr["CommentContent"].ToString();
+                    Calendar1.SelectedDate = Convert.ToDateTime(dr["DateCommented"]);
+                }
+
+                dr.Close();
+                con.Close();
+
+            }
+           
         }
 
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (Page.IsValid)
+            try
             {
-                int commentId = Int32.Parse(Request.QueryString["CommentID"]);
-                int EventId = Int32.Parse(Request.QueryString["EventID"]);
-                string commentContent = txtComment.Text;
-                DateTime dateCommented = Calendar1.SelectedDate;
+                
+                    int commentId = Int32.Parse(Request.QueryString["CommentID"]);
+                    int eventId = Int32.Parse(Request.QueryString["EventID"]);
+                    string commentContent = txtComment.Text;
+                    DateTime dateCommented = Calendar1.SelectedDate;
 
-
-                using (SqlConnection con = new SqlConnection(cs))
-                {
-                    string sql = "UPDATE Comment SET CommentContent = @CommentContent, DateCommented = @DateCommented WHERE CommentID = @CommentID";
-
-                    using (SqlCommand cmd = new SqlCommand(sql, con))
+                    using (SqlConnection con = new SqlConnection(cs))
                     {
-                        cmd.Parameters.AddWithValue("@CommentID", commentId);
-                        cmd.Parameters.AddWithValue("@CommentContent", commentContent);
-                        cmd.Parameters.AddWithValue("@DateCommented", dateCommented);
+                        string sql = "UPDATE Comment SET CommentContent = @CommentContent, DateCommented = @DateCommented WHERE CommentID = @CommentID";
 
-                        con.Open();
-                        int rowsAffected = cmd.ExecuteNonQuery();
-                        con.Close();
+                        using (SqlCommand cmd = new SqlCommand(sql, con))
+                        {
+                            cmd.Parameters.AddWithValue("@CommentID", commentId);
+                            cmd.Parameters.AddWithValue("@CommentContent", commentContent);
+                            cmd.Parameters.AddWithValue("@DateCommented", dateCommented);
 
-                        if (rowsAffected > 0)
-                        {
-                            Response.Write("<script>alert('Comment updated successfully!')</script>");
-                            Response.Redirect("ProgramList.aspx?EventID=" + EventId);
-                        }
-                        else
-                        {
-                            Response.Write("<script>alert('No rows were updated. Please try again.')</script>");
+                            con.Open();
+                            int rowsAffected = cmd.ExecuteNonQuery();
+                            con.Close();
+
+                            if (rowsAffected > 0)
+                            {
+                                Response.Write("<script>alert('Comment updated successfully!')</script>");
+                                Response.Redirect("ProgramList.aspx?EventID=" + eventId);
+                            }
+                            else
+                            {
+                                Response.Write("<script>alert('No rows were updated. Please try again.')</script>");
+                            }
                         }
                     }
-                }
+
+                
+                
+            }
+            catch (FormatException)
+            {
+                Response.Write("<script>alert('Invalid input. Please check the form and try again.')</script>");
+            }
+            catch (SqlException ex)
+            {
+                Response.Write($"<script>alert('An SQL error occurred while updating the comment. {ex.Message.Replace("'", "\\'")}') </script>");
+            }
+            catch (Exception ex)
+            {
+                Response.Write($"<script>alert('An error occurred while updating the comment. {ex.Message.Replace("'", "\\'")}') </script>");
             }
         }
+
+
+
 
 
 
