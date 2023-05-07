@@ -31,18 +31,22 @@
                <asp:Label ID="Label1" runat="server" Text="Contact Number :"></asp:Label>
                 <asp:TextBox ID="TextBox5" class="txtinput" placeholder="Enter Contact Number" runat="server" ></asp:TextBox>
              <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TextBox5" ErrorMessage="Please enter the contact number"></asp:RequiredFieldValidator>
+             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TextBox5"
+                ErrorMessage="Contact number must be 10-11 digits" ValidationExpression="^\d{10,11}$" Display="Dynamic"></asp:RegularExpressionValidator>
                 <div class="inputerrormessage"></div>
             </div>
          <div class="input">
                <asp:Label ID="Label2" runat="server" Text="Password :"></asp:Label>
                 <asp:TextBox ID="TextBox2" class="txtinput" placeholder="Enter Password" runat="server" TextMode="Password" ></asp:TextBox>
              <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TextBox2" ErrorMessage="Please enter an password"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="NewPasswordRegularExpressionValidator" runat="server" ControlToValidate="TextBox2" ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" ErrorMessage="Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number" Display="Dynamic"></asp:RegularExpressionValidator>
                 <div class="inputerrormessage"></div>
             </div>
          <div class="input">
                <asp:Label ID="Label3" runat="server" Text="Enter again the Password"></asp:Label>
                 <asp:TextBox ID="TextBox3" class="txtinput" placeholder="Enter again the Password" runat="server" TextMode="Password" ></asp:TextBox>
              <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="TextBox3" ErrorMessage="Please confirm your password"></asp:RequiredFieldValidator>
+                <asp:CompareValidator ID="CfmPasswordCompareValidator" runat="server" ControlToValidate="TextBox3" ControlToCompare="TextBox2" ErrorMessage="Passwords do not match" Display="Dynamic"></asp:CompareValidator>
                 <div class="inputerrormessage"></div>
             </div>
 

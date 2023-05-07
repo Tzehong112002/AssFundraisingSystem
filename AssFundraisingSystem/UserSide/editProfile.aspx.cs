@@ -107,9 +107,9 @@ namespace AssFundraisingSystem.UserSide
             }
 
 
-            if (calendarBirth.SelectedDate < DateTime.Today)
+            if (calendarBirth.SelectedDate > DateTime.Today)
             {
-                ErrorMessage("Start must be on or after the current date.");
+                ErrorMessage("Birth date cannot be after the current date.");
                 return;
             }
 
