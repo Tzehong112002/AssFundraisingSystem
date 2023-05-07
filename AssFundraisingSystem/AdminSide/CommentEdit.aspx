@@ -15,7 +15,7 @@
             <div class="input">
                 <asp:Label ID="Label3" runat="server" Text="Comment Content :"></asp:Label>
                 <asp:TextBox ID="txtComment" class="txtinput" placeholder="Enter  comment content" runat="server" Height="250px" TextMode="MultiLine" ></asp:TextBox>
-                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtComment" ErrorMessage="Please enter an admin name"></asp:RequiredFieldValidator>
+                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtComment" ErrorMessage="Please enter the comment"></asp:RequiredFieldValidator>
             </div>
 
              <asp:Button ID="btnUpdate"  runat="server" Text="Update" class="button" BackColor="Green" OnClick="btnUpdate_Click" />

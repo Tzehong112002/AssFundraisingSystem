@@ -16,6 +16,8 @@
               <div class="input">
                 <span id="lblFrontPicture">IC Picture (Front)</span>
                 <asp:FileUpload ID="UploadFrontIC" runat="server" />
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="UploadFrontIC" ErrorMessage="Please upload the front IC"></asp:RequiredFieldValidator>
+
                 <asp:RegularExpressionValidator ID="revUploadFrontIC" runat="server" ControlToValidate="UploadFrontIC"
                     ValidationExpression="^.*\.(jpg|jpeg|png)$"
                     ErrorMessage="Please upload a valid image file with extension JPG, JPEG, or PNG." Display="Dynamic"></asp:RegularExpressionValidator>
@@ -26,6 +28,7 @@
             <div class="input">
                 <span id="lblBackPicture">IC Picture (Back)</span>
                 <asp:FileUpload ID="UploadBackIC" runat="server" />
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="UploadBackIC" ErrorMessage="Please upload the back IC"></asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="revUploadBackIC" runat="server" ControlToValidate="UploadBackIC"
                     ValidationExpression="^.*\.(jpg|jpeg|png)$"
                     ErrorMessage="Please upload a valid image file with extension JPG, JPEG, or PNG." Display="Dynamic"></asp:RegularExpressionValidator>

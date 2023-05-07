@@ -121,20 +121,20 @@ namespace AssFundraisingSystem.UserSide
             return true;
         }
 
-        void Page_Error()
-        {
-            // Get the exception object
-            Exception ex = Server.GetLastError();
+        //void Page_Error()
+        //{
+        //    // Get the exception object
+        //    Exception ex = Server.GetLastError();
 
-            // Clear the error so it doesn't propagate further
-            Server.ClearError();
+        //    // Clear the error so it doesn't propagate further
+        //    Server.ClearError();
 
-            // Display a message indicating that there might be an error
-            Response.Write("<h1>Sorry, an error occurred while processing your request.</h1>");
+        //    // Display a message indicating that there might be an error
+        //    Response.Write("<h1>Sorry, an error occurred while processing your request.</h1>");
 
-            // Display a hyperlink that allows the user to go back
-            Response.Write("<p><a href='javascript:history.back()' style='color:red; text-decoration:none;'>Go back</a></p>");
-        }
+        //    // Display a hyperlink that allows the user to go back
+        //    Response.Write("<p><a href='javascript:history.back()' style='color:red; text-decoration:none;'>Go back</a></p>");
+        //}
 
     }
 }
