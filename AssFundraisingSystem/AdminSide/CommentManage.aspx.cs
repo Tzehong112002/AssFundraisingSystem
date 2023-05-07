@@ -67,8 +67,9 @@ namespace AssFundraisingSystem.AdminSide
             }
             catch (Exception ex)
             {
-                Response.Write("<h1>Sorry, an error occurred while deleting the comment. Please try again.</h1>");
-                Response.Write("<p><a href='javascript:history.back()' style='color:red; text-decoration:none;'>Go back</a></p>");
+                Response.Write("<h1 style='text-align:center; color:red;'>Sorry, an error occurred while deleting the comment. Please try again.</h1>");
+                Response.Write("<p style='text-align:center;'><a href='javascript:history.back()' style='color:red; text-decoration:none;'>Go back</a></p>");
+
             }
         }
 
@@ -83,10 +84,10 @@ namespace AssFundraisingSystem.AdminSide
             Server.ClearError();
 
             // Display a message indicating that there might be an error
-            Response.Write("<h1>Sorry, an error occurred while processing your request.</h1>");
+            Response.Write("<div style='text-align: center'><h1>Sorry, an error occurred while processing your request.</h1>");
 
             // Display a hyperlink that allows the user to go back
-            Response.Write("<p><a href='javascript:history.back()' style='color:red; text-decoration:none;'>Go back</a></p>");
+            Response.Write("<p><a href='javascript:history.back()' style='color:red; text-decoration:none;'>Go back</a></p></div>");
         }
 
 

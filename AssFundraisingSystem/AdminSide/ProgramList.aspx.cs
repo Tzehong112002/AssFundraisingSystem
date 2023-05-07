@@ -96,10 +96,11 @@ namespace AssFundraisingSystem.AdminSide
             catch (Exception ex)
             {
                 // Display a generic error message
-                Response.Write("<h1>Sorry, an error occurred while processing your request.</h1>");
+                Response.Write("<div style='text-align: center'><h1>Sorry, an error occurred while processing your request.</h1>");
 
                 // Display a hyperlink that allows the user to go back
-                Response.Write("<p><a href='javascript:history.back()'>Go back</a></p>");
+                Response.Write("<p><a href='javascript:history.back()'>Go back</a></p></div>");
+
             }
         }
 
@@ -114,10 +115,10 @@ namespace AssFundraisingSystem.AdminSide
             Server.ClearError();
 
             // Display a message indicating that there might be an error
-            Response.Write("<h1>Sorry, an error occurred while processing your request.</h1>");
+            Response.Write("<div style='text-align: center'><h1>Sorry, an error occurred while processing your request.</h1>");
 
             // Display a hyperlink that allows the user to go back
-            Response.Write("<p><a href='javascript:history.back()' style='color:red; text-decoration:none;'>Go back</a></p>");
+            Response.Write("<p><a href='javascript:history.back()' style='color:red; text-decoration:none;'>Go back</a></p></div>");
         }
 
 
