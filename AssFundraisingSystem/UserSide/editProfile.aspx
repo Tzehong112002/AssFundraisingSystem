@@ -9,7 +9,7 @@
                 <td class="editProfileLbl" style="padding-left: 50px;">Profile Picture</td>
                 <td>
                     <asp:FileUpload ID="fuProfilePic" runat="server"  text=""/>
-                    
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="fuProfilePic" ErrorMessage="Please upload the profile picture"></asp:RequiredFieldValidator>
                     <asp:Literal ID="litFUErrorMessage" runat="server"></asp:Literal>
                     <br />
                     

@@ -15,28 +15,22 @@ namespace AssFundraisingSystem.AdminSide
         string cs = ConfigurationManager.ConnectionStrings["MYConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
-            
             string commentid = Request.QueryString["CommentID"];
             SqlConnection con = new SqlConnection(cs);
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Comment WHERE EventID = '" + commentid + "'", con);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Comment WHERE CommentID = '" + commentid + "'", con);
             con.Open();
             SqlDataReader dr = cmd.ExecuteReader();
 
-
             if (dr.Read())
             {
-
                 txtComment.Text = dr["CommentContent"].ToString();
+                Calendar1.SelectedDate = Convert.ToDateTime(dr["DateCommented"]);
             }
-
-
-
 
             dr.Close();
             con.Close();
-            
-
         }
+
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
@@ -46,6 +40,7 @@ namespace AssFundraisingSystem.AdminSide
                 int EventId = Int32.Parse(Request.QueryString["EventID"]);
                 string commentContent = txtComment.Text;
                 DateTime dateCommented = Calendar1.SelectedDate;
+
 
                 using (SqlConnection con = new SqlConnection(cs))
                 {
