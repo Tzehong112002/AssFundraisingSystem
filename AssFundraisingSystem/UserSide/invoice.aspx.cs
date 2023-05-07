@@ -28,47 +28,47 @@ namespace AssFundraisingSystem.UserSide
         [Obsolete]
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (Session["DonateID"] != null)
-            //{
-            //    if (!this.IsPostBack)
-            //    {
-            //        if (Session["DonateID"] != null)
-            //        {
-            //            string donateID = Session["DonateID"].ToString();
-            //            //SQL Statement
-            //            string query = "SELECT * FROM Payment WHERE PaymentID = '" + donateID + "'";
+            if (Session["DonateID"] != null)
+            {
+                if (!this.IsPostBack)
+                {
+                    if (Session["DonateID"] != null)
+                    {
+                        string donateID = Session["DonateID"].ToString();
+                        //SQL Statement
+                        string query = "SELECT * FROM Payment WHERE PaymentID = '" + donateID + "'";
 
-            //            SqlConnection con = new SqlConnection(cs);
-            //            con.Open();
+                        SqlConnection con = new SqlConnection(cs);
+                        con.Open();
 
-            //            //Sql Statement
-            //            SqlCommand cmd = new SqlCommand(query, con);
+                        //Sql Statement
+                        SqlCommand cmd = new SqlCommand(query, con);
 
-            //            //Execute
-            //            SqlDataReader dr = cmd.ExecuteReader();
+                        //Execute
+                        SqlDataReader dr = cmd.ExecuteReader();
 
-            //            if (dr.Read())
-            //            {
-            //                Label1.Text = dr["Name"].ToString();
-            //            }
+                        if (dr.Read())
+                        {
+                            Label1.Text = dr["Name"].ToString();
+                        }
 
-            //            //Close connection
-            //            dr.Close();
-            //            con.Close();
-            //        }
+                        //Close connection
+                        dr.Close();
+                        con.Close();
+                    }
 
-            //        Label2.Text = DateTime.Now.ToString("yyyy-MM-dd");
-            //        Label6.Text = DateTime.Now.ToString("HH:mm tt");
-            //        showgrid();
-            //        invoicePDF();
-            //        changePaymentStatus();
-            //        Session.Remove("totalAmt");
-            //    }
-            //}
-            //else
-            //{
-            //    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alertMessage", "alert('You no has the permission to access!');window.location ='/UserSide/Login.aspx'", true);
-            //}
+                    Label2.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                    Label6.Text = DateTime.Now.ToString("HH:mm tt");
+                    showgrid();
+                    invoicePDF();
+                    changePaymentStatus();
+                    Session.Remove("totalAmt");
+                }
+            }
+            else
+            {
+                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alertMessage", "alert('You no has the permission to access!');window.location ='/UserSide/Login.aspx'", true);
+            }
         }
 
         public override void VerifyRenderingInServerForm(Control control)
