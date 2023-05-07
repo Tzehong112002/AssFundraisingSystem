@@ -18,19 +18,33 @@ namespace AssFundraisingSystem
 
             string delsql = "DELETE FROM Categories WHERE ID = @Id";
 
-            SqlConnection conn = new SqlConnection(conStr);
-            SqlCommand cmd = new SqlCommand(delsql, conn);
-            cmd.Parameters.AddWithValue("@Id", delid);
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(conStr))
+                {
+                    using (SqlCommand cmd = new SqlCommand(delsql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Id", delid);
 
-            conn.Open();
+                        conn.Open();
 
-            cmd.ExecuteNonQuery();
+                        cmd.ExecuteNonQuery();
 
-            conn.Close();
+                        conn.Close();
+                    }
+                }
 
-            Response.Redirect("Categories.aspx");
-            
+                Response.Redirect("Categories.aspx");
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<h1>Sorry, you cannot delete this user because there are related records.</h1>");
+
+                // Display a hyperlink that allows the user to go back
+                Response.Write("<p><a href='javascript:history.back()'>Go back</a></p>");
+            }
         }
+
 
         void Page_Error()
         {

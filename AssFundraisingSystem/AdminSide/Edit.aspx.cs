@@ -13,7 +13,7 @@ namespace AssFundraisingSystem.AdminSide
 {
     public partial class Edit : System.Web.UI.Page
     {
-        string conStr = ConfigurationManager.ConnectionStrings["MYConnectionString"].ConnectionString;
+        string conStr = ConfigurationManager.ConnectionStrings["CategoriesEntities1"].ConnectionString;
 
         public int cateId = 9;
 
@@ -87,24 +87,33 @@ namespace AssFundraisingSystem.AdminSide
                 string fileName = imageP.FileName;
                 //    string extension = Path.GetExtension(imageP.PostedFile.FileName);
                 //  string newFileName = fileName.Trim() + extension;
+                int titleExists = checkTitle(title, coid); //changes start till below
 
-                SqlConnection con = new SqlConnection(conStr);
+                if (titleExists > 0)
+                {
+                    Literal1.Text = "<p class='alert alert-danger'>Title already exists. Please try another.</p>";
+                }
+                else
+                {
+                    SqlConnection con = new SqlConnection(conStr);
 
-                string sql = "UPDATE Categories SET CategoryTitle=@title,Description=@cateDescription,Image=@image WHERE ID=@Id";
-                SqlCommand cmd = new SqlCommand(sql, con);
+                    string sql = "UPDATE Categories SET CategoryTitle=@title,Description=@cateDescription,Image=@image WHERE ID=@Id";
+                    SqlCommand cmd = new SqlCommand(sql, con);
 
-                cmd.Parameters.AddWithValue("@title", title);
-                cmd.Parameters.AddWithValue("@cateDescription", description);
-                cmd.Parameters.AddWithValue("@image", fileName);
-                cmd.Parameters.AddWithValue("@Id", coid);
-                con.Open();
+                    cmd.Parameters.AddWithValue("@title", title);
+                    cmd.Parameters.AddWithValue("@cateDescription", description);
+                    cmd.Parameters.AddWithValue("@image", fileName);
+                    cmd.Parameters.AddWithValue("@Id", coid);
+                    con.Open();
 
 
-                cmd.ExecuteNonQuery();
-                Response.Write(cmd.ExecuteNonQuery().ToString());
-                Response.Redirect("Categories.aspx");
+                    cmd.ExecuteNonQuery();
+                    Response.Write(cmd.ExecuteNonQuery().ToString());
+                    Response.Redirect("Categories.aspx");
 
-                con.Close();
+                    con.Close();
+                }
+
             }
             catch (Exception ex)
             {
@@ -112,6 +121,16 @@ namespace AssFundraisingSystem.AdminSide
 
             }
         }
+        private int checkTitle(String title, String id)
+        {
+            SqlConnection con = new SqlConnection(conStr);
+            string query = "SELECT COUNT(*) FROM Categories WHERE CategoryTitle= '" + title + "' AND ID != '" + id + "'";
+            SqlCommand cmd = new SqlCommand(query, con);
+            con.Open();
+            int count = (int)cmd.ExecuteScalar();
+            con.Close();
+            return count;
+        }//changes end
 
         void Page_Error()
         {

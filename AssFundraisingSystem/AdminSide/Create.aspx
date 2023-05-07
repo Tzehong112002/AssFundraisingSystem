@@ -1,10 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminSide/adminMaster.Master" AutoEventWireup="true" CodeFile="Create.aspx.cs" Inherits="AssFundraisingSystem.AdminSide.Create" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminSide/adminMaster.Master" AutoEventWireup="true" CodeBehind="Create.aspx.cs" Inherits="AssFundraisingSystem.AdminSide.Create" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link href="css/CssForCreate.css" rel="stylesheet" />
      <div class="container">
 		<div class="otak"><h1>Add New Category</h1></div>
-		
+		 <!--New Change Here (Below)--->
+		 <asp:Literal ID="Literal1" runat="server" EnableViewState="False"></asp:Literal>
 			<label for="cateTitle">Category Title :</label>
 			<!--<input type="text" id="cateTitle" name="cateTitle"  placeholder="Please enter category title" required=""/>-->
 			<asp:TextBox ID="cateTitle" name="cateTitle" placeholder="Enter Category Title" runat="server"></asp:TextBox>
@@ -32,7 +33,7 @@
 
 			<!--<input type="submit" value="Add Category"/>-->
 		 <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
-      <asp:Button ID="btnCancel" runat="server" Text="Cancel" type="reset" />
+         <asp:Button ID="btnCancel" runat="server" Text="Cancel" type="reset" />
 		
 	</div>
 

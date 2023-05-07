@@ -5,7 +5,7 @@
 
      <div class="container">
 		<div class="otak"><h1>Edit The Category Information</h1></div>
-		
+				 <asp:Literal ID="Literal1" runat="server" EnableViewState="False"></asp:Literal> <!--Chages--->
 		 <div class="lblTitle">
             <table>
                 <tr>

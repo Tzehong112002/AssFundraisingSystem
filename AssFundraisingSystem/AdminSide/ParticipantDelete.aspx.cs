@@ -62,26 +62,34 @@ namespace AssFundraisingSystem.AdminSide
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            //retrive id from url
-            string id = Request.QueryString["id"];
-            //
-            string sql = "DELETE FROM Account WHERE UserID = @Id";
+            try
+            {
+                //retrive id from url
+                string id = Request.QueryString["id"];
+                //
+                string sql = "DELETE FROM Account WHERE UserID = @Id";
 
-            SqlConnection con = new SqlConnection(cs);
+                SqlConnection con = new SqlConnection(cs);
 
-            SqlCommand cmd = new SqlCommand(sql, con);
+                SqlCommand cmd = new SqlCommand(sql, con);
 
-            cmd.Parameters.AddWithValue("@Id", id);
+                cmd.Parameters.AddWithValue("@Id", id);
 
-            con.Open();
+                con.Open();
 
-            cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
 
-            con.Close();
+                con.Close();
 
-            Response.Write("<script>alert('Successful')</script>");
-            Response.Redirect("ParticipantsRecord.aspx");
+                Response.Write("<script>alert('Successful')</script>");
+                Response.Redirect("ParticipantsRecord.aspx");
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('An error occurred: " + ex.Message + "')</script>");
+            }
         }
+
 
         void Page_Error()
         {
