@@ -13,7 +13,7 @@ namespace AssFundraisingSystem.AdminSide
 {
     public partial class Create : System.Web.UI.Page
     {
-        string conStr = ConfigurationManager.ConnectionStrings["CategoriesEntities1"].ConnectionString;
+        string conStr = ConfigurationManager.ConnectionStrings["MYConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

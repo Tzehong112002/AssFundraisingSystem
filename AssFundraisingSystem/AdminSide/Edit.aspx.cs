@@ -13,7 +13,7 @@ namespace AssFundraisingSystem.AdminSide
 {
     public partial class Edit : System.Web.UI.Page
     {
-        string conStr = ConfigurationManager.ConnectionStrings["CategoriesEntities1"].ConnectionString;
+        string conStr = ConfigurationManager.ConnectionStrings["MYConnectionString"].ConnectionString;
 
         public int cateId = 9;
 
