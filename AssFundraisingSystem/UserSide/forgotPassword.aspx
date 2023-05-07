@@ -34,8 +34,10 @@
 <div class="form-group mb-4">
 
     
-    <asp:Label ID="lblError" runat="server" Text="Label" Visible="False"></asp:Label>
-    <asp:Label ID="lblSuccess" runat="server" Text="Label" Visible="False"></asp:Label>
+
+<asp:Label ID="lblError" runat="server" Text="Label" Visible="False" style="color: red;"></asp:Label>
+<asp:Label ID="lblSuccess" runat="server" Text="Label" Visible="False" style="color: green;"></asp:Label>
+
 
     
 </div>

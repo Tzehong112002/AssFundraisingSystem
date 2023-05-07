@@ -195,7 +195,7 @@ namespace AssFundraisingSystem.UserSide
 
         protected void BackBtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/UserSide/EventPage.aspx");
+            Response.Redirect("/UserSide/program.aspx");
         }
 
         [Obsolete]
