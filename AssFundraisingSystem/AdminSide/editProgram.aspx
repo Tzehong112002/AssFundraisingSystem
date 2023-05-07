@@ -45,9 +45,9 @@
             </div>
 
             <div class="input">
-                <span id="lblPicture">Profile Picture:</span>
+                <span id="lblPicture">Event Picture:</span>
                 <asp:FileUpload ID="ImgUpload" runat="server" />
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="ImgUpload" ErrorMessage="Please upload the profile picture"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="ImgUpload" ErrorMessage="Please upload the event picture"></asp:RequiredFieldValidator>
 
 &nbsp;<div class="inputerrormessage"></div>
             </div>
