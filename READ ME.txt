@@ -1,0 +1,13 @@
+Start from Login page
+
+User Account
+-Username:waiyuan
+-password:Sinya2002
+
+Organization Account
+-Username:tzehong
+-password:Sinya2002
+
+Admin Account
+-Username:Dennis
+-password:Sinya2002

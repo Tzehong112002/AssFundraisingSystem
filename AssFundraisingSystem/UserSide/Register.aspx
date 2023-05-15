@@ -41,7 +41,9 @@
     <asp:TextBox CssClass="form-control border-0 shadow form-control-lg text-base" placeholder="Email" runat="server" ID="txtEmail"></asp:TextBox>
     <asp:RequiredFieldValidator ID="emailRequired" runat="server" ControlToValidate="txtEmail" ErrorMessage="Email is required" Display="Dynamic"></asp:RequiredFieldValidator>
     <asp:RegularExpressionValidator ID="emailValidator" runat="server" ControlToValidate="txtEmail" ValidationExpression="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" ErrorMessage="Invalid email format" Display="Dynamic"></asp:RegularExpressionValidator>
+    <asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="txtEmail" OnServerValidate="emailCustomValidator_ServerValidate" ErrorMessage="Email already exists " Display="Dynamic"></asp:CustomValidator>
 </div>
+
 
 
 <div class="form-group mb-4">

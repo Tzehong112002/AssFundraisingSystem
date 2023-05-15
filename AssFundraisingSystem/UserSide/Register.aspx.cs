@@ -22,14 +22,14 @@ namespace AssFundraisingSystem.UserSide
         {
             if (Page.IsValid)
             {
-                if (checkExist() == true)
+                if (checkUsernameExist() && checkEmailExist())
                 {
                     string name = txtName.Text;
                     string username = txtusername.Text.Trim();
                     string email = txtEmail.Text;
                     string password = txtPassword.Text.Trim();
                     string confirmPassword = txtConfirmPassword.Text.Trim();
-                    String StatusUser = "No";
+                    string statusUser = "No";
 
                     if (password == confirmPassword)
                     {
@@ -40,38 +40,63 @@ namespace AssFundraisingSystem.UserSide
                         }
 
                         string roles = "User";
-                        string image = "Img/profile.png";
+                        string profilePic = "Img/profile.png";
 
                         string salt = BCrypt.Net.BCrypt.GenerateSalt();
                         string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password, salt);
 
-                        string sql = "INSERT INTO Account(Name, Email, Password, Roles, ProfilePic ,Username,BanStatus) VALUES (@Name, @Email, @Password, @Roles, @ProfilePic ,@Username,@BanStatus)";
-                        SqlConnection con = new SqlConnection(cs);
-                        SqlCommand cmd = new SqlCommand(sql, con);
+                        string sql = "INSERT INTO Account (Name, Email, Password, Roles, ProfilePic, Username, BanStatus) " +
+                                     "VALUES (@Name, @Email, @Password, @Roles, @ProfilePic, @Username, @BanStatus)";
 
-                        cmd.Parameters.AddWithValue("@Name", name);
-                        cmd.Parameters.AddWithValue("@Email", email);
-                        cmd.Parameters.AddWithValue("@Password", hashedPassword);
-                        cmd.Parameters.AddWithValue("@Roles", roles);
-                        cmd.Parameters.AddWithValue("@ProfilePic", image);
-                        cmd.Parameters.AddWithValue("@Username", username);
-                        cmd.Parameters.AddWithValue("@BanStatus", StatusUser);
+                        using (SqlConnection con = new SqlConnection(cs))
+                        {
+                            using (SqlCommand cmd = new SqlCommand(sql, con))
+                            {
+                                cmd.Parameters.AddWithValue("@Name", name);
+                                cmd.Parameters.AddWithValue("@Email", email);
+                                cmd.Parameters.AddWithValue("@Password", hashedPassword);
+                                cmd.Parameters.AddWithValue("@Roles", roles);
+                                cmd.Parameters.AddWithValue("@ProfilePic", profilePic);
+                                cmd.Parameters.AddWithValue("@Username", username);
+                                cmd.Parameters.AddWithValue("@BanStatus", statusUser);
 
-                        con.Open();
-                        cmd.ExecuteNonQuery();
-                        con.Close();
+                                con.Open();
+                                cmd.ExecuteNonQuery();
+                                con.Close();
+                            }
+                        }
 
-                        Response.Write("<script>alert('Thanks for your registration, our admin will approve your account as soon as possible :)')</script>");
+                        Response.Write("<script>alert('Thanks for your registration! Our admin will approve your account as soon as possible.')</script>");
                         Server.Transfer("Login.aspx");
                     }
                     else
                     {
                         Response.Write("<script>alert('The password and confirm password must match. Please try again.')</script>");
                     }
-
                 }
             }
         }
+
+        protected void emailCustomValidator_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            string email = txtEmail.Text.Trim();
+
+            // Perform the database check
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                string query = "SELECT COUNT(*) FROM Account WHERE Email = @Email";
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    con.Open();
+                    int count = (int)cmd.ExecuteScalar();
+                    con.Close();
+
+                    args.IsValid = (count == 0); // Set the validation result based on the email existence
+                }
+            }
+        }
+
 
         protected void ValidateUsername(object source, ServerValidateEventArgs args)
         {
@@ -97,9 +122,37 @@ namespace AssFundraisingSystem.UserSide
             }
         }
 
+        protected bool checkEmailExist()
+        {
+            string email = txtEmail.Text.Trim();
+
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                string query = "SELECT COUNT(*) FROM Account WHERE Email = @Email";
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    con.Open();
+                    int count = (int)cmd.ExecuteScalar();
+                    con.Close();
+
+                    if (count > 0)
+                    {
+                        Response.Write("<script>alert('Email already exists. Please use a different email.')</script>");
+                        return false; // Email already exists, registration not allowed
+                    }
+                    else
+                    {
+                        return true; // Email does not exist, registration allowed
+                    }
+                }
+            }
+        }
 
 
-        private Boolean checkExist()
+
+
+        private Boolean checkUsernameExist()
         {
             SqlConnection con = new SqlConnection(cs);
             con.Open();
