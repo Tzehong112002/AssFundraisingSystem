@@ -39,7 +39,7 @@
 
             <div class="input">
                 <asp:Label ID="Label6" runat="server" Text="Description :"></asp:Label>
-                <asp:TextBox ID="txtDesc" class="txtinput" placeholder="Enter  description" runat="server"  Height="250px" ></asp:TextBox>
+                <asp:TextBox ID="txtDesc" class="txtinput" placeholder="Enter  description" runat="server"  Height="250px"  TextMode="MultiLine" ></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtDesc" ErrorMessage="Please enter a description"></asp:RequiredFieldValidator>
                 <div class="inputerrormessage"></div>
             </div>
